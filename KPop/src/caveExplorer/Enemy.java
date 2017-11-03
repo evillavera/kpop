@@ -45,6 +45,10 @@ public class Enemy extends NPC {
 		active = false;
 	}
 	
+	public boolean isActive() {
+		return active;
+	}
+	
 	public void setPosition(int row, int col) {
 		if(row>= 0 && row < floor.length && col >= 0 && col < floor[row].length && floor[row][col] instanceof NPCRoom) {
 			//remove the enemy from current room
