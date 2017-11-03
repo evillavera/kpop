@@ -4,7 +4,7 @@ public class CaveRoom {
 
 	private String description;//tells what the room looks like
 	private String directions;//tells what you can do
-	private String contents;//a symbol representing what's in the room
+	private static String contents;//a symbol representing what's in the room
 	private String defaultContents;
 	//the rooms are organized by direction, 'null' signifies no room/door in that direction
 	private CaveRoom[] borderingRooms;
@@ -167,7 +167,7 @@ public class CaveRoom {
 	public static void setUpCaves() {
 		//All of this code can be changed
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new NPCRoom[7][7];
+		CaveExplorer.caves = new CaveRoom[7][7];
 		//2.Populate with caves and a default description : hint: when starting, use coordinates (helps debug)
 		for(int row = 0; row < CaveExplorer.caves.length; row++) {
 			for(int col = 0; col < CaveExplorer.caves[0].length; col++) {
@@ -179,6 +179,13 @@ public class CaveRoom {
 		//3. replace default rooms with custom rooms
 		//Will be done later 
 
+		CaveRoom customRoom = new SamRoom("This is a special room");
+		
+		CaveExplorer.caves[1][1] = customRoom;
+		
+		
+		
+		
 		CaveExplorer.npcs = new Enemy[1];
 		
 		CaveExplorer.npcs[0] = new Enemy();
