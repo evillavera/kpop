@@ -1,4 +1,4 @@
-package caveExplorer;
+package alexErikGame;
 
 public class CaveRoom {
 
