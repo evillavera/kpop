@@ -165,34 +165,58 @@ public class CaveRoom {
 	 * and all the connections
 	 */
 	public static void setUpCaves() {
-		//ALL OF THIS CODE CAN BE CHANGED
-		//1. Decide how big your cave should be
-		CaveExplorer.caves = new NPCRoom[6][8];
-		//2. Populate with caves and a default description. Hint: when starting, use coordinates. (helps debugging)
-		//LENGTH
+		//All of this code can be changed
+		//1. Decide how big your caves should be
+		CaveExplorer.caves = new NPCRoom[7][7];
+		//2.Populate with caves and a default description : hint: when starting, use coordinates (helps debug)
 		for(int row = 0; row < CaveExplorer.caves.length; row++) {
-			//PLEASE PAY ATTENTION TO THE DIFFERENCE
-			//WIDTH
 			for(int col = 0; col < CaveExplorer.caves[0].length; col++) {
 				//create a "default" cave
-				CaveExplorer.caves[row][col] = new NPCRoom("This cave has coords ("+row+","+col+")");
+				CaveExplorer.caves[row][col] = new NPCRoom("this cave has coordinates ("+row+","+col+")");
+
 			}
 		}
-		//3. Replace default rooms with custom rooms
-		//--- WE WILL DO LATER
-		CaveExplorer.npcs = new NPC[1];
-		CaveExplorer.npcs[0] = new NPC();
-		CaveExplorer.npcs[0].setPosition(4, 3);
+		//3. replace default rooms with custom rooms
+		//Will be done later
+
+		CaveExplorer.npcs = new Enemy[1];
 		
+		CaveExplorer.npcs[0] = new Enemy();
+		
+		CaveExplorer.npcs[0].setPosition(0, 4);
 		
 		//4. Set your starting room:
-		CaveExplorer.currentRoom = CaveExplorer.caves[5][3];
+		CaveExplorer.currentRoom = CaveExplorer.caves[6][3];
 		CaveExplorer.currentRoom.enter();
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
-		c[5][3].setConnection(NORTH, c[4][3], new Door());
-		c[4][3].setConnection(WEST, c[4][2], new Door());
-		c[4][3].setConnection(EAST, c[4][4], new Door());
+		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		c[0][1].setConnection(EAST, c[0][2], new Door());
+		c[0][2].setConnection(EAST, c[0][3], new Door());
+		c[0][3].setConnection(EAST, c[0][4], new Door());
+		c[0][4].setConnection(EAST, c[0][5], new Door());
+		c[1][1].setConnection(EAST, c[1][2], new Door());
+		c[1][2].setConnection(EAST, c[1][3], new Door());
+		c[1][3].setConnection(EAST, c[1][4], new Door());
+		c[1][4].setConnection(EAST, c[1][5], new Door());
+		c[1][3].setConnection(SOUTH, c[2][3], new Door());
+		c[2][3].setConnection(SOUTH, c[3][3], new Door());
+		
+		
+		c[6][3].setConnection(NORTH, c[5][3], new Door());
+		c[5][3].setConnection(EAST, c[5][4], new Door());
+		c[5][3].setConnection(WEST, c[5][2], new Door());
+		c[5][2].setConnection(WEST, c[5][1], new Door());
+		c[5][1].setConnection(SOUTH, c[6][1], new Door());
+		c[5][1].setConnection(NORTH, c[4][1], new Door());
+		c[4][1].setConnection(NORTH, c[3][1], new Door());
+		c[3][1].setConnection(EAST, c[3][2], new Door());
+		c[3][2].setConnection(EAST, c[3][3], new Door());
+		c[5][4].setConnection(EAST, c[5][5], new Door());
+		c[5][5].setConnection(SOUTH, c[6][5], new Door());
+		c[5][5].setConnection(NORTH, c[4][5], new Door());
+		c[4][5].setConnection(NORTH, c[3][5], new Door());
+		c[3][5].setConnection(EAST, c[3][6], new Door());
 	}
 	
 	public String getDescription() {

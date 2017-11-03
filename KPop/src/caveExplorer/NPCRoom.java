@@ -3,16 +3,18 @@ package caveExplorer;
 public class NPCRoom extends CaveRoom {
 
 	private NPC presentNPC;
+	private Enemy presentEnemy;
 	
 	public NPCRoom(String description) {
 		super(description);
 		presentNPC = null;
+		presentEnemy = null;
 	}
 
-	/**8
-	 * NPCs can enter a room if no other NPC is there
+	/**
+	 * NPCs can enter room if no other NPC is in the room
+	 * @return
 	 */
-	
 	public boolean canEnter() {
 		return presentNPC == null;
 	}
@@ -26,66 +28,81 @@ public class NPCRoom extends CaveRoom {
 	}
 	
 	/**
-	 * there is already a method like this, but to me it is 
-	 * helpful to have this other way of referring to it,
-	 * ESPECIALLY if I decide to change the rules of "canEnter"
-	 * 
-	 * distinct methods- canEnter and containNPC
+	 * There is already a method like this
+	 * but it is helpful the other way for referring to it
+	 * especially if it is to change the rules of "canEnter"
 	 * @return
 	 */
 	public boolean containsNPC() {
 		return presentNPC != null;
 	}
-		
-	//The above methods are NEW features to a CaveRoom 
-	//the methods below REPLACE CaveRoom methods (override)
 	
-	//e is there as an action key
+	//the above methods are new features to a caveroom
+	//the methods below replace CaveRoom methods(override)
+	
 	public String validKeys() {
 		return "wdsae";
 	}
 	
 	public void printAllowedEntry() {
-		CaveExplorer.print("You can only enter 'w', 'a', 's' or 'd' to move or"
-				+ "you can type 'e' to interact.");
+		CaveExplorer.print("You can only input W A S D to move or E to interact.");
 	}
 	
 	public void performAction(int direction) {
 		if(direction == 4) {
-			if(containsNPC() && presentNPC.isActive()) {
-				presentNPC.interact();
-			}else {
-				CaveExplorer.print("There is nothing to interact with right now.");
+			if(containsEnemy() && presentEnemy.isActive()) {
+				presentEnemy.battle();
 			}
-		}else {
+			else if(containsNPC() && presentNPC.isActive()) {
+				presentNPC.interact();
+			}
+			else {
+				CaveExplorer.print("There is nothing to interact with.");
+			}
+		}
+		else {
 			CaveExplorer.print("That key does nothing.");
 		}
+		
 	}
 	
+	private boolean containsEnemy() {
+		return presentEnemy != null;
+	}
+	public void enterEnemy(Enemy m) {
+		presentEnemy = m;
+	}
+	
+	public void leaveEnemy() {
+		presentEnemy = null;
+	}
+
 	public String getContents() {
-		if(containsNPC() && presentNPC.isActive()) {
-			return "N";
-		}else {
-			//return what would be returned otherwise
-			return super.getContents();
+		if(containsEnemy() && presentEnemy.isActive()) {
+			return "E";
+		}
+		else if(containsNPC()&& presentNPC.isActive()) {
+			return "M";
+		}
+		else {
+			return  super.getContents();
 		}
 	}
 	
 	public String getDescription() {
+		if(containsEnemy() && !presentEnemy.isActive()) {
+			return super.getDescription() + "\n"+presentNPC.getInactiveDescription();
+		}
 		if(containsNPC() && !presentNPC.isActive()) {
-			return super.getDescription() + "\n" +presentNPC.getInactiveDescription();
-		}else {
+			return super.getDescription() + "\n"+presentNPC.getInactiveDescription();
+		}
+		else {
 			String npcDesc = "";
-			if(presentNPC != null) {
+			if(presentNPC!= null) {
 				npcDesc = presentNPC.getActiveDescription();
 			}
-			return super.getDescription() + "\n"+ npcDesc;
+			return super.getDescription() + "\n"+npcDesc;
 		}
 	}
-	
-	
-	
-	
-	
-	
 }
+
