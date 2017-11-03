@@ -185,7 +185,7 @@ public class CaveRoom {
 		CaveExplorer.npcs[0].setPosition(4, 3);
 		
 		//ADD EACH PERSON'S ROOM LIKE THIS":
-		CaveRoom customRoom = new NPCRoom("Room");
+		CaveRoom customRoom = new ErikRoom("Room");
 		
 		
 		

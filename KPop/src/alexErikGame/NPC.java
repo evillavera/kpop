@@ -18,7 +18,6 @@ package alexErikGame;
 	private boolean active;
 	private String activeDescription;
 	private String inactiveDescription;
-		
 	
 	//default constructor
 	public NPC() {
