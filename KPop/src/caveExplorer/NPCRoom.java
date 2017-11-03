@@ -1,4 +1,4 @@
-package caveExplorer;
+package caveExplorer; 
 
 public class NPCRoom extends CaveRoom {
 

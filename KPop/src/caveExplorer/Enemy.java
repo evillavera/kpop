@@ -2,7 +2,7 @@ package caveExplorer;
 
 public class Enemy extends NPC {
 	private int hp;
-	private boolean battling;
+	private boolean battling; 
 	//fields relating to navigation
 		private CaveRoom[][] floor;//where the npc roams
 		private int currentRow;
