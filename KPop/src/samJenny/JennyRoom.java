@@ -6,7 +6,9 @@ public class JennyRoom extends CaveRoom {
 
 	public JennyRoom(String description) {
 		super(description);
-		
 	}
-
+	
+	public void enterPerson(JennyPerson j) {
+		person = j;
+	}
 }

@@ -4,7 +4,7 @@ public class CaveRoom {
 
 	private String description;//tells what the room looks like
 	private String directions;//tells what you can do
-	private static String contents;//a symbol representing what's in the room
+	private String contents;//a symbol representing what's in the room
 	private String defaultContents;
 	//the rooms are organized by direction, 'null' signifies no room/door in that direction
 	private CaveRoom[] borderingRooms;
