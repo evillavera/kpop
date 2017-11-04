@@ -29,7 +29,7 @@ public class Inventory {
 					//contents of room depend on what row this is
 					if(i == 0) {
 						text += "   "; //3 spaces
-					}else if(i ==1) {
+					}else if(i == 1) {
 						text += " "+cr.getContents()+" ";
 					}else if(i == 2) {
 						//draw space if door to south is open
