@@ -132,7 +132,7 @@ public class CaveRoom {
 	
 	private boolean isValid(String input) {
 		String validEntries = validKeys();
-		return validEntries.indexOf(input) > -1 && input.length() ==1;
+		return validEntries.indexOf(input) > -1 && input.length() == 1;
 	}
 
 	private void respondToKey(int direction) {
@@ -180,16 +180,15 @@ public class CaveRoom {
 		//Will be done later 
 
 		CaveRoom customRoom = new SamRoom("This is a special room");
-		
 		CaveExplorer.caves[1][1] = customRoom;
 		
-		
-		
+		CaveExplorer.caves[5][3] = new JennyRoom("JENNY ROOM");
+		CaveExplorer.jenny = new JennyPerson[1];
+		CaveExplorer.jenny[0] = new JennyPerson();
+		CaveExplorer.jenny[0].setPosition(5, 3);
 		
 		CaveExplorer.npcs = new Enemy[1];
-		
 		CaveExplorer.npcs[0] = new Enemy();
-		
 		CaveExplorer.npcs[0].setPosition(0, 4);
 		
 		//4. Set your starting room:

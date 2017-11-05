@@ -71,6 +71,7 @@ public class NPC {
 	public String getActiveDescription() {
 		return activeDescription;
 	}
+	
 	public void act() {
 		if(active) {
 			int[] move = calculateMovement();

@@ -3,20 +3,36 @@ package samJenny;
 public class JennyPerson {
 
 	private boolean active;
-	String item;
+	private String item;
+	private String description;
+	private int currentRow;
+	private int currentCol;
+	private JennyRoom currentRoom;
 
 	public JennyPerson() {
 		active = true;
 		item = "pen";
+		description = "There is a merchant here. Press 'e' if you want to interact.";
+		this.currentCol = -1;
+		this.currentRow = -1;
+		this.currentRoom = null;
 	}
 
-	public void act() {
+	public String returnDescription() {
+		return description;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void interact() {
 		CaveExplorer.print("Hi there! I am a merchant.");
 		if(active) {
 			CaveExplorer.print("I only have a " + item + " on me right now. Press 'i' for more information, or say 'bye' to stop talking.");
 			String s = CaveExplorer.in.nextLine();
 			while(!s.equalsIgnoreCase("bye") || !s.equalsIgnoreCase("i")) {
-				CaveExplorer.print("You can only say 'i' or 'bye'");
+				CaveExplorer.print("You can only say 'i' or 'bye'.");
 				s = CaveExplorer.in.nextLine();
 			}
 			if(s.equalsIgnoreCase("i")) {
@@ -36,4 +52,8 @@ public class JennyPerson {
 			CaveExplorer.print("I had a " + item + " before, but I ran out. Try again later!");
 	}
 
+	public void setPosition(int row, int col) {
+		currentRoom = (JennyRoom) CaveExplorer.caves[row][col];
+		currentRoom.enterPerson(this);
+	}
 }
