@@ -5,16 +5,12 @@ public class JennyPerson {
 	private boolean active;
 	private String item;
 	private String description;
-	private int currentRow;
-	private int currentCol;
 	private JennyRoom currentRoom;
 
 	public JennyPerson() {
 		active = true;
 		item = "pen";
 		description = "There is a merchant here. Press 'e' if you want to interact.";
-		this.currentCol = -1;
-		this.currentRow = -1;
 		this.currentRoom = null;
 	}
 
