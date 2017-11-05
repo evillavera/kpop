@@ -37,7 +37,7 @@ public class JennyPerson {
 			}
 			if(s.equalsIgnoreCase("i")) {
 				CaveExplorer.print("This is just a regular " + item + ".");
-				CaveExplorer.print("Say 'p' if you want to purchase this item.");
+				CaveExplorer.print("If you want to purchase this item, say 'p'");
 				s = CaveExplorer.in.nextLine();
 				if(s.equalsIgnoreCase("p")) {
 					CaveExplorer.print("I took 10 dollars from you. Thank you. Have a nice day!");
