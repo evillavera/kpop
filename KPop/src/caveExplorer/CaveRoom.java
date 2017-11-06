@@ -1,5 +1,7 @@
 package caveExplorer;
 
+import alexErikGame.ErikRoom;
+
 public class CaveRoom {
 
 	private String description;//tells what the room looks like
@@ -179,6 +181,9 @@ public class CaveRoom {
 		//3. replace default rooms with custom rooms
 		//Will be done later 
 
+		CaveRoom customroom1 = new ErikRoom("Text");
+		CaveExplorer.caves[5][3] = customroom1;
+		
 		CaveExplorer.npcs = new Enemy[1];
 		
 		CaveExplorer.npcs[0] = new Enemy();
