@@ -27,7 +27,7 @@ public class JennyPerson {
 		if(active) {
 			CaveExplorer.print("I only have a " + item + " on me right now. Press 'i' for more information, or say 'bye' to stop talking.");
 			String s = CaveExplorer.in.nextLine();
-			while(!s.equalsIgnoreCase("bye") || !s.equalsIgnoreCase("i")) {
+			while(!s.equalsIgnoreCase("bye") && !s.equalsIgnoreCase("i")) {
 				CaveExplorer.print("You can only say 'i' or 'bye'.");
 				s = CaveExplorer.in.nextLine();
 			}
