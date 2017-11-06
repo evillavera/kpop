@@ -1,6 +1,7 @@
 package caveExplorer;
 
 import alexErikGame.ErikRoom;
+import alexErikGame.AlexRoom;
 
 public class CaveRoom {
 
@@ -183,6 +184,9 @@ public class CaveRoom {
 
 		CaveRoom customroom1 = new ErikRoom("Text");
 		CaveExplorer.caves[5][3] = customroom1;
+		
+		CaveRoom customroom2 = new AlexRoom("Text");
+		CaveExplorer.caves[4][5] = customroom2;
 		
 		CaveExplorer.npcs = new Enemy[1];
 		
