@@ -176,7 +176,7 @@ public class CaveRoom {
 		for(int row = 0; row < CaveExplorer.caves.length; row++) {
 			for(int col = 0; col < CaveExplorer.caves[0].length; col++) {
 				//create a "default" cave
-				CaveExplorer.caves[row][col] = new NPCRoom("this cave has coordinates ("+row+","+col+")");
+				CaveExplorer.caves[row][col] = new NPCRoom("This cave has coordinates ("+row+","+col+")");
 
 			}
 		}
@@ -186,10 +186,10 @@ public class CaveRoom {
 		SamRoom customRoom = new SamRoom("This is a special room");
 		CaveExplorer.caves[1][1] = customRoom;
 		
-		CaveExplorer.caves[5][3] = new JennyRoom("JENNY ROOM");
+		CaveExplorer.caves[6][1] = new JennyRoom("JENNY ROOM");
 		CaveExplorer.jenny = new JennyPerson[1];
 		CaveExplorer.jenny[0] = new JennyPerson();
-		CaveExplorer.jenny[0].setPosition(5, 3);
+		CaveExplorer.jenny[0].setPosition(6, 1);
 
 		CaveExplorer.npcs = new Enemy[1];
 		

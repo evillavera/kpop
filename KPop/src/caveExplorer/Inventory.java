@@ -3,9 +3,15 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
+	private int money;
 	
 	public Inventory() {
 		updateMap();
+		updateMoney();
+	}
+
+	public void updateMoney() {
+		money = 0;
 	}
 
 	public void updateMap() {
@@ -47,7 +53,7 @@ public class Inventory {
 	}
 
 	public String getDescription() {
-		return map;
+		return map + "\nYou have: " + money + " dollars.";
 //		return "You have nothing in your inventory.";
 	}
 
