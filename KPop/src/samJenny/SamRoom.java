@@ -41,12 +41,7 @@ public class SamRoom extends CaveRoom {
 	}
 	
 	public String getContents() {
-		if(active) {
-			return "*";
-		}
-		else {
-			return  super.getContents();
-		}
+		return "*";
 	}
 	
 }
