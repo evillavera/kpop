@@ -20,13 +20,13 @@ public class SamRoom extends CaveRoom {
 	
 	public void performAction(int direction) {
 		if(direction == 4 && active) {
-				CaveExplorer.print("You are now stuck in this room MUAHAHAHAHAHAHA!\nTo get out try every key");
+				CaveExplorer.print("You are now stuck in a crowd of people!\nTo get out try every key");
 				String s = CaveExplorer.in.nextLine();
 				while(!s.equalsIgnoreCase("l")) {
-					CaveExplorer.print("HAHAHHAHAHAHA YOU IDIOT");
+					CaveExplorer.print("That won't work try again.");
 					s = CaveExplorer.in.nextLine();
 				}
-				CaveExplorer.print("WHAT IMPOSSIBLE\n*You have been freed*");
+				CaveExplorer.print("You manage to find a hole in the crowd.\n*You have been freed*");
 				this.active = false;
 				
 		}
@@ -38,10 +38,10 @@ public class SamRoom extends CaveRoom {
 	
 	public String getDescription() {
 		if(active) {
-			return super.getDescription() + "\nPress e for gifts";
+			return super.getDescription() + "\nPress e for a shortcut";
 		}
 		else {
-			return super.getDescription() + "\nThis is the room with the fake free gifts";
+			return super.getDescription() + "\nThis is where you got stuck";
 		}
 	}
 	
