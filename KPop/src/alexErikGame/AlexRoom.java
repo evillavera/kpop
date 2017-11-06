@@ -6,17 +6,6 @@ import caveExplorer.CaveRoom;
 import caveExplorer.CaveExplorer;
 
 public class AlexRoom extends CaveRoom {
-	/*
-	public static Scanner in;
-	
-	public static void main(String[] args){
-		in = new Scanner(System.in);
-		
-
-	     Scanner sc = new Scanner(System.in);
-	     int i = sc.nextInt();
-	}*/
-	
 	
 	public AlexRoom(String description) {
 		super(description);
@@ -39,12 +28,15 @@ public class AlexRoom extends CaveRoom {
 
 	public void performAction(int direction) {
 		if(direction == 4) {
-			CaveExplorer.print("Talk to the owl to learn about k-pop.");
+			CaveExplorer.print("K-pop artists are fun including Girls Generation");
 		}
 		else {
 			CaveExplorer.print("That key does nothing.");
 	}
 }
-
+	
+	public String getDescription() {
+		return "Do you want to learn more about fun music and talk to an owl. Enter o to do so.";
+}
 }
 
