@@ -7,11 +7,11 @@ public class Inventory {
 	
 	public Inventory() {
 		updateMap();
-		updateMoney();
+		updateMoney(0);
 	}
 
-	public void updateMoney() {
-		money = 0;
+	public void updateMoney(int mula) {
+		money = money + mula;
 	}
 
 	public void updateMap() {
