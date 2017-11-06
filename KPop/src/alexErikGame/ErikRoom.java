@@ -18,7 +18,7 @@ public class ErikRoom extends CaveRoom{
 			return "You are in the back of the crowd. Between all the heads you can spot them, your idols."
 					+ "You notice a note on the floor.\n Press SpaceBar to read it.";
 		}else {
-			return "The back of the concert. Where you found the note.";
+			return "The back of the concert. Where you found the note. Press SpaceBar if you want to read it again.";
 		}
 	}
 	

@@ -15,7 +15,9 @@ public class CaveExplorer {
 		in = new Scanner(System.in);
 		CaveRoom.setUpCaves();
 		
-		inventory = new Inventory();
+		inventory = new Inventory(); 
+		
+		
 		startExploring();
 	}
 
