@@ -1,5 +1,7 @@
 package alexErikGame;
 
+import caveExplorer.CaveRoom;
+
 public class ErikRoom extends CaveRoom{
 
 	private boolean visited;
@@ -16,5 +18,9 @@ public class ErikRoom extends CaveRoom{
 		}else {
 			return "Where you started, all the way in the back.";
 		}
+	}
+	
+	public String getContents() {
+		return "E";
 	}
 }
