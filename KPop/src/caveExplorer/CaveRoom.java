@@ -1,12 +1,9 @@
 package caveExplorer;
 
-<<<<<<< HEAD
 import samJenny.JennyPerson;
 import samJenny.JennyRoom;
 import samJenny.SamRoom;
-=======
 import alexErikGame.ErikRoom;
->>>>>>> refs/heads/erikAlexBranch
 
 public class CaveRoom {
 
