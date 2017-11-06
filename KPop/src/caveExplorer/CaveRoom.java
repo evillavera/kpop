@@ -4,9 +4,6 @@ import samJenny.JennyPerson;
 import samJenny.JennyRoom;
 import samJenny.SamRoom;
 import alexErikGame.ErikRoom;
-=======
-
-import alexErikGame.ErikRoom;
 import alexErikGame.AlexRoom;
 
 public class CaveRoom {
