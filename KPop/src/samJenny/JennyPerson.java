@@ -1,5 +1,7 @@
 package samJenny;
 
+import caveExplorer.CaveExplorer;
+
 public class JennyPerson {
 
 	private boolean active;

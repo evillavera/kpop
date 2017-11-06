@@ -1,5 +1,8 @@
 package samJenny;
 
+import caveExplorer.CaveRoom;
+import caveExplorer.CaveExplorer;
+
 public class JennyRoom extends CaveRoom {
 	
 	private JennyPerson person;

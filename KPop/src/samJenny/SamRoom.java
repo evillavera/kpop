@@ -1,11 +1,13 @@
 package samJenny;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.CaveRoom;
 
 public class SamRoom extends CaveRoom {
 
 	private String validKeys;
 	private boolean active;
+	
 	public SamRoom(String description) {
 		super(description);
 		validKeys = "wdsae";

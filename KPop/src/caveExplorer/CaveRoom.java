@@ -1,5 +1,11 @@
 package caveExplorer;
 
+import samJenny.CaveExplorer;
+import samJenny.CaveRoom;
+import samJenny.JennyPerson;
+import samJenny.JennyRoom;
+import samJenny.SamRoom;
+
 public class CaveRoom {
 
 	private String description;//tells what the room looks like
@@ -178,6 +184,14 @@ public class CaveRoom {
 		}
 		//3. replace default rooms with custom rooms
 		//Will be done later 
+		
+		CaveRoom customRoom = new SamRoom("This is a special room");
+		CaveExplorer.caves[1][1] = customRoom;
+		
+		CaveExplorer.caves[5][3] = new JennyRoom("JENNY ROOM");
+		CaveExplorer.jenny = new JennyPerson[1];
+		CaveExplorer.jenny[0] = new JennyPerson();
+		CaveExplorer.jenny[0].setPosition(5, 3);
 
 		CaveExplorer.npcs = new Enemy[1];
 		
