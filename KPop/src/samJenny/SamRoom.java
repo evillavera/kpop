@@ -19,7 +19,7 @@ public class SamRoom extends CaveRoom {
 	}
 	
 	public void performAction(int direction) {
-		if(direction == 4) {
+		if(direction == 4 && active) {
 				CaveExplorer.print("You are now stuck in this room MUAHAHAHAHAHAHA!\nTo get out try every key");
 				String s = CaveExplorer.in.nextLine();
 				while(!s.equalsIgnoreCase("l")) {
@@ -37,7 +37,12 @@ public class SamRoom extends CaveRoom {
 	}
 	
 	public String getDescription() {
-		return super.getDescription() + "\nPress e for gifts";
+		if(active) {
+			return super.getDescription() + "\nPress e for gifts";
+		}
+		else {
+			return super.getDescription() + "\nThis is the room with the fake free gifts";
+		}
 	}
 	
 	public String getContents() {
