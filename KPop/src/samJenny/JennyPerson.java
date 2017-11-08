@@ -1,6 +1,7 @@
 package samJenny;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.Inventory;
 
 public class JennyPerson {
 
@@ -39,6 +40,7 @@ public class JennyPerson {
 				s = CaveExplorer.in.nextLine();
 				if(s.equalsIgnoreCase("p")) {
 					CaveExplorer.print("I took 10 dollars from you. Thank you. Have a nice day!");
+					Inventory.updateMoney(-10);
 					active = false;
 				}
 				else
