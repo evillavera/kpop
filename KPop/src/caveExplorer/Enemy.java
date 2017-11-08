@@ -38,6 +38,7 @@ public class Enemy extends NPC {
 			else {
 				hp = 0;
 				CaveExplorer.print("HP :"+ hp + "\nAJHGJKSDFHJKLDFHKLAJSDH");
+				Inventory.updateMoney(10);
 				battling = false;
 				
 			}
