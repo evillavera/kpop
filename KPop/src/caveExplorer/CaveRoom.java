@@ -3,6 +3,8 @@ package caveExplorer;
 import samJenny.JennyPerson;
 import samJenny.JennyRoom;
 import samJenny.SamRoom;
+import alexErikGame.ErikRoom;
+import alexErikGame.AlexRoom;
 
 public class CaveRoom {
 
@@ -191,6 +193,12 @@ public class CaveRoom {
 		CaveExplorer.jenny[0] = new JennyPerson();
 		CaveExplorer.jenny[0].setPosition(6, 1);
 
+		CaveRoom customroom1 = new ErikRoom("Text");
+		CaveExplorer.caves[5][3] = customroom1;
+		
+		CaveRoom customroom2 = new AlexRoom("Text");
+		CaveExplorer.caves[4][5] = customroom2;
+		
 		CaveExplorer.npcs = new Enemy[1];
 		
 		CaveExplorer.npcs[0] = new Enemy();
