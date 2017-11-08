@@ -28,7 +28,7 @@ public class Enemy extends NPC {
 	
 	public void battle() {
 		battling = true;
-		CaveExplorer.print("Hi, I'm an Enemy!" + " Try to kill me by pressing b\nHP: " + hp );
+		CaveExplorer.print("Hi, I hate Kpop!" + " Try to beat me by pressing b\nHP: " + hp );
 		String s = CaveExplorer.in.nextLine();
 		while(battling) {
 			if(!s.equalsIgnoreCase("b")) {
@@ -37,7 +37,7 @@ public class Enemy extends NPC {
 			}
 			else {
 				hp = hp - 10;
-				CaveExplorer.print("HP :"+ hp + "\nAJHGJKSDFHJKLDFHKLAJSDH\nYou obtained 10 dollars after killing the enemy!");
+				CaveExplorer.print("HP :"+ hp + "\nAJHGJKSDFHJKLDFHKLAJSDH\nYou obtained 10 dollars after defeating the enemy!");
 				Inventory.updateMoney(10);
 				battling = false;
 				
