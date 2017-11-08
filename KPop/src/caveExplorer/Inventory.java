@@ -3,14 +3,14 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
-	private int money;
+	private static int money;
 	
 	public Inventory() {
 		updateMap();
 		updateMoney(0);
 	}
 
-	public void updateMoney(int mula) {
+	public static void updateMoney(int mula) {
 		money = money + mula;
 	}
 
