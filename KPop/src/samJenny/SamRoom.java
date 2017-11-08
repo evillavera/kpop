@@ -17,7 +17,7 @@ public class SamRoom extends CaveRoom {
 	}
 
 	public String validKeys() {
-		return validKeys;
+		return validKeys; 
 	}
 	
 	public void performAction(int direction) {
