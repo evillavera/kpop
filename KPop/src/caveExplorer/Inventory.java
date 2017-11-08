@@ -9,6 +9,10 @@ public class Inventory {
 		updateMap();
 		updateMoney(0);
 	}
+	
+	public static int getMoney() {
+		return money;
+	}
 
 	public static void updateMoney(int mula) {
 		money = money + mula;

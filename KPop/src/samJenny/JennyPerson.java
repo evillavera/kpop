@@ -39,9 +39,13 @@ public class JennyPerson {
 				CaveExplorer.print("If you want to purchase this item, say 'p'");
 				s = CaveExplorer.in.nextLine();
 				if(s.equalsIgnoreCase("p")) {
-					CaveExplorer.print("I took 10 dollars from you. Thank you. Have a nice day!");
-					Inventory.updateMoney(-10); 
-					active = false;
+					if(Inventory.getMoney() < 10) {
+						CaveExplorer.print("You do not have enough money to purchase this item.\nPlease come back when you have at least 10 dollars!");
+					}else {
+						CaveExplorer.print("I took 10 dollars from you. Thank you. Have a nice day!");
+						Inventory.updateMoney(-10); 
+						active = false;
+					}
 				}
 				else
 					CaveExplorer.print("Hm, seems like you don't want this item. Bye then.");
