@@ -39,7 +39,6 @@ public class Enemy extends NPC {
 			}
 			else {
 				hp = hp - 10;
-				CaveExplorer.print("HP: "+ hp + "\nAJHGJKSDFHJKLDFHKLAJSDH\nYou obtained 10 dollars after killing the enemy!");
 				CaveExplorer.print("ENEMY HP: "+ hp + "\nAJHGJKSDFHJKLDFHKLAJSDH\nYou obtained 10 dollars after defeating the enemy!");
 				Inventory.updateMoney(10);
 				battling = false;
