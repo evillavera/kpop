@@ -41,6 +41,10 @@ public class SamRoom extends CaveRoom {
 				}
 				else {
 					CaveExplorer.print("You manage to find a hole in the crowd.\n*You have been freed*");
+					CaveExplorer.currentRoom.leave();
+					CaveExplorer.currentRoom = CaveExplorer.caves[2][3];
+					CaveExplorer.currentRoom.enter();
+					CaveExplorer.inventory.updateMap();
 					this.active = false;
 				}
 		}
@@ -61,6 +65,9 @@ public class SamRoom extends CaveRoom {
 	
 	public String getContents() {
 		return "*";
+	}
+	public void printAllowedEntry() {
+		System.out.println("You can only enter 'w', 'a', 's', 'd' or 'e'.");
 	}
 	
 }

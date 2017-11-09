@@ -91,7 +91,7 @@ public class NPCRoom extends CaveRoom {
 	
 	public String getDescription() {
 		if(containsEnemy() && !presentEnemy.isActive()) {
-			return super.getDescription() + "\n"+presentNPC.getInactiveDescription();
+			return super.getDescription() + "\n"+presentEnemy.getInactiveDescription();
 		}
 		if(containsNPC() && !presentNPC.isActive()) {
 			return super.getDescription() + "\n"+presentNPC.getInactiveDescription();

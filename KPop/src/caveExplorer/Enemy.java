@@ -18,7 +18,7 @@ public class Enemy extends NPC {
 		battling = false;
 		this.floor = CaveExplorer.caves;
 		this.activeDescription = "There is an enemy waiting to talk to you.";
-		this.inactiveDescription = "The enemy you fought earlier is standing here";
+		this.inactiveDescription = "";
 		//to indicate the NPC doesn't have a position yet, use coordinates -1,-1
 		this.currentCol = -1;
 		this.currentRow = -1;
@@ -28,16 +28,22 @@ public class Enemy extends NPC {
 	
 	public void battle() {
 		battling = true;
-		CaveExplorer.print("Hi, I'm an Enemy!" + " Try to kill me by pressing b\nHP: " + hp );
+		CaveExplorer.print("Hi, I hate Kpop!" + " Try to beat me by pressing 'b'\nENEMY HP: " + hp );
 		String s = CaveExplorer.in.nextLine();
 		while(battling) {
 			if(!s.equalsIgnoreCase("b")) {
 				CaveExplorer.print("Hahaha you suck");
+				Inventory.updateHp(-10);
+				CaveExplorer.print("ENEMY HP: " + hp + "\nYOUR HP: " + Inventory.getHp());
 				s = CaveExplorer.in.nextLine();
 			}
 			else {
 				hp = hp - 10;
+<<<<<<< HEAD
 				CaveExplorer.print("HP: "+ hp + "\nAJHGJKSDFHJKLDFHKLAJSDH\nYou obtained 10 dollars after killing the enemy!");
+=======
+				CaveExplorer.print("ENEMY HP: "+ hp + "\nAJHGJKSDFHJKLDFHKLAJSDH\nYou obtained 10 dollars after defeating the enemy!");
+>>>>>>> refs/heads/jennySam
 				Inventory.updateMoney(10);
 				battling = false;
 				
