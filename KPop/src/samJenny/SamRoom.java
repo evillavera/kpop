@@ -41,6 +41,10 @@ public class SamRoom extends CaveRoom {
 				}
 				else {
 					CaveExplorer.print("You manage to find a hole in the crowd.\n*You have been freed*");
+					CaveExplorer.currentRoom.leave();
+					CaveExplorer.currentRoom = CaveExplorer.caves[2][3];
+					CaveExplorer.currentRoom.enter();
+					CaveExplorer.inventory.updateMap();
 					this.active = false;
 				}
 		}
