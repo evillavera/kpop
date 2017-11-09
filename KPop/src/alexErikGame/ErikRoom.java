@@ -18,12 +18,12 @@ public class ErikRoom extends CaveRoom{
 			return "You are in the back of the crowd. Between all the heads you can spot them, your idols. "
 					+ "You notice a note on the floor.\nPress SpaceBar to read it.";
 		}else {
-			return "The back of the concert. Where you found the note. Press SpaceBar if you want to read it again.";
+			return "The back of the concert. Where you found the note. Press SpaceBar if you want to read it.";
 		}
 	}
 	
 	public String getContents() {
-		return "N";
+		return "I";
 	}
 	
 	public String validKeys() {
@@ -36,7 +36,7 @@ public class ErikRoom extends CaveRoom{
 	
 	public void performAction(int direction) {
 		if(direction == 4) {
-				CaveExplorer.print("The note on the floor says that there are 3 items to collect.");
+				System.err.println("The note on the floor says that there are 3 items to collect.");
 			}else {
 			printAllowedEntry();
 		}

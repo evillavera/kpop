@@ -4,6 +4,8 @@ import samJenny.JennyPerson;
 import samJenny.JennyRoom;
 import samJenny.SamRoom;
 import alexErikGame.ErikRoom;
+import alexErikGame.SecurityGuard;
+import alexErikGame.SecurityGuardRoom;
 import alexErikGame.AlexRoom;
 
 public class CaveRoom {
@@ -108,6 +110,7 @@ public class CaveRoom {
 	}
 	
 	public void interpretInput(String input) {
+		input = input.toLowerCase();
 		while(!isValid(input)) {
 			printAllowedEntry();
 			input = CaveExplorer.in.nextLine();
@@ -186,7 +189,7 @@ public class CaveRoom {
 		//Will be done later 
 		
 		SamRoom customRoom = new SamRoom("This is a special room");
-		CaveExplorer.caves[1][1] = customRoom;
+		CaveExplorer.caves[3][6] = customRoom;
 		
 		CaveExplorer.caves[6][1] = new JennyRoom("JENNY ROOM");
 		CaveExplorer.jenny = new JennyPerson[1];
@@ -199,12 +202,19 @@ public class CaveRoom {
 		CaveRoom customroom2 = new AlexRoom("Text");
 		CaveExplorer.caves[4][5] = customroom2;
 		
+		CaveRoom customRoom3 = new SecurityGuardRoom("Text");
+		CaveExplorer.caves[1][1] = customRoom3;
+		
+		CaveExplorer.npcs = new SecurityGuard[1];
+		CaveExplorer.npcs[0] = new SecurityGuard();
+		CaveExplorer.npcs[0].setPosition(1, 1);
+	/*
 		CaveExplorer.npcs = new Enemy[1];
 		
 		CaveExplorer.npcs[0] = new Enemy();
 		
 		CaveExplorer.npcs[0].setPosition(0, 4);
-		
+	*/
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[6][3];
 		CaveExplorer.currentRoom.enter();
