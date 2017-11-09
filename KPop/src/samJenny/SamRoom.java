@@ -66,5 +66,8 @@ public class SamRoom extends CaveRoom {
 	public String getContents() {
 		return "*";
 	}
+	public void printAllowedEntry() {
+		System.out.println("You can only enter 'w', 'a', 's', 'd' or 'e'.");
+	}
 	
 }
