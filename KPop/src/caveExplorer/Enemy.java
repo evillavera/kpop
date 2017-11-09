@@ -18,7 +18,7 @@ public class Enemy extends NPC {
 		battling = false;
 		this.floor = CaveExplorer.caves;
 		this.activeDescription = "There is an enemy waiting to talk to you.";
-		this.inactiveDescription = "The enemy you fought earlier is standing here";
+		this.inactiveDescription = "";
 		//to indicate the NPC doesn't have a position yet, use coordinates -1,-1
 		this.currentCol = -1;
 		this.currentRow = -1;
