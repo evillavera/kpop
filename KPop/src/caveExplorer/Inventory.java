@@ -4,12 +4,32 @@ public class Inventory {
 
 	private String map;
 	private static int money;
+	private static boolean pen;
+	private static boolean paper;
 	
 	public Inventory() {
+		pen = false;
+		paper = false;
 		updateMap();
 		updateMoney(0);
 	}
 	
+	public boolean isPen() {
+		return pen;
+	}
+
+	public static void setPen(boolean p) {
+		pen = p;
+	}
+
+	public boolean isPaper() {
+		return paper;
+	}
+
+	public static void setPaper(boolean p) {
+		paper = p;
+	}
+
 	public static int getMoney() {
 		return money;
 	}

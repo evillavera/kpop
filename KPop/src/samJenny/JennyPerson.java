@@ -44,6 +44,7 @@ public class JennyPerson {
 					}else {
 						CaveExplorer.print("I took 10 dollars from you. Thank you. Have a nice day!");
 						Inventory.updateMoney(-10); 
+						Inventory.setPen(true);
 						active = false;
 					}
 				}
