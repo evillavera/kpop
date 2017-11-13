@@ -14,5 +14,9 @@ public class SamBackEnd implements JennySupport {
 		plots = new JennySamPlot[4][5];
 	}
 
+	public JennySamPlot[][] getPlots() {
+		return plots;
+	}
+
 
 }

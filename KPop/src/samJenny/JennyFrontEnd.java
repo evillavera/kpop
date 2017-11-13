@@ -14,7 +14,7 @@ public class JennyFrontEnd implements SamSupport {
 		displayField(plots);
 	}
 
-	public void displayField(JennySamPlot[][] plot) {
+	public static void displayField(JennySamPlot[][] plot) {
 		String rows = "0123456789";
 		String columns = "  0123456789";
 	}
