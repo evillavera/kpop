@@ -4,10 +4,11 @@ public class AlexBackEnd implements ErikSupport {
 	
 	private AlexSupport frontend;
 	private AlexErikFleet[][] ships;
+	private int shipsSunk;
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
-		ships = new AlexErikFleet[7][7];
+		ships = new AlexErikFleet[6][6];
 	}
 	
 	public void shipShape() {
@@ -17,6 +18,26 @@ public class AlexBackEnd implements ErikSupport {
 	
 	public int getShipsSunk() {
 		return shipsSunk;
+	}
+
+	public void sunk() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void placeMarker() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int[] getCoordInput() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public AlexErikFleet[][] getFleet() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
