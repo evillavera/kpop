@@ -13,19 +13,46 @@ public class JennyFrontEnd implements SamSupport {
 	public static void main(String[] args) {
 		JennyFrontEnd demo = new JennyFrontEnd();
 		displayField(plots);
+		play();
+	}
+
+	private static void play() {
+		while(backend.stillPlaying()){
+	        displayField(plots);
+	        displayScore();
+	        int[] input = backend.getValidUserInput();
+	        respondToInput(input);
+	        
+		}
+		
+	}
+
+	private static void respondToInput(int[] input) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void displayScore() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public static void displayField(JennySamPlot[][] plot) {
-		String rows = "0123456789";
-		String columns = "  0123456789";
+		String rows = "0123";
+		String columns = "   0  1  2  3  4";
 		for(int row = 0; row < plots.length; row++){
 			System.out.print(rows.substring(row, row+1)+" ");
 			for(int col = 0; col < plots[row].length; col++){
-					System.out.print(".");
+				if(plots[row][col].isRevealed()) {
+					System.out.print("["+plots[row][col].getValue()+"]");
+				}
+				else {
+					System.out.print("[ ]");
+				}
 			}
 			System.out.println(" " + rows.substring(row, row+1));
 		}
-		System.out.println(columns.substring(0, plots[0].length+2));
+		System.out.println(columns);
 	}
 
 }
