@@ -1,14 +1,13 @@
 package alexErikGame;
 
-public class ErikFrontEnd {
-
-	public ErikFrontEnd() {
-		// TODO Auto-generated constructor stub
-	}
+public class ErikFrontEnd implements AlexSupport{
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		ErikFrontEnd game = new ErikFrontEnd();
+		// game.play() =>> call any other methods that are needed for the game to start
 	}
-
+	
+	public ErikFrontEnd() {
+			
+	}
 }
