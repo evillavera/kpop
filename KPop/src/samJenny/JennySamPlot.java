@@ -11,7 +11,7 @@ public class JennySamPlot {
 		this.row = row;
 		this.col = col;
 		this.containsValue = false;
-		this.isRevealed = true;
+		this.isRevealed = false;
 	}
 	
 	public int getValue() {
