@@ -65,9 +65,15 @@ public class AlexBackEnd implements ErikSupport {
 	}
 
 	
-	public void checkUserInput() {
+	public boolean checkNumCoordInput(String userInput) {
 		// this method should only be used while the user is typing coordinates
-		
+		try {
+			int num1 = Integer.parseInt(userInput.substring(0,1));
+			return true;
+		}
+		catch(NumberFormatException dumnum){
+			return false;
+		}
 	}
 	
 }
