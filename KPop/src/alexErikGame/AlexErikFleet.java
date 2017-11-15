@@ -7,18 +7,41 @@ public class AlexErikFleet {
 	private int shortShip = 3;
 	private int longShip = 4;
 	private boolean isRevealed;
+	private boolean containsShip;
 	private String miss = "o";
 	private String hit = "x";
 	private String sunk = "X";
 	private String ship = "+";
 	
-	public AlexErikFleet() {
-		// TODO Auto-generated constructor stub
+	public AlexErikFleet(int row, int col) {
+		isRevealed = false;
+		containsShip = false;
+		this.row = row;
+		this.col = col;
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public boolean containsShip() {
+		return containsShip;
+	}
 
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
+	}
+
+	public void reveal(){
+		isRevealed = true;
+	}
+
+	public boolean isRevealed() {
+		return isRevealed;
+	}
+
+	public void setContainsShip(boolean containsShip) {
+		this.containsShip = containsShip;
 	}
 
 }
