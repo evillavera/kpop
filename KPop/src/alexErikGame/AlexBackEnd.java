@@ -15,8 +15,20 @@ public class AlexBackEnd implements ErikSupport {
 		
 	}
 	
+	public int shipsSunk() {
+		return getShipsSunk();
+	}
+
+	@Override
+	public AlexErikFleet[][] getFleet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public int getShipsSunk() {
-		return shipsSunk;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
