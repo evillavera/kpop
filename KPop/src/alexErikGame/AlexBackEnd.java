@@ -80,4 +80,22 @@ public class AlexBackEnd implements ErikSupport {
 	}
 
 	
+	public boolean checkNumCoordInput(String userInput) {
+		// this method should only be used on the numbers in the coordinates
+		try {
+			int num1 = Integer.parseInt(userInput.substring(0,1));
+			return true;
+		}
+		catch(NumberFormatException dumnum){
+			return false;
+		}
+	}
+	public boolean checkCommmaCoordInput(String userInput) {
+		// this method should only be used on the commma part of the coordinate form
+		if(userInput.substring(1,2).equals(",")) {
+			return true;
+		}
+		return false;
+	}
+	
 }
