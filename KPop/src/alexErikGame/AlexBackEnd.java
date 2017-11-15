@@ -40,4 +40,9 @@ public class AlexBackEnd implements ErikSupport {
 		return null;
 	}
 	
+	public void checkUserInput() {
+		// this method should only be used while the user is typing coordinates
+		
+	}
+	
 }
