@@ -3,7 +3,8 @@ package alexErikGame;
 public class ErikFrontEnd implements AlexSupport{
 
 	private ErikSupport backend;
-	private int ships;
+	private int userShips;
+	private int compShips;
 	private String message;
 	
 	public static void main(String[] args) {
