@@ -66,34 +66,26 @@ public class ErikFrontEnd implements AlexSupport{
 			System.out.print(columns.substring(0, ships[0].length+10));
 	}
 	
-	
-	@Override
 	public void displayShipsSunk(AlexErikFleet p) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void displayHints() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void displayResult() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public int getCompShips() {
-		// TODO Auto-generated method stub
-		return 0;
+		return compShips;
 	}
 
-	@Override
 	public int getUserShips() {
-		// TODO Auto-generated method stub
-		return 0;
+		return userShips;
 	}
 }
