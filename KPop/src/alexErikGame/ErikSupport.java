@@ -8,6 +8,5 @@ public interface ErikSupport {
 	int[] getCoordInput();
 	
 	
-	
 	AlexErikFleet[][] getFleet();
 }

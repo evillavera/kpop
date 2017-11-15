@@ -14,13 +14,14 @@ public class ErikFrontEnd implements AlexSupport{
 	
 	public ErikFrontEnd() {
 			backend = new AlexBackEnd(this);
-			ships = 3;
+			userShips = 3;
 			message = null;
 	}
 	
 	private void startGame() {
 		AlexErikFleet[][] ships = backend.getFleet();
 		AlexErikFleet p = null;
+	/*	
 		while(userShips > 0 && compShips > 0) {
 			displayFleet(ships);
 			displayShipsSunk(p);
@@ -35,5 +36,6 @@ public class ErikFrontEnd implements AlexSupport{
 		}
 		displayResult();
 		System.out.println("GAME OVER\n");
+	*/	
 	}
 }
