@@ -4,8 +4,8 @@ public class AlexBackEnd implements ErikSupport {
 	
 	private AlexSupport frontend;
 	private AlexErikFleet[][] ships;
-	private int userShips;
-	private int compShips;
+	private int userShips = 3;
+	private int compShips = 3;
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
@@ -15,25 +15,6 @@ public class AlexBackEnd implements ErikSupport {
 		getGrid();
 	}
 	
-	public AlexErikFleet[][] getFleet(){
-		return ships;
-	}
-	
-	public void shipShape() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void sunk() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void placeMarker() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public int[] getCoordInput() {
 		// TODO Auto-generated method stub
 		return null;
@@ -61,9 +42,37 @@ public class AlexBackEnd implements ErikSupport {
 		}
 		*/
 	}
+	public AlexErikFleet[][] getFleet(){
+		return ships;
+	}
+	
+	public void computerTakesTurn() {
+		
+	}
+	
+	public boolean sunk() {
+		
+	}
+	
 
-	public int getShipsSunk() {
+	public boolean shipSink() {
+		
+	}
+	
+	public boolean shipHit() {
+		
+	}
+	
+	public int getPlayerShipsSunk() {
 		return 0;
+	}
+	
+	public int getComputerShipsSunk() {
+		return 0;
+	}
+	
+	public boolean PlayerWon() {
+		
 	}
 
 	
