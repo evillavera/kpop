@@ -1,5 +1,7 @@
 package alexErikGame;
 
+import caveExplorer.CaveExplorer;
+
 public class ErikFrontEnd implements AlexSupport{
 
 	private ErikSupport backend;
@@ -22,7 +24,8 @@ public class ErikFrontEnd implements AlexSupport{
 	private void startGame() {
 		AlexErikFleet[][] ships = backend.getFleet();
 		AlexErikFleet p = null;
-	/*	
+		displayFleet(ships);
+	/*
 		while(userShips > 0 && compShips > 0) {
 			displayFleet(ships);
 			displayShipsSunk(p);
@@ -39,13 +42,30 @@ public class ErikFrontEnd implements AlexSupport{
 		System.out.println("GAME OVER\n");
 	*/	
 	}
+	
+	private void displayFleet(AlexErikFleet[][] ships) {
+		//String rows = "0123456789";
+		//String columns = "  0123456789";
+		for(int row = 0; row < ships.length; row++){
+			//System.out.print(rows.substring(row, row+1)+" ");
+			for(int col = 0; col < ships[row].length; col++){
+				if(ships[row][col].isRevealed()){
+					if(ships[row][col].containsShip()){
+						System.out.print("X");
+					}else{
+						System.out.print(" ");	
+					}
 
-	@Override
-	public void displayFleet(AlexErikFleet[][] ships) {
-		// TODO Auto-generated method stub
-		
+				}else{
+					System.out.print("[]");
+				}
+			}
+			//System.out.println(" " + rows.substring(row, row+1));
+		}
+		//System.out.println(columns.substring(0, ships[0].length+2));
 	}
-
+	
+	
 	@Override
 	public void displayShipsSunk(AlexErikFleet p) {
 		// TODO Auto-generated method stub
