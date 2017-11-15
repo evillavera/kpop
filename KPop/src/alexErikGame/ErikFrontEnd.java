@@ -14,7 +14,8 @@ public class ErikFrontEnd implements AlexSupport{
 	
 	public ErikFrontEnd() {
 			backend = new AlexBackEnd(this);
-			ships = 3;
+			userShips = 3;
+			compShips = 3;
 			message = null;
 	}
 	
