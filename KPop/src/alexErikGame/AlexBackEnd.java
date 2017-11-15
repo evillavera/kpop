@@ -1,5 +1,7 @@
 package alexErikGame;
 
+import caveExplorer.CaveExplorer;
+
 public class AlexBackEnd implements ErikSupport {
 	
 	private AlexSupport frontend;
@@ -9,12 +11,13 @@ public class AlexBackEnd implements ErikSupport {
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
-		ships = new AlexErikFleet[6][6];
+		ships = new AlexErikFleet[7][7];
 		userShips = 3;
 		compShips = 3;
 		getGrid();
 	}
 	
+<<<<<<< HEAD
 	public int[] getCoordInput() {
 		// TODO Auto-generated method stub
 		return null;
@@ -22,6 +25,18 @@ public class AlexBackEnd implements ErikSupport {
 	// NOCKLES : "IN ORDER FOR BACKEND TO MEET THE REQUIREMENT FOR A 5, THE AI MUST BE SMART"
 	// IF THE AI HITS A SHIP, IT MUST SELECT TO HIT ANOTHER SPACE NEAR THE SHIP
 	// CHECK THE RUBRIC FOR ADDITIONAL INFORMATION
+=======
+	public AlexErikFleet[][] getFleet(){
+		return ships;
+	}
+	
+
+	public void sunk() {
+		// TODO Auto-generated method stub
+		
+	}
+
+>>>>>>> branch 'erikAlexBranch' of https://github.com/evillavera/kpop.git
 	public void getGrid() {
 		for(int row = 0; row < ships.length; row++){
 			for(int col = 0; col < ships[row].length; col++){
@@ -55,6 +70,7 @@ public class AlexBackEnd implements ErikSupport {
 	}
 	
 
+<<<<<<< HEAD
 	public boolean shipSink() {
 		
 	}
@@ -64,6 +80,36 @@ public class AlexBackEnd implements ErikSupport {
 	}
 	
 	public int getPlayerShipsSunk() {
+=======
+	public int[] getCoordInput() {
+		String input = CaveExplorer.in.nextLine();
+		int[] coords = toCoords(input);
+		while(coords == null){
+			System.out.println("You must enter cordinates of the form:\n          <row>,<col>"
+					+ "\n<row> and <col> should be integers.");
+			input = CaveExplorer.in.nextLine();
+			coords = toCoords(input);
+		}
+		return coords;
+	}
+	
+	private int[] toCoords(String input) {
+		try{
+			int a = Integer.parseInt(input.substring(0,1));
+			int b = Integer.parseInt(input.substring(2,3));
+			if(input.substring(1,2).equals(",") && input.length() ==3){
+				int[] coords = {a,b};
+				return coords;
+			}else{
+				return null;
+			}
+		}catch(Exception e){
+			return null;
+		}
+	}
+
+	public int getShipsSunk() {
+>>>>>>> branch 'erikAlexBranch' of https://github.com/evillavera/kpop.git
 		return 0;
 	}
 	
