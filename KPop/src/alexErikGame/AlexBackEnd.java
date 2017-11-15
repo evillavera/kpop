@@ -38,7 +38,9 @@ public class AlexBackEnd implements ErikSupport {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	// NOCKLES : "IN ORDER FOR BACKEND TO MEET THE REQUIREMENT FOR A 5, THE AI MUST BE SMART"
+	// IF THE AI HITS A SHIP, IT MUST SELECT TO HIT ANOTHER SPACE NEAR THE SHIP
+	// CHECK THE RUBRIC FOR ADDITIONAL INFORMATION
 	public void getGrid() {
 		for(int row = 0; row < ships.length; row++){
 			for(int col = 0; col < ships[row].length; col++){
@@ -66,7 +68,7 @@ public class AlexBackEnd implements ErikSupport {
 
 	
 	public boolean checkNumCoordInput(String userInput) {
-		// this method should only be used while the user is typing coordinates
+		// this method should only be used on the numbers in the coordinates
 		try {
 			int num1 = Integer.parseInt(userInput.substring(0,1));
 			return true;
@@ -74,6 +76,13 @@ public class AlexBackEnd implements ErikSupport {
 		catch(NumberFormatException dumnum){
 			return false;
 		}
+	}
+	public boolean checkCommmaCoordInput(String userInput) {
+		// this method should only be used on the commma part of the coordinate form
+		if(userInput.substring(1,2).equals(",")) {
+			return true;
+		}
+		return false;
 	}
 	
 }
