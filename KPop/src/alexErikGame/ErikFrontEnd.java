@@ -30,6 +30,7 @@ public class ErikFrontEnd implements AlexSupport{
 			displayFleet(ships);
 			displayShipsSunk(p);
 			displayHints();
+			//tell user if ship is in NESW
 			System.out.println("Where do you want to shoot?");
 			int[] coords = backend.getCoordInput();
 			
@@ -44,10 +45,10 @@ public class ErikFrontEnd implements AlexSupport{
 	}
 	
 	private void displayFleet(AlexErikFleet[][] ships) {
-		//String rows = "0123456789";
-		//String columns = "  0123456789";
+		String rows = "0123456789";
+		String columns = "   0 1 2 3 4 5 6 7 8 9";
 		for(int row = 0; row < ships.length; row++){
-			//System.out.print(rows.substring(row, row+1)+" ");
+			System.out.print(rows.substring(row, row+1)+" ");
 			for(int col = 0; col < ships[row].length; col++){
 				if(ships[row][col].isRevealed()){
 					if(ships[row][col].containsShip()){
@@ -60,9 +61,9 @@ public class ErikFrontEnd implements AlexSupport{
 					System.out.print("[]");
 				}
 			}
-			//System.out.println(" " + rows.substring(row, row+1));
+			System.out.println(" " + rows.substring(row, row+1));
 		}
-		//System.out.println(columns.substring(0, ships[0].length+2));
+			System.out.print(columns.substring(0, ships[0].length+10));
 	}
 	
 	

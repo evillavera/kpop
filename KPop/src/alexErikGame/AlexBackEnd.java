@@ -1,5 +1,7 @@
 package alexErikGame;
 
+import caveExplorer.CaveExplorer;
+
 public class AlexBackEnd implements ErikSupport {
 	
 	private AlexSupport frontend;
@@ -9,7 +11,7 @@ public class AlexBackEnd implements ErikSupport {
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
-		ships = new AlexErikFleet[6][6];
+		ships = new AlexErikFleet[7][7];
 		userShips = 3;
 		compShips = 3;
 		getGrid();
@@ -19,24 +21,10 @@ public class AlexBackEnd implements ErikSupport {
 		return ships;
 	}
 	
-	public void shipShape() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void sunk() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	public void placeMarker() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public int[] getCoordInput() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public void getGrid() {
@@ -58,6 +46,33 @@ public class AlexBackEnd implements ErikSupport {
 			}
 		}
 		*/
+	}
+
+	public int[] getCoordInput() {
+		String input = CaveExplorer.in.nextLine();
+		int[] coords = toCoords(input);
+		while(coords == null){
+			System.out.println("You must enter cordinates of the form:\n          <row>,<col>"
+					+ "\n<row> and <col> should be integers.");
+			input = CaveExplorer.in.nextLine();
+			coords = toCoords(input);
+		}
+		return coords;
+	}
+	
+	private int[] toCoords(String input) {
+		try{
+			int a = Integer.parseInt(input.substring(0,1));
+			int b = Integer.parseInt(input.substring(2,3));
+			if(input.substring(1,2).equals(",") && input.length() ==3){
+				int[] coords = {a,b};
+				return coords;
+			}else{
+				return null;
+			}
+		}catch(Exception e){
+			return null;
+		}
 	}
 
 	public int getShipsSunk() {
