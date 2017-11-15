@@ -28,7 +28,7 @@ public class ErikFrontEnd implements AlexSupport{
 			System.out.println("Where do you want to shoot?");
 			int[] coords = backend.getCoordInput();
 			
-			userships = getUserShips();
+			userShips = getUserShips();
 			compShips = getCompShips();
 			
 		//	p = ships[coords[0]][coords[1]];
