@@ -15,6 +15,7 @@ public class ErikFrontEnd implements AlexSupport{
 	public ErikFrontEnd() {
 			backend = new AlexBackEnd(this);
 			userShips = 3;
+			compShips = 3;
 			message = null;
 	}
 	
@@ -37,5 +38,41 @@ public class ErikFrontEnd implements AlexSupport{
 		displayResult();
 		System.out.println("GAME OVER\n");
 	*/	
+	}
+
+	@Override
+	public void displayFleet(AlexErikFleet[][] ships) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayShipsSunk(AlexErikFleet p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayHints() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayResult() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getCompShips() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getUserShips() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
