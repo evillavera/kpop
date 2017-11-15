@@ -8,4 +8,8 @@ public interface JennySupport {
 
 	int[] getValidUserInput();
 
+	boolean isEqual(JennySamPlot[][] plots);
+
+	void hide(JennySamPlot[][] plots);
+
 }

@@ -6,14 +6,24 @@ public class JennySamPlot {
 	private boolean isRevealed;
 	private int value;
 	private boolean containsValue;
+	private boolean found;
 	
 	public JennySamPlot(int row, int col) {
 		this.row = row;
 		this.col = col;
 		this.containsValue = false;
 		this.isRevealed = false;
+		this.found = false;
 	}
 	
+	public boolean isFound() {
+		return found;
+	}
+
+	public void setFound(boolean found) {
+		this.found = found;
+	}
+
 	public int getValue() {
 		return value;
 	}
