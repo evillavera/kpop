@@ -8,7 +8,7 @@ public class ErikFrontEnd implements AlexSupport{
 	
 	public static void main(String[] args) {
 		ErikFrontEnd game = new ErikFrontEnd();
-		game.play();
+		game.startGame();
 	}
 	
 	public ErikFrontEnd() {
