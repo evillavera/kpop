@@ -143,14 +143,14 @@ public class SamBackEnd implements JennySupport {
 		if(input[0] == 0) {
 			nums[0] = -1;
 		}
-		if(input[0] == plots[0].length-1) {
+		if(input[0] == plots.length-1) {
 			nums[2] = -1;
 		}
 		if(input[1] == 0) {
-			nums[1] = -1;
-		}
-		if(input[1] == plots.length-1) {
 			nums[3] = -1;
+		}
+		if(input[1] == plots[0].length-1) {
+			nums[1] = -1;
 		}
 		return nums;
 	}
