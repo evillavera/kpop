@@ -9,11 +9,13 @@ public class JennyFrontEnd implements SamSupport {
 	private static JennySupport backend;
 	private static JennySamPlot[][] plots;
 	private static int response;
+	private static int score;
 
 	public JennyFrontEnd() {
 		backend = new SamBackEnd(this);
 		plots = backend.getPlots();
 		response = 0;
+		score = 0;
 	}
 
 	public static void main(String[] args) {
@@ -23,18 +25,23 @@ public class JennyFrontEnd implements SamSupport {
 	}
 
 	public static void play() {
+		CaveExplorer.print("Try to find all the matches!");
 		while(backend.stillPlaying()){
 			displayField(plots);
 			displayScore();
 			int[] input = backend.getValidUserInput();
 			respondToInput(input);
 		}
+		displayField(plots);
+		displayScore();
+		CaveExplorer.print("WOW YOU WON!");
 
 	}
 
 	public static void respondToInput(int[] input) {
 		response++;
 		plots[input[0]][input[1]].setRevealed(true);
+		backend.revealAdjacent(input);
 		if(response%2 == 0) {
 			//second response
 			if(!backend.isEqual(plots)) {
@@ -49,7 +56,7 @@ public class JennyFrontEnd implements SamSupport {
 	}
 
 	public static void displayScore() {
-		
+		CaveExplorer.print("You have " + score + " matches." );
 	}
 
 	public static void displayField(JennySamPlot[][] plot) {
@@ -67,6 +74,14 @@ public class JennyFrontEnd implements SamSupport {
 			System.out.println(" " + rows.substring(row, row+1));
 		}
 		System.out.println(columns);
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void addScore() {
+		score++;
 	}
 
 }

@@ -12,4 +12,6 @@ public interface JennySupport {
 
 	void hide(JennySamPlot[][] plots);
 
+	void revealAdjacent(int[] input);
+
 }

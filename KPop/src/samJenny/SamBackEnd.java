@@ -23,7 +23,10 @@ public class SamBackEnd implements JennySupport {
 
 	@Override
 	public boolean stillPlaying() {
-		return true;
+		if(frontend.getScore() < 10) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -33,7 +36,8 @@ public class SamBackEnd implements JennySupport {
 		while(coords == null){
 			System.out.println("You must enter cordinates of the form:\n          <row>,<col>"
 					+ "\n<row> and <col> should be integers."
-					+"\n They can also not exceed the limit.");
+					+"\nThey can also not exceed the limit."
+					+"\nYou cannot repeat the same card.");
 			input = CaveExplorer.in.nextLine();
 			coords = toCoords(input);
 		}
@@ -44,12 +48,18 @@ public class SamBackEnd implements JennySupport {
 		try{
 			int a = Integer.parseInt(input.substring(0,1));
 			int b = Integer.parseInt(input.substring(2,3));
-			if(input.substring(1,2).equals(",") && input.length() ==3){
-				int[] coords = {a, b};
-				return coords;
-			}else{
+			if(a > 3 || b > 4){
 				return null;
 			}
+			else if(plots[a][b].isFound()){
+				return null;
+			}
+			else if(input.substring(1,2).equals(",") && input.length() == 3){
+				int[] coords = {a, b};
+				return coords;
+			}
+			else
+				return null;
 		}catch(Exception e){
 			return null;
 		}
@@ -102,6 +112,7 @@ public class SamBackEnd implements JennySupport {
 		if(value1 == value2) {
 			plots[coord1[0]][coord1[1]].setFound(true);
 			plots[coord2[0]][coord2[1]].setFound(true);
+			frontend.addScore();
 		}
 		return value1 == value2;
 	}
@@ -114,5 +125,33 @@ public class SamBackEnd implements JennySupport {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void revealAdjacent(int[] input) {
+		int[] num = checkAdjacent(input);
+		int[][] direction = {{-1,0},{0,1},{1,0},{0,-1}};
+		for(int i = 0; i < num.length; i++) {
+			if(num[i] != -1) {
+				plots[input[0] + direction[num[i]][0]][input[1]+direction[num[i]][1]].setRevealed(true);
+			}
+		}
+	}
+
+	private int[] checkAdjacent(int[] input) {
+		int nums[] = {0,1,2,3};
+		if(input[0] == 0) {
+			nums[0] = -1;
+		}
+		if(input[0] == plots[0].length-1) {
+			nums[2] = -1;
+		}
+		if(input[1] == 0) {
+			nums[1] = -1;
+		}
+		if(input[1] == plots.length-1) {
+			nums[3] = -1;
+		}
+		return nums;
 	}
 }
