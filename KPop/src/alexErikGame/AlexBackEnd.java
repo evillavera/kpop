@@ -31,11 +31,11 @@ public class AlexBackEnd implements ErikSupport {
 		//Add Ships randomly
 		int count = 0;
 		while( count < userShips){
-			int randRow = (int)(Math.random() * plots.length);
-			int randCol = (int)(Math.random() * plots[randRow].length);
-			if(!plots[randRow][randCol].containsTreasure()){
-				plots[randRow][randCol].setContainsTreasure(true);
-				plots[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
+			int randRow = (int)(Math.random() * ships.length);
+			int randCol = (int)(Math.random() * ships[randRow].length);
+			if(!ships[randRow][randCol].containsShip()){
+				ships[randRow][randCol].setContainsShip(true);
+				ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
 				count++;
 			}
 		}
