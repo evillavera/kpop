@@ -21,25 +21,37 @@ public class AlexBackEnd implements ErikSupport {
 	// IF THE AI HITS A SHIP, IT MUST SELECT TO HIT ANOTHER SPACE NEAR THE SHIP
 	// CHECK THE RUBRIC FOR ADDITIONAL INFORMATION
 
+	//STEPS TO MAKE INTELLIGENT AI
+	//1. Activate computer's turn
+	//2. Computer decides and launches missile
+	//3. Message displayed to console -- "The computer has taken its turn. It has launched a missile at the coordinates(,). That's a miss. "
+	//4. Activate player's turn
 	public void getGrid() {
 		for(int row = 0; row < ships.length; row++){
 			for(int col = 0; col < ships[row].length; col++){
 				ships[row][col] = new AlexErikFleet(row, col);
 			}
 		}
-		/*
+		
 		//Add Ships randomly
+		//NEW WAY TO IMPLEMENT compShips
+		//0. Decide which ships will be placed in the sea first
+		//1.pick a random space in the sea
+		//2. use math.random to select whether or not the ship will be placed vertically or horizontally
+		//3. check to see if the ship is able to fit in that orientation
+		//4. place ships spaces in the sea
+		//5. Do the same for all the ships
 		int count = 0;
-		while( count < userShips){
+		while(count < compShips){
 			int randRow = (int)(Math.random() * ships.length);
 			int randCol = (int)(Math.random() * ships[randRow].length);
 			if(!ships[randRow][randCol].containsShip()){
 				ships[randRow][randCol].setContainsShip(true);
-				ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
+				//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
 				count++;
 			}
 		}
-		*/
+		
 	}
 	public AlexErikFleet[][] getFleet(){
 		return ships;
@@ -53,7 +65,6 @@ public class AlexBackEnd implements ErikSupport {
 		return true;
 	}
 	
-
 	public boolean shipSink() {
 		return true;
 	}
@@ -63,7 +74,7 @@ public class AlexBackEnd implements ErikSupport {
 	}
 	
 	public int getPlayerShipsSunk() {
-		return 0;
+		return playerShipsSunk;
 	}
 	
 	public int[] getCoordInput() {
@@ -103,25 +114,6 @@ public class AlexBackEnd implements ErikSupport {
 	
 	public boolean PlayerWon() {
 		return true;
-	}
-
-	
-	public boolean checkNumCoordInput(String userInput) {
-		// this method should only be used on the numbers in the coordinates
-		try {
-			int num1 = Integer.parseInt(userInput.substring(0,1));
-			return true;
-		}
-		catch(NumberFormatException dumnum){
-			return false;
-		}
-	}
-	public boolean checkCommmaCoordInput(String userInput) {
-		// this method should only be used on the commma part of the coordinate form
-		if(userInput.substring(1,2).equals(",")) {
-			return true;
-		}
-		return false;
 	}
 	
 }
