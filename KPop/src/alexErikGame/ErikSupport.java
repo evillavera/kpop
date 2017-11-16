@@ -2,7 +2,7 @@ package alexErikGame;
 
 public interface ErikSupport {
 	int getShipsSunk();
-	void sunk();
+	boolean sunk();
 	int[] getCoordInput();
 	
 	

@@ -16,27 +16,11 @@ public class AlexBackEnd implements ErikSupport {
 		compShips = 3;
 		getGrid();
 	}
-	
-<<<<<<< HEAD
-	public int[] getCoordInput() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	// NOCKLES : "IN ORDER FOR BACKEND TO MEET THE REQUIREMENT FOR A 5, THE AI MUST BE SMART"
 	// IF THE AI HITS A SHIP, IT MUST SELECT TO HIT ANOTHER SPACE NEAR THE SHIP
 	// CHECK THE RUBRIC FOR ADDITIONAL INFORMATION
-=======
-	public AlexErikFleet[][] getFleet(){
-		return ships;
-	}
-	
 
-	public void sunk() {
-		// TODO Auto-generated method stub
-		
-	}
-
->>>>>>> branch 'erikAlexBranch' of https://github.com/evillavera/kpop.git
 	public void getGrid() {
 		for(int row = 0; row < ships.length; row++){
 			for(int col = 0; col < ships[row].length; col++){
@@ -66,21 +50,22 @@ public class AlexBackEnd implements ErikSupport {
 	}
 	
 	public boolean sunk() {
-		
+		return true;
 	}
 	
 
-<<<<<<< HEAD
 	public boolean shipSink() {
-		
+		return true;
 	}
 	
 	public boolean shipHit() {
-		
+		return true;
 	}
 	
 	public int getPlayerShipsSunk() {
-=======
+		return 0;
+	}
+	
 	public int[] getCoordInput() {
 		String input = CaveExplorer.in.nextLine();
 		int[] coords = toCoords(input);
@@ -109,7 +94,6 @@ public class AlexBackEnd implements ErikSupport {
 	}
 
 	public int getShipsSunk() {
->>>>>>> branch 'erikAlexBranch' of https://github.com/evillavera/kpop.git
 		return 0;
 	}
 	
@@ -118,7 +102,7 @@ public class AlexBackEnd implements ErikSupport {
 	}
 	
 	public boolean PlayerWon() {
-		
+		return true;
 	}
 
 	
