@@ -35,6 +35,10 @@ public class CaveExplorer {
 			currentRoom.interpretInput(input);
 		}
 	}
+	
+	public static void initScanner(){
+		in = new Scanner(System.in);
+	}
 
 	private static void npcActions() {
 		for(NPC n: npcs) {
