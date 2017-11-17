@@ -44,4 +44,21 @@ public class AlexErikFleet {
 		this.containsShip = containsShip;
 	}
 
+	public String getMiss() {
+		return miss;
+	}
+
+	public String getHit() {
+		return hit;
+	}
+
+	public String getSunk() {
+		return sunk;
+	}
+
+	public String getShip() {
+		return ship;
+	}
+
+	
 }

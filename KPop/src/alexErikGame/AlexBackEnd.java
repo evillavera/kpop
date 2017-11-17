@@ -12,7 +12,7 @@ public class AlexBackEnd implements ErikSupport {
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
 		ships = new AlexErikFleet[7][7];
-		userShips = 3;
+		userShips = 10;
 		compShips = 3;
 		getGrid();
 	}
@@ -73,10 +73,15 @@ public class AlexBackEnd implements ErikSupport {
 		return true;
 	}
 	
-	public int getPlayerShipsSunk() {
-		return playerShipsSunk;
-	}
 	
+	public int getUserShips() {
+		return userShips;
+	}
+
+	public int getCompShips() {
+		return compShips;
+	}
+
 	public int[] getCoordInput() {
 		String input = CaveExplorer.in.nextLine();
 		int[] coords = toCoords(input);
