@@ -13,7 +13,7 @@ public class JennyPerson {
 	public JennyPerson() {
 		active = true;
 		item = "pen";
-		description = "There is a merchant here. Press 'e' if you want to interact.";
+		description = "\nThere is a merchant here. Press 'e' if you want to interact.";
 		this.currentRoom = null;
 	}
 

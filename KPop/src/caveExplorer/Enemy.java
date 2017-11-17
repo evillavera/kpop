@@ -1,5 +1,7 @@
 package caveExplorer;
 
+import samJenny.*;
+
 public class Enemy extends NPC {
 	private int hp;
 	private boolean battling; 
@@ -13,6 +15,7 @@ public class Enemy extends NPC {
 		private boolean active;
 		private String activeDescription;
 		private String inactiveDescription;
+		private JennyFrontEnd p;
 	public Enemy() {
 		hp = 10;
 		battling = false;
@@ -24,20 +27,21 @@ public class Enemy extends NPC {
 		this.currentRow = -1;
 		this.currentRoom = null;
 		this.active = true;
+		p = new JennyFrontEnd();
 	}
 	
 	public void battle() {
 		battling = true;
-		CaveExplorer.print("Hi, I hate Kpop!" + " Try to beat me by pressing 'b'\nENEMY HP: " + hp );
+		CaveExplorer.print("Hi, I hate Kpop!" + " Try to beat me by in a matching game, press b to play.\nENEMY HP: " + hp );
 		String s = CaveExplorer.in.nextLine();
 		while(battling) {
 			if(!s.equalsIgnoreCase("b")) {
-				CaveExplorer.print("Hahaha you suck");
 				Inventory.updateHp(-10);
 				CaveExplorer.print("ENEMY HP: " + hp + "\nYOUR HP: " + Inventory.getHp());
 				s = CaveExplorer.in.nextLine();
 			}
 			else {
+				p.play();
 				hp = hp - 10;
 				CaveExplorer.print("ENEMY HP: "+ hp + "\nAJHGJKSDFHJKLDFHKLAJSDH\nYou obtained 10 dollars after defeating the enemy!");
 				Inventory.updateMoney(10);
