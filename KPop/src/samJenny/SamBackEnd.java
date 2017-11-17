@@ -97,12 +97,12 @@ public class SamBackEnd implements JennySupport {
 		int[] coord2 = new int[2];
 		for(int row = 0; row < a.length; row++){
 			for(int col = 0; col < a[row].length; col++){
-				if((a[row][col].isRevealed() && value1 == -1) && !a[row][col].isFound()) {
+				if((a[row][col].isRevealed() && value1 == -1) && !a[row][col].isFound() && a[row][col].isSelected()) {
 					value1 = a[row][col].getValue();
 					coord1[0] = row;
 					coord1[1] = col;
 				}
-				else if((a[row][col].isRevealed() && value2 == -1) && !a[row][col].isFound()){
+				else if((a[row][col].isRevealed() && value2 == -1) && !a[row][col].isFound() && a[row][col].isSelected()){
 					value2 = a[row][col].getValue();
 					coord2[0] = row;
 					coord2[1] = col;
@@ -122,6 +122,7 @@ public class SamBackEnd implements JennySupport {
 			for(int col = 0; col < plots[row].length; col++){
 				if(a[row][col].isRevealed() && !a[row][col].isFound()) {
 					a[row][col].setRevealed(false);
+					a[row][col].setSelected(false);
 				}
 			}
 		}

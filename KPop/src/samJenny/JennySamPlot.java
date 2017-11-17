@@ -7,6 +7,7 @@ public class JennySamPlot {
 	private int value;
 	private boolean containsValue;
 	private boolean found;
+	private boolean selected;
 	
 	public JennySamPlot(int row, int col) {
 		this.row = row;
@@ -14,6 +15,7 @@ public class JennySamPlot {
 		this.containsValue = false;
 		this.isRevealed = false;
 		this.found = false;
+		this.selected = false;
 	}
 	
 	public boolean isFound() {
@@ -55,6 +57,14 @@ public class JennySamPlot {
 
 	public void setRevealed(boolean isRevealed) {
 		this.isRevealed = isRevealed;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 	
 }
