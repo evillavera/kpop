@@ -8,7 +8,8 @@ public class ErikFrontEnd implements AlexSupport{
 	private int userShips;
 	private int compShips;
 	private String message;
-	private AlexErikFleet[][] ships;
+	private AlexErikFleet[][] userBoard;
+	private AlexErikFleet[][] compBoard;
 	
 	public static void main(String[] args) {
 		ErikFrontEnd game = new ErikFrontEnd();
@@ -21,22 +22,21 @@ public class ErikFrontEnd implements AlexSupport{
 			userShips = 3;
 			compShips = 3;
 			message = null;
-			ships = backend.getFleet();
+			userBoard = backend.getFleet();
+			compBoard = backend.getFleet();
 	}
 	
 	private void startGame() {
-		AlexErikFleet[][] ships = backend.getFleet();
-		AlexErikFleet p = null;
-		displayFleet(ships);
+		displayUserBoard(userBoard);
 		System.out.println("\nWelcome to BattleShip! Your ships are auto-generated for you.");
 		//makeShips();
 		while(userShips > 0 && compShips > 0) {
-			displayFleet(ships);
+			displayUserBoard(userBoard);
 			System.out.println("Where do you want to shoot?");
 			int[] coords = backend.getCoordInput();
 			playersTurn(coords);
 			compShips = backend.getCompShips();
-			//computerTurn();
+			backend.computerTurn();
 			userShips = backend.getUserShips();
 		}
 		
@@ -63,11 +63,15 @@ public class ErikFrontEnd implements AlexSupport{
 	}
 	
 	private void playersTurn(int [] coords) {
-		
-		
+		int row = coords[0];
+		int col = coords[1];
+		if(userBoard[row][col].containsShip()) {
+			userBoard[row][col].setRevealed(true);
+		}else
+			userBoard[row][col].setMiss(true);
 	}
 
-	private void displayFleet(AlexErikFleet[][] ships) {
+	private void displayUserBoard(AlexErikFleet[][] ships) {
 		String rows = "0123456789";
 		String columns = "   0  1  2  3  4  5  6  7  8  9";
 		for(int row = 0; row < ships.length; row++){
@@ -75,9 +79,14 @@ public class ErikFrontEnd implements AlexSupport{
 			for(int col = 0; col < ships[row].length; col++){
 				if(ships[row][col].isRevealed()){
 					System.out.print("[x]");
-				}else if(ships[row][col].containsShip()){
+				}
+			
+				else if(ships[row][col].containsShip()){
 						System.out.print("[+]");
-					}else{
+				}	
+					else if(ships[row][col].isMiss()) {
+						System.out.print("[o]");
+					}else {
 					System.out.print("[ ]");
 				}
 			}

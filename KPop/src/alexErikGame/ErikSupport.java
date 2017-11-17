@@ -9,4 +9,5 @@ public interface ErikSupport {
 	AlexErikFleet[][] getFleet();
 	int getUserShips();
 	int getCompShips();
+	void computerTurn();
 }

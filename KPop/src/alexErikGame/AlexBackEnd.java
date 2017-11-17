@@ -6,14 +6,14 @@ public class AlexBackEnd implements ErikSupport {
 	
 	private AlexSupport frontend;
 	private AlexErikFleet[][] ships;
-	private int userShips = 3;
-	private int compShips = 3;
+	private int userShips;
+	private int compShips;
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
 		ships = new AlexErikFleet[7][7];
 		userShips = 10;
-		compShips = 3;
+		compShips = 30;
 		getGrid();
 	}
 
@@ -54,6 +54,7 @@ public class AlexBackEnd implements ErikSupport {
 		
 	}
 	public AlexErikFleet[][] getFleet(){
+		getGrid();
 		return ships;
 	}
 	
@@ -119,6 +120,11 @@ public class AlexBackEnd implements ErikSupport {
 	
 	public boolean PlayerWon() {
 		return true;
+	}
+
+	public void computerTurn() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

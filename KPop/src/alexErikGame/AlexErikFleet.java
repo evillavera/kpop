@@ -7,11 +7,8 @@ public class AlexErikFleet {
 	private int shortShip = 3;
 	private int longShip = 4;
 	private boolean isRevealed;
+	private boolean isMiss;
 	private boolean containsShip;
-	private String miss = "o";
-	private String hit = "x";
-	private String sunk = "X";
-	private String ship = "+";
 	
 	public AlexErikFleet(int row, int col) {
 		isRevealed = false;
@@ -40,25 +37,20 @@ public class AlexErikFleet {
 		return isRevealed;
 	}
 
+	public boolean isMiss() {
+		return isMiss;
+	}
+
+	public void setMiss(boolean isMiss) {
+		this.isMiss = isMiss;
+	}
+
+	public void setRevealed(boolean isRevealed) {
+		this.isRevealed = isRevealed;
+	}
+
 	public void setContainsShip(boolean containsShip) {
 		this.containsShip = containsShip;
 	}
-
-	public String getMiss() {
-		return miss;
-	}
-
-	public String getHit() {
-		return hit;
-	}
-
-	public String getSunk() {
-		return sunk;
-	}
-
-	public String getShip() {
-		return ship;
-	}
-
 	
 }
