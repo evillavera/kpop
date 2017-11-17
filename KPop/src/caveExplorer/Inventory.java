@@ -87,7 +87,7 @@ public class Inventory {
 	}
 
 	public String getDescription() {
-		return map + "\nYou have: " + money + " dollars." + "\nYour health: " + hp;
+		return map + "\nYou have " + money + " dollars." + "\nYour health: " + hp;
 //		return "You have nothing in your inventory.";
 	}
 
