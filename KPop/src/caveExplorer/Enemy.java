@@ -32,7 +32,9 @@ public class Enemy extends NPC {
 	
 	public void battle() {
 		battling = true;
-		CaveExplorer.print("Hi, I hate Kpop!" + " Try to beat me by in a matching game, press 'b' to play.\nENEMY HP: " + hp );
+		CaveExplorer.print("Hi, I hate Kpop!" + " Try to beat me by in a matching game, press 'b' to play.\n" 
+				+"If you can't beat me in a matching game, you're no match for your group >:3\n"
+				+ "ENEMY HP: " + hp );
 		String s = CaveExplorer.in.nextLine();
 		while(battling) {
 			if(!s.equalsIgnoreCase("b")) {

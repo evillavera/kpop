@@ -32,6 +32,12 @@ public class SamBackEnd implements JennySupport {
 	@Override
 	public int[] getValidUserInput() {
 		String input = CaveExplorer.in.nextLine();
+		
+		//Cheat code
+		if(input.equals("Nockles")) {
+			return null;
+		}
+			
 		int[] coords = toCoords(input);
 		while(coords == null){
 			System.out.println("You must enter cordinates of the form:\n          <row>,<col>"

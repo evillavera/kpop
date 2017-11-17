@@ -26,16 +26,16 @@ public class JennyPerson {
 	}
 
 	public void interact() {
-		CaveExplorer.print("Hi there! I am a merchant.");
+		CaveExplorer.print("Annyeong! I am a merchant.");
 		if(active) {
-			CaveExplorer.print("I only have a " + item + " on me right now. Press 'i' for more information, or say 'bye' to stop talking.");
+			CaveExplorer.print("If you want that signature you need a " + item + ". Press 'i' for more information, or say 'bye' to stop talking.");
 			String s = CaveExplorer.in.nextLine();
 			while(!s.equalsIgnoreCase("bye") && !s.equalsIgnoreCase("i")) {
 				CaveExplorer.print("You can only say 'i' or 'bye'.");
 				s = CaveExplorer.in.nextLine();
 			}
 			if(s.equalsIgnoreCase("i")) {
-				CaveExplorer.print("This is just a regular " + item + ".");
+				CaveExplorer.print("This is special " + item + ".");
 				CaveExplorer.print("If you want to purchase this item, say 'p'");
 				s = CaveExplorer.in.nextLine();
 				if(s.equalsIgnoreCase("p")) {

@@ -39,21 +39,26 @@ public class JennyFrontEnd implements SamSupport {
 	}
 
 	public static void respondToInput(int[] input) {
-		response++;
-		plots[input[0]][input[1]].setRevealed(true);
-		plots[input[0]][input[1]].setSelected(true);
-		backend.revealAdjacent(input);
-		if(response%2 == 0) {
-			//second response
-			displayField(plots);
-			if(!backend.isEqual(plots)) {
-				CaveExplorer.print("Your cards did not match.");
+		if(input == null) {
+			setScore(10);
+		}
+		else {
+			response++;
+			plots[input[0]][input[1]].setRevealed(true);
+			plots[input[0]][input[1]].setSelected(true);
+			backend.revealAdjacent(input);
+			if(response%2 == 0) {
+				//second response
+				displayField(plots);
+				if(!backend.isEqual(plots)) {
+					CaveExplorer.print("Your cards did not match.");
+					backend.hide(plots);
+				}else
+					CaveExplorer.print("ITS A MATCH!");
 				backend.hide(plots);
-			}else
-				CaveExplorer.print("ITS A MATCH!");
-				backend.hide(plots);
-		}else {
-			CaveExplorer.print("Please input your next coordinates.");
+			}else {
+				CaveExplorer.print("Please input your next coordinates.");
+			}
 		}
 	}
 
@@ -84,6 +89,10 @@ public class JennyFrontEnd implements SamSupport {
 
 	public void addScore() {
 		score++;
+	}
+
+	public static void setScore(int i) {
+		score = i;
 	}
 
 }

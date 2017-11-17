@@ -200,10 +200,8 @@ public class CaveRoom {
 		CaveExplorer.caves[4][5] = customroom2;
 		
 		CaveExplorer.npcs = new Enemy[1];
-		
 		CaveExplorer.npcs[0] = new Enemy();
-		
-		CaveExplorer.npcs[0].setPosition(0, 4);
+		CaveExplorer.npcs[0].setPosition(4, 1);
 		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[6][3];
