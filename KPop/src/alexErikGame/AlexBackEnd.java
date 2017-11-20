@@ -60,11 +60,17 @@ public class AlexBackEnd implements ErikSupport {
 			}*/
 			
 			if(!ships[randRow][randCol].containsShip()){
-				if(randRow < 2 ) {
-					// activate vertical in downward directions
+				if(randRow > 1) {
+					// activate vertical in upward directions
+					for(int i = randRow; i > randRow - 3;i--) {
+						ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+					}
 				}
 				else {
-					// activate vertical in upward direction
+					// activate vertical in downward direction
+					for(int i = randRow; i < randRow + 3;i++) {
+						ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+					}
 				}
 				ships[randRow][randCol].setContainsShip(true);
 				//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
@@ -75,9 +81,7 @@ public class AlexBackEnd implements ErikSupport {
 	}
 	
 	public void placeComputerShortShipsVertically(int colnum, int direction) {
-		for(int i = 0; i < 3;i++) {
-			ships[i][colnum].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
-		}
+		
 	}
 	public AlexErikFleet[][] getFleet(){
 		getGrid();
