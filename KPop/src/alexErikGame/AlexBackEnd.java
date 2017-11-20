@@ -12,7 +12,7 @@ public class AlexBackEnd implements ErikSupport {
 	private int compLongShips;
 	private int shortShipSize;
 	private int largeShipSize;
-	
+	private boolean smartComp;
 	private int shipsSunk;
 	
 	public AlexBackEnd(AlexSupport frontend) {
@@ -24,6 +24,7 @@ public class AlexBackEnd implements ErikSupport {
 		compLongShips = 2;
 		shortShipSize = 3;
 		largeShipSize = 4;
+		smartComp = false;
 		getGrid();
 	}
 
@@ -32,12 +33,6 @@ public class AlexBackEnd implements ErikSupport {
 	// CHECK THE RUBRIC FOR ADDITIONAL INFORMATION
 
 	//NEW IDEA: HAVE A SHIP THAT MUST BE HIT TWICE IN EACH SPACE TO BE SUNK
-	
-	//STEPS TO MAKE INTELLIGENT AI
-	//1. Activate computer's turn
-	//2. Computer decides and launches missile
-	//3. Message displayed to console -- "The computer has taken its turn. It has launched a missile at the coordinates(,). That's a miss. "
-	//4. Activate player's turn
 	public void getGrid() {
 		for(int row = 0; row < ships.length; row++){
 			for(int col = 0; col < ships[row].length; col++){
@@ -45,6 +40,8 @@ public class AlexBackEnd implements ErikSupport {
 			}
 		}
 		// include player ships?
+		// determine if ship is completely destroyed and whether or not it's a 3-ship for 4-ship
+		// produce 3 ships, not two
 		int countShortCompShips = 0;
 		int countLongCompShips = 0;
 		while(countShortCompShips < compShortShips){
@@ -122,8 +119,30 @@ public class AlexBackEnd implements ErikSupport {
 		return ships;
 	}
 	
-	public void computerTakesTurn() {
-		
+	public void computerTurn() {
+		//STEPS TO MAKE INTELLIGENT AI
+		//1. Activate computer's turn
+		//2. Computer decides and launches missile
+		//3. Message displayed to console -- "The computer has taken its turn. It has launched a missile at the coordinates(,). That's a miss. "
+		//4. Activate player's turn
+		if(!smartComp) {
+			int selRow = (int)(Math.random()*ships.length);
+			int selCol = (int)(Math.random()*ships[selRow].length);	
+		}
+		else {
+			int potRow1 = selRow - 1;
+			int potRow2 = selRow + 1;
+			int potCol1 = selCol - 1;
+			int potCol2 = selCol + 1;
+		}
+		if(ships[selRow][selCol].containsShip()) {
+			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+selRow+","+selCol+") That's a hit.");
+			smartComp = true;
+		}
+		else {
+			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+selRow+","+selCol+") That's a miss.");
+			smartComp = false;
+		}
 	}
 	
 	public boolean sunk() {
@@ -180,11 +199,6 @@ public class AlexBackEnd implements ErikSupport {
 	
 	public boolean PlayerWon() {
 		return true;
-	}
-
-	public void computerTurn() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
