@@ -12,6 +12,8 @@ public class AlexBackEnd implements ErikSupport {
 	private int shortShipSize;
 	private int largeShipSize;
 	
+	private int shipsSunk;
+	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
 		ships = new AlexErikFleet[7][7];
@@ -41,7 +43,6 @@ public class AlexBackEnd implements ErikSupport {
 			}
 		}
 		// include player ships?
-		// prevent ship overlap
 		int countShortCompShips = 0;
 		int countLongCompShips = 0;
 		while(countShortCompShips < compShortShips){
@@ -112,9 +113,7 @@ public class AlexBackEnd implements ErikSupport {
 		}
 	}
 	
-	public void placeComputerShortShipsVertically(int colnum, int direction) {
-		
-	}
+	//public void placeComputerShortShipsVertically(int colnum, int direction)
 	
 	public AlexErikFleet[][] getFleet(){
 		getGrid();
@@ -129,8 +128,8 @@ public class AlexBackEnd implements ErikSupport {
 		return true;
 	}
 	
-	public boolean shipSink() {
-		return true;
+	public int getShipsSunk() {
+		return shipsSunk;
 	}
 	
 	public boolean shipHit() {
@@ -171,10 +170,6 @@ public class AlexBackEnd implements ErikSupport {
 		}catch(Exception e){
 			return null;
 		}
-	}
-
-	public int getShipsSunk() {
-		return 0;
 	}
 	
 	public int getComputerShipsSunk() {
