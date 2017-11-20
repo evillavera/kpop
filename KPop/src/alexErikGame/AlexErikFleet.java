@@ -6,6 +6,7 @@ public class AlexErikFleet {
 	private int col;
 	private boolean containsShip;
 	private boolean isRevealed;
+	private boolean miss;
 	
 	//shortShip = 3;
 	//longShip = 4;
@@ -44,4 +45,14 @@ public class AlexErikFleet {
 	public void setContainsShip(boolean containsShip) {
 		this.containsShip = containsShip;
 	}
+
+	public boolean isMiss() {
+		return miss;
+	}
+
+	public void setMiss(boolean miss) {
+		this.miss = miss;
+	}
+
+	
 }

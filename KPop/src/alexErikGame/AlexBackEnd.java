@@ -7,6 +7,7 @@ public class AlexBackEnd implements ErikSupport {
 	private AlexSupport frontend;
 	private AlexErikFleet[][] ships;
 	private int userShips;
+	private int compShips;
 	private int compShortShips;
 	private int compLongShips;
 	private int shortShipSize;
@@ -16,8 +17,9 @@ public class AlexBackEnd implements ErikSupport {
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
-		ships = new AlexErikFleet[7][7];
+		ships = new AlexErikFleet[8][8];
 		userShips = 3;
+		compShips = 3;
 		compShortShips = 1;
 		compLongShips = 2;
 		shortShipSize = 3;
