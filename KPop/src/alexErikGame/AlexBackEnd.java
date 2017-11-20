@@ -41,7 +41,7 @@ public class AlexBackEnd implements ErikSupport {
 			}
 		}
 		// include player ships?
-		// make sure nothing overlaps
+		// prevent ship overlap
 		int countShortCompShips = 0;
 		int countLongCompShips = 0;
 		while(countShortCompShips < compShortShips){
@@ -98,7 +98,7 @@ public class AlexBackEnd implements ErikSupport {
 						for(int i = randCol; i > randCol - 4;i--) {
 							ships[randRow][i].setContainsShip(true);
 						}
-					}
+				}
 				else if(randCol <= largeShipSize && !ships[randRow][randCol+1].containsShip() && !ships[randRow][randCol+2].containsShip() && !ships[randRow][randCol+3].containsShip()){
 					// activate horizontal in rightward direction
 					for(int i = randCol; i < randCol + 4;i++) {
@@ -115,6 +115,7 @@ public class AlexBackEnd implements ErikSupport {
 	public void placeComputerShortShipsVertically(int colnum, int direction) {
 		
 	}
+	
 	public AlexErikFleet[][] getFleet(){
 		getGrid();
 		return ships;
