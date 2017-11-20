@@ -94,10 +94,8 @@ public class AlexBackEnd implements ErikSupport {
 					//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
 					countShortCompShips++;
 				}
-				}
 			}
 		}
-		
 	}
 	
 	public void placeComputerShortShipsVertically(int colnum, int direction) {
