@@ -43,60 +43,44 @@ public class AlexBackEnd implements ErikSupport {
 		// Include 2 longer ships
 		// include player ships?
 		// make sure nothing overlaps
-		
-		//Add Ships randomly
-		//NEW WAY TO IMPLEMENT compShips
-		//0. Decide which ships will be placed in the sea first
-		//1.pick a random space in the sea
-		//2. use math.random to select whether or not the ship will be placed vertically or horizontally
-		//3. check to see if the ship is able to fit in that orientation
-		//4. place ships spaces in the sea
-		//5. Do the same for all the ships
 		int countShortCompShips = 0;
 		int countLongCompShips = 0;
 		while(countShortCompShips < compShortShips){
 			int randRow = (int)(Math.random() * ships.length);
-			int randCol = (int)(Math.random() * ships[randRow].length);
-			// RULES TO FOLLOW REGARDING PLACEMENT OF SHIPS
-			// CHECK VERTICAL THEN HORIZONTAL
-			// FOR VERTICAL, CHECK UP FIRST, AND THEN DOWN
-			// FOR HORIZONTAL, CHECK LEFT, AND THEN RIGHT			
+			int randCol = (int)(Math.random() * ships[randRow].length);	
 			if(!ships[randRow][randCol].containsShip()){
 				if(Math.random() < .5) {
 					if(randRow > shortShipSize-2 && !ships[randRow-1][randCol].containsShip() && !ships[randRow-2][randCol].containsShip()) {
 						// activate vertical in upward directions
 						for(int i = randRow; i > randRow - 3;i--) {
-							ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+							ships[i][randCol].setContainsShip(true);
 						}
 					}
 					else if(!ships[randRow+1][randCol].containsShip() && !ships[randRow+2][randCol].containsShip()){
 						// activate vertical in downward direction
 						for(int i = randRow; i < randRow + 3;i++) {
-							ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+							ships[i][randCol].setContainsShip(true);
 						}
 					}
-					//ships[randRow][randCol].setContainsShip(true);
-					//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
-					countShortCompShips++;
 				}
 				else {
 					if(randCol > shortShipSize-2 && !ships[randRow][randCol-1].containsShip() && !ships[randRow][randCol-2].containsShip()) {
 						// activate horizontal in leftward directions
 						for(int i = randCol; i > randCol - 3;i--) {
-							ships[randRow][i].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+							ships[randRow][i].setContainsShip(true);
 						}
 					}
 					else if(!ships[randRow][randCol+1].containsShip() && !ships[randRow][randCol+2].containsShip()){
 						// activate horizontal in rightward direction
 						for(int i = randCol; i < randCol + 3;i++) {
-							ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+							ships[i][randCol].setContainsShip(true);
 						}
 					}
 					//ships[randRow][randCol].setContainsShip(true);
 					//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
-					countShortCompShips++;
 				}
 			}
+			countShortCompShips++;
 		}
 	}
 	
