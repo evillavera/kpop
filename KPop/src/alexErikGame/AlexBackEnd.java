@@ -9,6 +9,8 @@ public class AlexBackEnd implements ErikSupport {
 	private int userShips;
 	private int compShortShips;
 	private int compLongShips;
+	private int shortShipSize;
+	private int largeShipSize;
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
@@ -16,6 +18,8 @@ public class AlexBackEnd implements ErikSupport {
 		userShips = 3;
 		compShortShips = 1;
 		compLongShips = 2;
+		shortShipSize = 3;
+		largeShipSize = 4;
 		getGrid();
 	}
 
@@ -36,6 +40,9 @@ public class AlexBackEnd implements ErikSupport {
 				ships[row][col] = new AlexErikFleet(row, col);
 			}
 		}
+		// Include 2 longer ships
+		// include player ships?
+		// make sure nothing overlaps
 		
 		//Add Ships randomly
 		//NEW WAY TO IMPLEMENT compShips
@@ -53,15 +60,10 @@ public class AlexBackEnd implements ErikSupport {
 			// RULES TO FOLLOW REGARDING PLACEMENT OF SHIPS
 			// CHECK VERTICAL THEN HORIZONTAL
 			// FOR VERTICAL, CHECK UP FIRST, AND THEN DOWN
-			// FOR HORIZONTAL, CHECK LEFT, AND THEN RIGHT
-			/*
-			for(int i = randRow; i < randRow + 3;i++) {
-				ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions
-			}*/
-			
+			// FOR HORIZONTAL, CHECK LEFT, AND THEN RIGHT			
 			if(!ships[randRow][randCol].containsShip()){
 				if(Math.random() < .5) {
-					if(randRow > 1 && !ships[randRow-1][randCol].containsShip() && !ships[randRow-2][randCol].containsShip()) {
+					if(randRow > shortShipSize-2 && !ships[randRow-1][randCol].containsShip() && !ships[randRow-2][randCol].containsShip()) {
 						// activate vertical in upward directions
 						for(int i = randRow; i > randRow - 3;i--) {
 							ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
@@ -78,7 +80,7 @@ public class AlexBackEnd implements ErikSupport {
 					countShortCompShips++;
 				}
 				else {
-					if(randCol > 1 && !ships[randRow][randCol-1].containsShip() && !ships[randRow][randCol-2].containsShip()) {
+					if(randCol > shortShipSize-2 && !ships[randRow][randCol-1].containsShip() && !ships[randRow][randCol-2].containsShip()) {
 						// activate horizontal in leftward directions
 						for(int i = randCol; i > randCol - 3;i--) {
 							ships[randRow][i].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
