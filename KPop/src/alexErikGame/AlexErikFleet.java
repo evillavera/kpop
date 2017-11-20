@@ -4,11 +4,11 @@ public class AlexErikFleet {
 	
 	private int row;
 	private int col;
-	private int shortShip = 3;
-	private int longShip = 4;
-	private boolean isRevealed;
-	private boolean isMiss;
 	private boolean containsShip;
+	private boolean isRevealed;
+	
+	//shortShip = 3;
+	//longShip = 4;
 	
 	public AlexErikFleet(int row, int col) {
 		isRevealed = false;
@@ -36,15 +36,7 @@ public class AlexErikFleet {
 	public boolean isRevealed() {
 		return isRevealed;
 	}
-
-	public boolean isMiss() {
-		return isMiss;
-	}
-
-	public void setMiss(boolean isMiss) {
-		this.isMiss = isMiss;
-	}
-
+	
 	public void setRevealed(boolean isRevealed) {
 		this.isRevealed = isRevealed;
 	}
