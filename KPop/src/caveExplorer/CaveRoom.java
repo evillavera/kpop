@@ -1,5 +1,7 @@
 package caveExplorer;
 
+import samJenny.Idol;
+import samJenny.IdolRoom;
 import samJenny.JennyPerson;
 import samJenny.JennyRoom;
 import samJenny.SamRoom;
@@ -192,6 +194,12 @@ public class CaveRoom {
 		CaveExplorer.jenny = new JennyPerson[1];
 		CaveExplorer.jenny[0] = new JennyPerson();
 		CaveExplorer.jenny[0].setPosition(6, 1);
+		
+
+		CaveExplorer.caves[0][5] = new IdolRoom("IDOL ROOM");
+		CaveExplorer.idol = new Idol[1];
+		CaveExplorer.idol[0] = new Idol();
+		CaveExplorer.idol[0].setPosition(0, 5);
 
 		CaveRoom customroom1 = new ErikRoom("Text");
 		CaveExplorer.caves[5][3] = customroom1;
@@ -264,7 +272,4 @@ public class CaveRoom {
 			return null;
 		}
 	}
-
-	
-	
 }

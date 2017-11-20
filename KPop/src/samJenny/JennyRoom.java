@@ -20,7 +20,7 @@ public class JennyRoom extends CaveRoom {
 	}
 	
 	public void printAllowedEntry() {
-		CaveExplorer.print("You can only input W A S D to move or E to interact.");
+		CaveExplorer.print("You can only input 'W', 'A', 'S', 'D' to move or 'E' to interact.");
 	}
 	
 	public void performAction(int direction) {
@@ -28,7 +28,7 @@ public class JennyRoom extends CaveRoom {
 			person.interact();
 		}
 		else {
-			CaveExplorer.print("That key does nothing.");
+			super.performAction(direction);
 		}
 	}
 	

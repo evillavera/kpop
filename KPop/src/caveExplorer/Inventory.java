@@ -24,7 +24,7 @@ public class Inventory {
 		hp += num;
 	}
 	
-	public boolean isPen() {
+	public static boolean isPen() {
 		return pen;
 	}
 
@@ -32,7 +32,7 @@ public class Inventory {
 		pen = p;
 	}
 
-	public boolean isPaper() {
+	public static boolean isPaper() {
 		return paper;
 	}
 
