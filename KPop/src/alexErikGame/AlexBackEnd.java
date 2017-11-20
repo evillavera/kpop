@@ -50,11 +50,25 @@ public class AlexBackEnd implements ErikSupport {
 		while(countShortCompShips < compShortShips){
 			int randRow = (int)(Math.random() * ships.length);
 			int randCol = (int)(Math.random() * ships[randRow].length);
+			// RULES TO FOLLOW REGARDING PLACEMENT OF SHIPS
+			// CHECK VERTICAL THEN HORIZONTAL
+			// FOR VERTICAL, CHECK UP FIRST, AND THEN DOWN
+			// FOR HORIZONTAL, CHECK LEFT, AND THEN RIGHT
+			/*
+			for(int i = randRow; i < randRow + 3;i++) {
+				ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions
+			}*/
 			
 			if(!ships[randRow][randCol].containsShip()){
+				if(randRow < 2 ) {
+					// activate vertical in downward directions
+				}
+				else {
+					// activate vertical in upward direction
+				}
 				ships[randRow][randCol].setContainsShip(true);
 				//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
-				count++;
+				countShortCompShips++;
 			}
 		}
 		
