@@ -73,6 +73,12 @@ public class AlexBackEnd implements ErikSupport {
 		}
 		
 	}
+	
+	public void placeComputerShortShipsVertically(int colnum, int direction) {
+		for(int i = 0; i < 3;i++) {
+			ships[i][colnum].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+		}
+	}
 	public AlexErikFleet[][] getFleet(){
 		getGrid();
 		return ships;
