@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 import samJenny.Idol;
 import samJenny.JennyPerson;
-import samJenny.JennyRoom;
-import samJenny.SamRoom;
 
 public class CaveExplorer {
 
