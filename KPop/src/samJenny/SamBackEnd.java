@@ -1,9 +1,5 @@
 package samJenny;
 
-import caveExplorer.CaveRoom;
-
-import java.util.Scanner;
-
 import caveExplorer.CaveExplorer;
 
 public class SamBackEnd implements JennySupport {

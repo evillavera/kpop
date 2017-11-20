@@ -25,7 +25,7 @@ public class JennyFrontEnd implements SamSupport {
 	}
 
 	public static void play() {
-		CaveExplorer.print("Try to find all the matches!");
+		CaveExplorer.print("Try to find all the matches!\nWhen you flip one card, the cards around it will also be flipped. :)");
 		while(backend.stillPlaying()){
 			displayField(plots);
 			displayScore();
@@ -48,18 +48,23 @@ public class JennyFrontEnd implements SamSupport {
 			plots[input[0]][input[1]].setSelected(true);
 			backend.revealAdjacent(input);
 			if(response%2 == 0) {
-				//second response
-				displayField(plots);
-				if(!backend.isEqual(plots)) {
-					CaveExplorer.print("Your cards did not match.");
-					backend.hide(plots);
-				}else
-					CaveExplorer.print("ITS A MATCH!");
-				backend.hide(plots);
+				second();
 			}else {
 				CaveExplorer.print("Please input your next coordinates.");
 			}
 		}
+	}
+
+	public static void second() {
+		//second response
+		displayField(plots);
+		if(!backend.isEqual(plots)) {
+			CaveExplorer.print("Your cards did not match.");
+			backend.hide(plots);
+		}else
+			CaveExplorer.print("ITS A MATCH!");
+		backend.hide(plots);
+
 	}
 
 	public static void displayScore() {
