@@ -11,7 +11,7 @@ public class AlexBackEnd implements ErikSupport {
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
-		ships = new AlexErikFleet[4][4];
+		ships = new AlexErikFleet[7][7];
 		userShips = 10;
 		compShips = 3;
 		getGrid();

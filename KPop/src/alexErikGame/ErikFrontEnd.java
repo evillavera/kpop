@@ -20,6 +20,7 @@ public class ErikFrontEnd implements AlexSupport{
 	/*
 	 * Fix outofbounds error for displayhints code
 	 * make places where you already shot unshootable
+	 * add a directions screen
 	 */
 	
 	
@@ -87,11 +88,11 @@ public class ErikFrontEnd implements AlexSupport{
 				if(ships[row][col].isRevealed()){
 					System.out.print("[x]");
 				}
-	/*			
+				
 				else if(ships[row][col].containsShip()){
 						System.out.print("[+]");
 				}	
-	*/			
+				
 					else if(ships[row][col].isMiss()) {
 						System.out.print("[o]");
 					}else {
