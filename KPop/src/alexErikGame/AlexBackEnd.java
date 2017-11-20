@@ -39,6 +39,7 @@ public class AlexBackEnd implements ErikSupport {
 		}
 		// include player ships?
 		// determine if ship is completely destroyed and whether or not it's a 3-ship for 4-ship
+		// produce 3 ships, not two
 		int countShortCompShips = 0;
 		int countLongCompShips = 0;
 		while(countShortCompShips < compShortShips){
@@ -138,6 +139,7 @@ public class AlexBackEnd implements ErikSupport {
 		}
 		else {
 			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+selRow+","+selCol+") That's a miss.");
+			smartComp = false;
 		}
 	}
 	
