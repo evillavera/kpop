@@ -60,21 +60,41 @@ public class AlexBackEnd implements ErikSupport {
 			}*/
 			
 			if(!ships[randRow][randCol].containsShip()){
-				if(randRow > 1) {
-					// activate vertical in upward directions
-					for(int i = randRow; i > randRow - 3;i--) {
-						ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+				if(Math.random() < .5) {
+					if(randRow > 1 && !ships[randRow-1][randCol].containsShip() && !ships[randRow-2][randCol].containsShip()) {
+						// activate vertical in upward directions
+						for(int i = randRow; i > randRow - 3;i--) {
+							ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+						}
 					}
+					else if(!ships[randRow+1][randCol].containsShip() && !ships[randRow+2][randCol].containsShip()){
+						// activate vertical in downward direction
+						for(int i = randRow; i < randRow + 3;i++) {
+							ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+						}
+					}
+					//ships[randRow][randCol].setContainsShip(true);
+					//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
+					countShortCompShips++;
 				}
 				else {
-					// activate vertical in downward direction
-					for(int i = randRow; i < randRow + 3;i++) {
-						ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+					if(randCol > 1 && !ships[randRow][randCol-1].containsShip() && !ships[randRow][randCol-2].containsShip()) {
+						// activate horizontal in leftward directions
+						for(int i = randCol; i > randCol - 3;i--) {
+							ships[randRow][i].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+						}
 					}
+					else if(!ships[randRow][randCol+1].containsShip() && !ships[randRow][randCol+2].containsShip()){
+						// activate horizontal in rightward direction
+						for(int i = randCol; i < randCol + 3;i++) {
+							ships[i][randCol].setContainsShip(true); // => have 4 function that place ships vertically and horizontally in specific directions -- second parameter can indicate direction
+						}
+					}
+					//ships[randRow][randCol].setContainsShip(true);
+					//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
+					countShortCompShips++;
 				}
-				ships[randRow][randCol].setContainsShip(true);
-				//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
-				countShortCompShips++;
+				}
 			}
 		}
 		
