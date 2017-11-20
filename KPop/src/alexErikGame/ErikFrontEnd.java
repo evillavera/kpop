@@ -10,46 +10,48 @@ public class ErikFrontEnd implements AlexSupport{
 	private String message;
 	private AlexErikFleet[][] userBoard;
 	private AlexErikFleet[][] compBoard;
+	private int[] lastCoords;
 	
 	public static void main(String[] args) {
 		ErikFrontEnd game = new ErikFrontEnd();
 		game.startGame();
 	}
 	
+	/*
+	 * Fix outofbounds error for displayhints code
+	 * make places where you already shot unshootable
+	 */
+	
+	
 	public ErikFrontEnd() {
 			backend = new AlexBackEnd(this);
 			CaveExplorer.initScanner();
-			userShips = 3;
-			compShips = 3;
+			userShips = backend.getUserShips();
+			compShips = backend.getCompShips();
 			message = null;
 			userBoard = backend.getFleet();
 			compBoard = backend.getFleet();
+			int[] lastCoords = new int[2];
 	}
 	
 	private void startGame() {
-		displayUserBoard(userBoard);
-		System.out.println("\nWelcome to BattleShip! Your ships are auto-generated for you.");
-		//makeShips();
+		System.out.println("Welcome to BattleShip! Your ships are auto-generated for you.\n");
 		while(userShips > 0 && compShips > 0) {
 			displayUserBoard(userBoard);
-			System.out.println("Where do you want to shoot?");
+			System.out.println("\nWhere do you want to shoot?");
 			int[] coords = backend.getCoordInput();
+			lastCoords = coords;
 			playersTurn(coords);
 			compShips = backend.getCompShips();
 			backend.computerTurn();
 			userShips = backend.getUserShips();
 		}
+		displayResult();
+		System.out.println("GAME OVER\n");
 		
 	/*
 		while(userShips > 0 && compShips > 0) {
-			displayShipsSunk(p);
-			displayHints();
-			playersTurn();
-			userShips = getUserShips();
-			compShips = getCompShips();
 			computerTurn();
-			userShips = getUserShips();
-			compShips = getCompShips();
 			//tell user if ship is in NESW
 			System.out.println("Where do you want to shoot?");
 			int[] coords = backend.getCoordInput();
@@ -67,8 +69,13 @@ public class ErikFrontEnd implements AlexSupport{
 		int col = coords[1];
 		if(userBoard[row][col].containsShip()) {
 			userBoard[row][col].setRevealed(true);
-		}else
+			userBoard[row][col].setContainsShip(false);
+			System.out.println("That's a hit!");
+		}else {
 			userBoard[row][col].setMiss(true);
+			System.out.println("You missed.");
+			displayHints();
+		}
 	}
 
 	private void displayUserBoard(AlexErikFleet[][] ships) {
@@ -80,10 +87,11 @@ public class ErikFrontEnd implements AlexSupport{
 				if(ships[row][col].isRevealed()){
 					System.out.print("[x]");
 				}
-			
+	/*			
 				else if(ships[row][col].containsShip()){
 						System.out.print("[+]");
 				}	
+	*/			
 					else if(ships[row][col].isMiss()) {
 						System.out.print("[o]");
 					}else {
@@ -101,12 +109,41 @@ public class ErikFrontEnd implements AlexSupport{
 	}
 
 	public void displayHints() {
-		// TODO Auto-generated method stub
+		System.out.println("Need a a hint?");
+		String input = CaveExplorer.in.nextLine();
+		if(input.equals("yes")) {
+			System.out.println("Here is your hint.");
+			checkAreaAround(lastCoords);
+		}
+	}
+
+	private void checkAreaAround(int[] lastCoords) {
+		int top = lastCoords[0]-1;
+		int middle = lastCoords[0];
+		int bottom = lastCoords[0]+1;
+		int left = lastCoords[1]-1;
+		int between = lastCoords[1];
+		int right = lastCoords[1]+1;
 		
+		if(userBoard[top][left].containsShip() || userBoard[top][between].containsShip()) {
+			System.out.println("There is a ship North");
+		}else if(userBoard[middle][left].containsShip() ||  userBoard[bottom][left].containsShip()) {
+			System.out.println("There is a ship West");
+		}else if(userBoard[top][right].containsShip() ||  userBoard[middle][right].containsShip()) {
+			System.out.println("There is a ship East");
+		}else if(userBoard[bottom][middle].containsShip() ||  userBoard[bottom][right].containsShip()) {
+			System.out.println("There is a ship South");
+		}else {
+			System.out.println("No ships are around you!");
+		}
 	}
 
 	public void displayResult() {
-		// TODO Auto-generated method stub
+		if(compShips == 0) {
+			System.out.println("You did it!!");
+		}else {
+			System.out.println("Maybe if you try this cheat code 'i love pie' you can win.");
+		}
 		
 	}
 
