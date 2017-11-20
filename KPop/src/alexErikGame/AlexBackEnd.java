@@ -40,7 +40,6 @@ public class AlexBackEnd implements ErikSupport {
 				ships[row][col] = new AlexErikFleet(row, col);
 			}
 		}
-		// Include 2 longer ships
 		// include player ships?
 		// make sure nothing overlaps
 		int countShortCompShips = 0;
@@ -81,6 +80,43 @@ public class AlexBackEnd implements ErikSupport {
 				}
 			}
 			countShortCompShips++;
+		}
+		while(countLongCompShips < compLongShips) {
+			int randRow = (int)(Math.random() * ships.length);
+			int randCol = (int)(Math.random() * ships[randRow].length);
+			if(!ships[randRow][randCol].containsShip()){
+				if(Math.random() < .5) {
+					if(randRow > largeShipSize-2 && !ships[randRow-1][randCol].containsShip() && !ships[randRow-2][randCol].containsShip() && !ships[randRow-3][randCol].containsShip()) {
+						// activate vertical in upward directions
+						for(int i = randRow; i > randRow - 4;i--) {
+							ships[i][randCol].setContainsShip(true);
+						}
+					}
+					else if(!ships[randRow+1][randCol].containsShip() && !ships[randRow+2][randCol].containsShip() && !ships[randRow+3][randCol].containsShip()){
+						// activate vertical in downward direction
+						for(int i = randRow; i < randRow + 4;i++) {
+							ships[i][randCol].setContainsShip(true);
+						}
+					}
+				}
+				else {
+					if(randCol > largeShipSize-2 && !ships[randRow][randCol-1].containsShip() && !ships[randRow][randCol-2].containsShip() && !ships[randRow][randCol-3].containsShip()) {
+						// activate horizontal in leftward directions
+						for(int i = randCol; i > randCol - 4;i--) {
+							ships[randRow][i].setContainsShip(true);
+						}
+					}
+					else if(!ships[randRow][randCol+1].containsShip() && !ships[randRow][randCol+2].containsShip() && !ships[randRow][randCol+3].containsShip()){
+						// activate horizontal in rightward direction
+						for(int i = randCol; i < randCol + 4;i++) {
+							ships[i][randCol].setContainsShip(true);
+						}
+					}
+					//ships[randRow][randCol].setContainsShip(true);
+					//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
+				}
+			}
+			countLongCompShips++;
 		}
 	}
 	
