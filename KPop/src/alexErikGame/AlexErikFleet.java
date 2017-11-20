@@ -44,5 +44,4 @@ public class AlexErikFleet {
 	public void setContainsShip(boolean containsShip) {
 		this.containsShip = containsShip;
 	}
-	
 }

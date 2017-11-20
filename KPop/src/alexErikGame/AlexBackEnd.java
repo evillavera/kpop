@@ -7,13 +7,15 @@ public class AlexBackEnd implements ErikSupport {
 	private AlexSupport frontend;
 	private AlexErikFleet[][] ships;
 	private int userShips;
-	private int compShips;
+	private int compShortShips;
+	private int compLongShips;
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
 		ships = new AlexErikFleet[7][7];
 		userShips = 3;
-		compShips = 3;
+		compShortShips = 1;
+		compLongShips = 2;
 		getGrid();
 	}
 
@@ -21,6 +23,8 @@ public class AlexBackEnd implements ErikSupport {
 	// IF THE AI HITS A SHIP, IT MUST SELECT TO HIT ANOTHER SPACE NEAR THE SHIP
 	// CHECK THE RUBRIC FOR ADDITIONAL INFORMATION
 
+	//NEW IDEA: HAVE A SHIP THAT MUST BE HIT TWICE IN EACH SPACE TO BE SUNK
+	
 	//STEPS TO MAKE INTELLIGENT AI
 	//1. Activate computer's turn
 	//2. Computer decides and launches missile
@@ -41,10 +45,12 @@ public class AlexBackEnd implements ErikSupport {
 		//3. check to see if the ship is able to fit in that orientation
 		//4. place ships spaces in the sea
 		//5. Do the same for all the ships
-		int count = 0;
-		while(count < compShips){
+		int countShortCompShips = 0;
+		int countLongCompShips = 0;
+		while(countShortCompShips < compShortShips){
 			int randRow = (int)(Math.random() * ships.length);
 			int randCol = (int)(Math.random() * ships[randRow].length);
+			
 			if(!ships[randRow][randCol].containsShip()){
 				ships[randRow][randCol].setContainsShip(true);
 				//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
