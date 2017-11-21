@@ -241,6 +241,7 @@ public class AlexBackEnd implements ErikSupport {
 		//does the computer have a registered hit it can take
 		//if it does, then use it
 		// if it doesn't, then use a random
+		//SHIPS ARE ONLY VERTICAL AND HORIZONTAL, THEY DON'T OCCUPY multiple rows AND multiple columns
 		if(!smartComp) {
 			int selRow = (int)(Math.random()*ships.length);
 			int selCol = (int)(Math.random()*ships[selRow].length);	
@@ -258,11 +259,7 @@ public class AlexBackEnd implements ErikSupport {
 			int potCol1 = selCol - 1;
 			int potCol2 = selCol + 1;
 			
-			int[] nums = {potRow1, potRow2, potCol1, potCol2};
-			
 			int[][] potCoords = new int[4][2];
-			int markerRow = 0;
-			int markerCol = 2;
 			
 			for(int i = 0; i < potCoords.length;i++) {
 				for(int j = 0;j<potCoords[i].length-1;j++) {
