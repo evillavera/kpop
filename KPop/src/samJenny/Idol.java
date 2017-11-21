@@ -26,6 +26,7 @@ public class Idol {
 	public void interact() {
 		if(active) {
 			if(Inventory.isPaper() && Inventory.isPen()) {
+				CaveExplorer.print("Here is your signature!! :)");
 				CaveExplorer.setPlaying(false);
 			}else {
 				CaveExplorer.print("I would love to give you a signature, but you don't seem to have all the materials...");
