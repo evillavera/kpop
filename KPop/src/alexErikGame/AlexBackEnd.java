@@ -15,6 +15,9 @@ public class AlexBackEnd implements ErikSupport{
 	private boolean smartComp;
 	private int shipsSunk;
 	
+	private int selRow;
+	private int selCol;
+	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
 		ships = new AlexErikFleet[8][8];
@@ -139,25 +142,60 @@ public class AlexBackEnd implements ErikSupport{
 		//2. Computer decides and launches missile
 		//3. Message displayed to console -- "The computer has taken its turn. It has launched a missile at the coordinates(,). That's a miss. "
 		//4. Activate player's turn
+		
+		//does the computer have a registered hit it can take
+		//if it does, then use it
+		// if it doesn't, then use a random
 		if(!smartComp) {
 			int selRow = (int)(Math.random()*ships.length);
 			int selCol = (int)(Math.random()*ships[selRow].length);	
+			
+			printMessageAndReturnComp(selRow,selCol);
 		}
 		else {
+			// create a 2D array of potential coordinates to hit
+			// be sure to remove the coordinates from the 2D array once they're used
+			// be sure to add coordinates, each time a ship is hit.
+			// check to see if the coordinate already exists in the array
+			// if it does, don't add it into the array
 			int potRow1 = selRow - 1;
 			int potRow2 = selRow + 1;
 			int potCol1 = selCol - 1;
 			int potCol2 = selCol + 1;
+			
+			int[] nums = {potRow1, potRow2, potCol1, potCol2};
+			
+			int[][] potCoords = new int[4][2];
+			int markerRow = 0;
+			int markerCol = 2;
+			
+			for(int i = 0; i < potCoords.length;i++) {
+				for(int j = 0;j<potCoords[i].length-1;j++) {
+					potCoords[i][j] = nums[markerRow];
+					potCoords[i][j+1] = nums[markerCol];
+					markerRow++;
+					markerCol++;
+				}
+			}
+			
+			if(potRow1>0 && potRow1<7 && potCol1 > 0 && potCol1 < 7) {
+				printMessageAndReturnComp(potRow1,potCol1);
+			}
 		}
-		if(ships[selRow][selCol].containsShip()) {
-			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+selRow+","+selCol+") That's a hit.");
+	}
+	
+	public void printMessageAndReturnComp(int row, int col) {
+		if(ships[row][col].containsShip()) {
+			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+row+","+col+") That's a hit.");
 			smartComp = true;
 		}
 		else {
-			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+selRow+","+selCol+") That's a miss.");
+			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+row+","+col+") That's a miss.");
 			smartComp = false;
 		}
 	}
+	
+	
 	
 	public boolean sunk() {
 		return true;
