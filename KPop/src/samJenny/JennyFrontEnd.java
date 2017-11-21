@@ -60,10 +60,10 @@ public class JennyFrontEnd implements SamSupport {
 		displayField(plots);
 		if(!backend.isEqual(plots)) {
 			CaveExplorer.print("Your cards did not match.");
-			backend.hide(plots);
+			hide(plots);
 		}else
 			CaveExplorer.print("ITS A MATCH!");
-		backend.hide(plots);
+		hide(plots);
 
 	}
 
@@ -86,6 +86,17 @@ public class JennyFrontEnd implements SamSupport {
 			System.out.println(" " + rows.substring(row, row+1));
 		}
 		System.out.println(columns);
+	}
+	
+	public static void hide(JennySamPlot[][] a) {
+		for(int row = 0; row < plots.length; row++){
+			for(int col = 0; col < plots[row].length; col++){
+				if(a[row][col].isRevealed() && !a[row][col].isFound()) {
+					a[row][col].setRevealed(false);
+					a[row][col].setSelected(false);
+				}
+			}
+		}
 	}
 
 	public int getScore() {

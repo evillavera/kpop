@@ -10,8 +10,6 @@ public interface JennySupport {
 
 	boolean isEqual(JennySamPlot[][] plots);
 
-	void hide(JennySamPlot[][] plots);
-
 	void revealAdjacent(int[] input);
 
 }

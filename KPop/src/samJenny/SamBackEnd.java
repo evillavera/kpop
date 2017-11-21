@@ -39,7 +39,7 @@ public class SamBackEnd implements JennySupport {
 			System.out.println("You must enter cordinates of the form:\n          <row>,<col>"
 					+ "\n<row> and <col> should be integers."
 					+"\nThey can also not exceed the limit."
-					+"\nYou cannot repeat the same card.");
+					+"\nYou cannot flip the same card.");
 			input = CaveExplorer.in.nextLine();
 			coords = toCoords(input);
 		}
@@ -117,17 +117,6 @@ public class SamBackEnd implements JennySupport {
 			frontend.addScore();
 		}
 		return value1 == value2;
-	}
-	
-	public void hide(JennySamPlot[][] a) {
-		for(int row = 0; row < plots.length; row++){
-			for(int col = 0; col < plots[row].length; col++){
-				if(a[row][col].isRevealed() && !a[row][col].isFound()) {
-					a[row][col].setRevealed(false);
-					a[row][col].setSelected(false);
-				}
-			}
-		}
 	}
 
 	@Override
