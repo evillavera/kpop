@@ -6,6 +6,7 @@ public class AlexBackEnd implements ErikSupport {
 	
 	private AlexSupport frontend;
 	private AlexErikFleet[][] ships;
+	private AlexErikFleet[][] compships;
 	private int userShips;
 	private int compShips;
 	private int compShortShips;
@@ -21,6 +22,7 @@ public class AlexBackEnd implements ErikSupport {
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
 		ships = new AlexErikFleet[8][8];
+		compships = new AlexErikFleet[8][8];
 		userShips = 3;
 		compShips = 3;
 		compShortShips = 1;
@@ -135,6 +137,99 @@ public class AlexBackEnd implements ErikSupport {
 		getGrid();
 		return ships;
 	}
+	
+	public AlexErikFleet[][] getCompFleet(){
+		getCompGrid();
+		return compships;
+	}
+	
+	public void getCompGrid() {
+		for(int row = 0; row < compships.length; row++){
+			for(int col = 0; col < compships[row].length; col++){
+				compships[row][col] = new AlexErikFleet(row, col);
+			}
+		}
+		// include player ships?
+		// determine if ship is completely destroyed and whether or not it's a 3-ship for 4-ship
+		// produce 3 ships, not two
+		int countShortCompShips = 0;
+		int countLongCompShips = 0;
+		while(countShortCompShips < compShortShips){
+			int randRow = (int)(Math.random() * compships.length);
+			int randCol = (int)(Math.random() * compships[randRow].length);	
+			if(!compships[randRow][randCol].containsShip()){
+				if(randRow > shortShipSize-2 && !compships[randRow-1][randCol].containsShip() && !compships[randRow-2][randCol].containsShip()) {
+					// activate vertical in upward directions
+					for(int i = randRow; i > randRow - 3;i--) {
+						compships[i][randCol].setContainsShip(true);
+					}
+					countShortCompShips++;
+				}
+				else if(!compships[randRow+1][randCol].containsShip() && !compships[randRow+2][randCol].containsShip()){
+					// activate vertical in downward direction
+					for(int i = randRow; i < randRow + 3;i++) {
+						compships[i][randCol].setContainsShip(true);
+					}
+					countShortCompShips++;
+				}
+				else if(randCol > shortShipSize-2 && !compships[randRow][randCol-1].containsShip() && !compships[randRow][randCol-2].containsShip()) {
+						// activate horizontal in leftward directions
+						for(int i = randCol; i > randCol - 3;i--) {
+							compships[randRow][i].setContainsShip(true);
+						}
+						countShortCompShips++;
+				}
+				else if(!compships[randRow][randCol+1].containsShip() && !compships[randRow][randCol+2].containsShip()){
+					// activate horizontal in rightward direction
+					for(int i = randCol; i < randCol + 3;i++) {
+						compships[i][randCol].setContainsShip(true);
+					}
+					countShortCompShips++;
+				}
+					//ships[randRow][randCol].setContainsShip(true);
+					//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
+			}
+		}
+		while(countLongCompShips < compLongShips) {
+			int randRow = (int)(Math.random() * compships.length);
+			int randCol = (int)(Math.random() * compships[randRow].length);
+			if(!compships[randRow][randCol].containsShip()){
+				if(randRow > largeShipSize-2 && !compships[randRow-1][randCol].containsShip() && !compships[randRow-2][randCol].containsShip() && !ships[randRow-3][randCol].containsShip()) {
+					// activate vertical in upward directions
+					for(int i = randRow; i > randRow - 4;i--) {
+						compships[i][randCol].setContainsShip(true);
+					}
+					countLongCompShips++;
+				}
+				else if(randRow <= largeShipSize && !compships[randRow+1][randCol].containsShip() && !compships[randRow+2][randCol].containsShip() && !ships[randRow+3][randCol].containsShip()){
+					// activate vertical in downward direction
+					for(int i = randRow; i < randRow + 4;i++) {
+						compships[i][randCol].setContainsShip(true);
+					}
+					countLongCompShips++;
+				}
+				else if(randCol > largeShipSize-2 && !compships[randRow][randCol-1].containsShip() && !compships[randRow][randCol-2].containsShip() && !ships[randRow][randCol-3].containsShip()) {
+						// activate horizontal in leftward directions
+						for(int i = randCol; i > randCol - 4;i--) {
+							compships[randRow][i].setContainsShip(true);
+						}
+						countLongCompShips++;
+				}
+				else if(randCol <= largeShipSize && !compships[randRow][randCol+1].containsShip() && !compships[randRow][randCol+2].containsShip() && !ships[randRow][randCol+3].containsShip()){
+					// activate horizontal in rightward direction
+					for(int i = randCol; i < randCol + 4;i++) {
+						compships[i][randCol].setContainsShip(true);
+					}
+					countLongCompShips++;
+				}
+					//ships[randRow][randCol].setContainsShip(true);
+					//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
+			}
+		}
+	}
+	
+	
+	
 	
 	public void computerTurn() {
 		//STEPS TO MAKE INTELLIGENT AI

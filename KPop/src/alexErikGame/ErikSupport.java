@@ -11,4 +11,5 @@ public interface ErikSupport {
 	int getCompShips();
 	void computerTurn();
 	void setCompShips(int i);
+	AlexErikFleet[][] getCompFleet();
 }

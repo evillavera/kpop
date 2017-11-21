@@ -52,15 +52,15 @@ public class ErikFrontEnd implements AlexSupport{
 			compShips = backend.getCompShips();
 			message = null;
 			userBoard = backend.getFleet();
-			compBoard = backend.getFleet();
+			compBoard = backend.getCompFleet();
 			int[] lastCoords = new int[2];
 	}
 	
 	private void startGame() {
 		while(userShips > 0 && compShips > 0) {
 			displayUserBoard(userBoard);
-			//System.out.println("\n");
-			//displayCompBoard(compBoard);
+			System.out.println("\n");
+			displayCompBoard(compBoard);
 			System.out.println("\nWhere do you want to shoot?");
 			int[] coords = backend.getCoordInput();
 			lastCoords = coords;
@@ -148,7 +148,7 @@ public class ErikFrontEnd implements AlexSupport{
 		}
 			System.out.print(columns.substring(0, ships[0].length+18));
 	}
-/*	
+	
 	private void displayCompBoard(AlexErikFleet[][] ships) {
 		String rows = "0123456789";
 		String columns = "   0  1  2  3  4  5  6  7  8  9";
@@ -174,7 +174,7 @@ public class ErikFrontEnd implements AlexSupport{
 			System.out.print(columns.substring(0, ships[0].length+18));
 	}
 	
-*/	
+	
 	public void displayShipsSunk(AlexErikFleet p) {
 		// TODO Auto-generated method stub
 		
