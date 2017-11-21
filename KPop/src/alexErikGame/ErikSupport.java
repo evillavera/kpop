@@ -10,4 +10,5 @@ public interface ErikSupport {
 	int getUserShips();
 	int getCompShips();
 	void computerTurn();
+	void setCompShips(int i);
 }

@@ -20,19 +20,27 @@ public class ErikFrontEnd implements AlexSupport{
 	
 	/*
 	 * Fix outofbounds error for displayhints code DONE
-	 * make places where you already shot unshootable
-	 * add a directions screen
-	 * make cheat code
+	 * make places where you already shot unshootable DONE
+	 * 	 outofbounds for the input^^
+	 * add a directions screen DONE
+	 * make cheat code DONE
 	 */
 	
 	
 	private void directions() {
+		//String input = CaveExplorer.in.nextLine();
 		System.out.println("Welcome to BattleShip! Your ships are auto-generated for you.\n"
 				+ "Your goal is to find and destroy all your enemies ships!\n"
-				+ "There are 1 3space ship and 2 4space ships to attack.\n"
+				+ "There is 1 3space ship and 2 4space ships to attack.\n"
 				+ "You must enter your coordinates in this format row,col.\n"
-				+ "If you miss, you will be asked if you want a hint. You must reply yes or no.\n");
+				+ "If you miss, you will be asked if you want a hint. You must reply yes or no.\n"
+				+ "Press 'p' to start.");
 		//add a press 'p' to play
+		String input = CaveExplorer.in.nextLine();
+		while(!(input.equals("p"))){
+			System.out.println("\nPress 'p' if you are ready.");
+			input = CaveExplorer.in.nextLine();
+		}
 		startGame();
 	}
 
@@ -55,9 +63,26 @@ public class ErikFrontEnd implements AlexSupport{
 			System.out.println("\nWhere do you want to shoot?");
 			int[] coords = backend.getCoordInput();
 			lastCoords = coords;
+			if(coords[0] == 9 && coords[1] == 9) {
+				backend.setCompShips(0);
+				for(int row = 0; row < userBoard.length; row++){
+					for(int col = 0; col < userBoard[row].length; col++){
+						userBoard[row][col].setRevealed(true);
+					}
+				}	
+				displayUserBoard(userBoard);
+				System.out.println("\nMy god, you obliterated your opponent!");
+				break;
+			}
+			//make sure it is within the array bounds
+			while(userBoard[coords[0]][coords[1]].isRevealed() || userBoard[coords[0]][coords[1]].isMiss()) {
+				System.out.println("\nYou already shot there. Choose a new coordinate.");
+				coords = backend.getCoordInput();
+				lastCoords = coords;
+			}
 			playersTurn(coords);
 			compShips = backend.getCompShips();
-			backend.computerTurn();
+			//backend.computerTurn();
 			userShips = backend.getUserShips();
 		}
 		displayResult();
@@ -175,24 +200,28 @@ public class ErikFrontEnd implements AlexSupport{
 			//check area north
 			if(userBoard[top][left].containsShip() || userBoard[top][between].containsShip()) {
 				System.out.println("There is a ship North");
+				return;
 			}
 		}
 		if(bottom > 0 && bottom < 8 && right > 0 && right < 8) {
 			//check area south
 			if(userBoard[bottom][middle].containsShip() ||  userBoard[bottom][right].containsShip()) {
 				System.out.println("There is a ship South");
+				return;
 			}
 		}
 		if(left > -1 && left < 7 && bottom > 0 && bottom < 8) {
 			//check area west
 			if(userBoard[middle][left].containsShip() ||  userBoard[bottom][left].containsShip()) {
 				System.out.println("There is a ship West");
+				return;
 			}
 		}
 		if(right > 0 && right < 8 && top > -1 && top < 7) {
 			//check area east
 			if(userBoard[top][right].containsShip() ||  userBoard[middle][right].containsShip()) {
 				System.out.println("There is a ship East");
+				return;
 			}
 		}
 		
@@ -200,10 +229,10 @@ public class ErikFrontEnd implements AlexSupport{
 	}
 
 	public void displayResult() {
-		if(compShips == 0) {
+		if(backend.getCompShips() == 0) {
 			System.out.println("You did it!!");
 		}else {
-			System.out.println("Maybe if you try this cheat code 'i love pie' you can win.");
+			System.out.println("Maybe if you attack outside the box (9,9) you can win. shhhhhhh");
 		}
 		
 	}

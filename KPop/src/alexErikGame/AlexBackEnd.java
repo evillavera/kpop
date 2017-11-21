@@ -120,6 +120,14 @@ public class AlexBackEnd implements ErikSupport {
 	
 	//public void placeComputerShortShipsVertically(int colnum, int direction)
 	
+	public void setUserShips(int userShips) {
+		this.userShips = userShips;
+	}
+
+	public void setCompShips(int compShips) {
+		this.compShips = compShips;
+	}
+
 	public AlexErikFleet[][] getFleet(){
 		getGrid();
 		return ships;
