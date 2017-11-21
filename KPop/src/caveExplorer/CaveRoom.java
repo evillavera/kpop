@@ -188,7 +188,7 @@ public class CaveRoom {
 		//Will be done later 
 		
 		SamRoom customRoom = new SamRoom("This is a special room");
-		CaveExplorer.caves[3][6] = customRoom;
+		CaveExplorer.caves[6][5] = customRoom;
 		
 		CaveExplorer.caves[6][1] = new JennyRoom("JENNY ROOM");
 		CaveExplorer.jenny = new JennyPerson[1];
@@ -205,7 +205,7 @@ public class CaveRoom {
 		CaveExplorer.caves[5][3] = customroom1;
 		
 		CaveRoom customroom2 = new AlexRoom("Text");
-		CaveExplorer.caves[4][5] = customroom2;
+		CaveExplorer.caves[3][6] = customroom2;
 		
 		CaveExplorer.npcs = new Enemy[1];
 		CaveExplorer.npcs[0] = new Enemy();

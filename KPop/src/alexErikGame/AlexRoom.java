@@ -1,42 +1,56 @@
 package alexErikGame;
 
-import java.util.Scanner;
-
 import caveExplorer.CaveRoom;
+import caveExplorer.Inventory;
 import caveExplorer.CaveExplorer;
 
 public class AlexRoom extends CaveRoom {
-	
+
+	private String[] trollResponse;
+
 	public AlexRoom(String description) {
 		super(description);
-		// TODO Auto-generated constructor stub
+		String[] temp = {"Hoot Hoot, I'm an owl.", "Don't talk to me if you don't have food.", "Talk to me at night.", "Why are you even here????"}; 
+		trollResponse = temp;
 	}
 
 	public String getContents() {
-			return "O";
-			//return what would be returned otherwise
+		return "O";
+		//return what would be returned otherwise
 	}
-	
+
 	public String validKeys() {
 		return "wdsao";
-}
+	}
 
 	public void printAllowedEntry() {
 		CaveExplorer.print("You can only enter 'w', 'a', 's' or 'd' to move or "
-			+ "you can type 'o' to talk to the owl to learn more about k-pop.");
-}
+				+ "you can type 'o' to talk to the owl.");
+	}
 
 	public void performAction(int direction) {
 		if(direction == 4) {
-			CaveExplorer.print("K-pop artists are fun including Girls Generation"); 
+			int count = 0;
+			while(count < 5) {
+				troll();
+				count++;
+			}
+			CaveExplorer.print("Sorry for trolling you. Here is a piece of paper!");
+			Inventory.setPaper(true);
 		}
 		else {
-			CaveExplorer.print("That key does nothing.");
+			super.performAction(direction);
+		}
 	}
-}
-	
+
+	public void troll() {
+		int num = (int)(Math.random() * trollResponse.length);
+		CaveExplorer.print(trollResponse[num]);
+		CaveExplorer.in.nextLine();
+	}
+
 	public String getDescription() {
-		return "Do you want to learn more about fun music and talk to an owl. Enter o to do so.";
-}
+		return "Do you want to learn more about fun music and talk to an owl. Enter 'o' to do so.";
+	}
 }
 
