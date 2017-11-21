@@ -2,7 +2,7 @@ package alexErikGame;
 
 import caveExplorer.CaveExplorer;
 
-public class AlexBackEnd implements ErikSupport {
+public class AlexBackEnd implements ErikSupport{
 	
 	private AlexSupport frontend;
 	private AlexErikFleet[][] ships;
