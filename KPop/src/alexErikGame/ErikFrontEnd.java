@@ -59,7 +59,8 @@ public class ErikFrontEnd implements AlexSupport{
 	private void startGame() {
 		while(userShips > 0 && compShips > 0) {
 			displayUserBoard(userBoard);
-			System.out.println("\n");
+			System.out.println("\n\n"+
+			"Your ships board:\n");
 			displayCompBoard(compBoard);
 			System.out.println("\nWhere do you want to shoot?");
 			int[] coords = backend.getCoordInput();
@@ -133,11 +134,11 @@ public class ErikFrontEnd implements AlexSupport{
 				if(ships[row][col].isRevealed()){
 					System.out.print("[x]");
 				}
-			
+	/*		
 				else if(ships[row][col].containsShip()){
 						System.out.print("[+]");
 				}	
-		
+	*/	
 					else if(ships[row][col].isMiss()) {
 						System.out.print("[o]");
 					}else {
