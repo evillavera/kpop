@@ -182,12 +182,25 @@ public class AlexBackEnd implements ErikSupport {
 
 	public int[] getCoordInput() {
 		String input = CaveExplorer.in.nextLine();
+		while(!(input.length() == 3)) {
+			System.out.println("Please enter a valid coordinate.\n"+
+					"It should look like _,_ with the blanks being single digit numbers.\n"+
+					"Please enter a new coordinate.\n");
+			input = CaveExplorer.in.nextLine();
+		}
 		int[] coords = toCoords(input);
-		while(coords == null){
+		if(coords[0] == 9 && coords[1] == 9) {
+			return coords;
+		}
+		while(((coords == null || coords[0] < 0 || coords[0] > ships.length-1 || coords[1] < 0 || coords[1] > ships[0].length))){
 			System.out.println("You must enter cordinates of the form:\n          <row>,<col>"
-					+ "\n<row> and <col> should be integers.");
+					+ "\n<row> and <col> should be integers.\n"
+					+ "It should also be within the array bounds.");
 			input = CaveExplorer.in.nextLine();
 			coords = toCoords(input);
+			if(coords[0] == 9 && coords[1] == 9) {
+				return coords;
+			}
 		}
 		return coords;
 	}

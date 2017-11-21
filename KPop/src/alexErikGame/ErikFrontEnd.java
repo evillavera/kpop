@@ -21,9 +21,10 @@ public class ErikFrontEnd implements AlexSupport{
 	/*
 	 * Fix outofbounds error for displayhints code DONE
 	 * make places where you already shot unshootable DONE
-	 * 	 outofbounds for the input^^
+	 * 	 outofbounds for the input^^ DONE
 	 * add a directions screen DONE
 	 * make cheat code DONE
+	 * make 9,9 work with new coordinate input procedure LOOKS GOOD
 	 */
 	
 	
@@ -63,6 +64,7 @@ public class ErikFrontEnd implements AlexSupport{
 			System.out.println("\nWhere do you want to shoot?");
 			int[] coords = backend.getCoordInput();
 			lastCoords = coords;
+			//for cheat code
 			if(coords[0] == 9 && coords[1] == 9) {
 				backend.setCompShips(0);
 				for(int row = 0; row < userBoard.length; row++){
@@ -75,11 +77,11 @@ public class ErikFrontEnd implements AlexSupport{
 				break;
 			}
 			//make sure it is within the array bounds
-			while(userBoard[coords[0]][coords[1]].isRevealed() || userBoard[coords[0]][coords[1]].isMiss()) {
-				System.out.println("\nYou already shot there. Choose a new coordinate.");
-				coords = backend.getCoordInput();
-				lastCoords = coords;
-			}
+				while(userBoard[coords[0]][coords[1]].isRevealed() || userBoard[coords[0]][coords[1]].isMiss()) {
+					System.out.println("\nYou already shot there. Choose a new coordinate.");
+					coords = backend.getCoordInput();
+					lastCoords = coords;
+				}
 			playersTurn(coords);
 			compShips = backend.getCompShips();
 			//backend.computerTurn();
