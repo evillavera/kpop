@@ -29,7 +29,7 @@ public class JennyPerson {
 	public void interact() {
 		CaveExplorer.print("Annyeong! I am a merchant.");
 		if(active) {
-			CaveExplorer.print("If you want that signature you need a " + item + ". Press 'i' for more information, or say 'bye' to stop talking.");
+			CaveExplorer.print("If you want that signature, you'll need a " + item + ". Press 'i' for more information, or say 'bye' to stop talking.");
 			s = CaveExplorer.in.nextLine();
 			while(!s.equalsIgnoreCase("bye") && !s.equalsIgnoreCase("i")) {
 				CaveExplorer.print("You can only say 'i' or 'bye'.");
