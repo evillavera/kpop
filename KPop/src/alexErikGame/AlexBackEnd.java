@@ -53,29 +53,32 @@ public class AlexBackEnd implements ErikSupport {
 					for(int i = randRow; i > randRow - 3;i--) {
 						ships[i][randCol].setContainsShip(true);
 					}
+					countShortCompShips++;
 				}
 				else if(!ships[randRow+1][randCol].containsShip() && !ships[randRow+2][randCol].containsShip()){
 					// activate vertical in downward direction
 					for(int i = randRow; i < randRow + 3;i++) {
 						ships[i][randCol].setContainsShip(true);
 					}
+					countShortCompShips++;
 				}
 				else if(randCol > shortShipSize-2 && !ships[randRow][randCol-1].containsShip() && !ships[randRow][randCol-2].containsShip()) {
 						// activate horizontal in leftward directions
 						for(int i = randCol; i > randCol - 3;i--) {
 							ships[randRow][i].setContainsShip(true);
 						}
+						countShortCompShips++;
 				}
 				else if(!ships[randRow][randCol+1].containsShip() && !ships[randRow][randCol+2].containsShip()){
 					// activate horizontal in rightward direction
 					for(int i = randCol; i < randCol + 3;i++) {
 						ships[i][randCol].setContainsShip(true);
 					}
+					countShortCompShips++;
 				}
 					//ships[randRow][randCol].setContainsShip(true);
 					//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
 			}
-			countShortCompShips++;
 		}
 		while(countLongCompShips < compLongShips) {
 			int randRow = (int)(Math.random() * ships.length);
@@ -86,29 +89,32 @@ public class AlexBackEnd implements ErikSupport {
 					for(int i = randRow; i > randRow - 4;i--) {
 						ships[i][randCol].setContainsShip(true);
 					}
+					countLongCompShips++;
 				}
 				else if(randRow <= largeShipSize && !ships[randRow+1][randCol].containsShip() && !ships[randRow+2][randCol].containsShip() && !ships[randRow+3][randCol].containsShip()){
 					// activate vertical in downward direction
 					for(int i = randRow; i < randRow + 4;i++) {
 						ships[i][randCol].setContainsShip(true);
 					}
+					countLongCompShips++;
 				}
 				else if(randCol > largeShipSize-2 && !ships[randRow][randCol-1].containsShip() && !ships[randRow][randCol-2].containsShip() && !ships[randRow][randCol-3].containsShip()) {
 						// activate horizontal in leftward directions
 						for(int i = randCol; i > randCol - 4;i--) {
 							ships[randRow][i].setContainsShip(true);
 						}
+						countLongCompShips++;
 				}
 				else if(randCol <= largeShipSize && !ships[randRow][randCol+1].containsShip() && !ships[randRow][randCol+2].containsShip() && !ships[randRow][randCol+3].containsShip()){
 					// activate horizontal in rightward direction
 					for(int i = randCol; i < randCol + 4;i++) {
 						ships[i][randCol].setContainsShip(true);
 					}
+					countLongCompShips++;
 				}
 					//ships[randRow][randCol].setContainsShip(true);
 					//ships[randRow][randCol].setTreasureValue(5+(int)(Math.random() * 16));
 			}
-			countLongCompShips++;
 		}
 	}
 	
