@@ -44,12 +44,26 @@ public class AlexBackEnd implements ErikSupport {
 		trackShipCoordInd = 0;
 		getGrid();
 	}
+	
+	public void coordsArrCreation(int row, int col){
+		shipCoordsArr[trackShipCoordInd][0] = row;
+		shipCoordsArr[trackShipCoordInd][1] = col;
+		trackShipCoordInd++;
+	}
 
 	// NOCKLES : "IN ORDER FOR BACKEND TO MEET THE REQUIREMENT FOR A 5, THE AI MUST BE SMART"
 	// IF THE AI HITS A SHIP, IT MUST SELECT TO HIT ANOTHER SPACE NEAR THE SHIP
 	// CHECK THE RUBRIC FOR ADDITIONAL INFORMATION
 
 	//NEW IDEA: HAVE A SHIP THAT MUST BE HIT TWICE IN EACH SPACE TO BE SUNK
+	
+	/*
+	 * public void coordsArrCreation(int row, int col){
+						shipCoordsArr[trackShipCoordInd][0] = row;
+						shipCoordsArr[trackShipCoordInd][1] = col;
+						trackShipCoordInd++;
+	 * }
+	 * */
 	public void getGrid() {
 		for(int row = 0; row < ships.length; row++){
 			for(int col = 0; col < ships[row].length; col++){
@@ -68,9 +82,7 @@ public class AlexBackEnd implements ErikSupport {
 					// activate vertical in upward directions
 					for(int i = randRow; i > randRow - 3;i--) {
 						ships[i][randCol].setContainsShip(true);
-						shipCoordsArr[trackShipCoordInd][0] = i;
-						shipCoordsArr[trackShipCoordInd][1] = randCol;
-						trackShipCoordInd++;
+						coordsArrCreation(i,randCol);
 					}
 					countShortCompShips++;
 				}
@@ -78,6 +90,7 @@ public class AlexBackEnd implements ErikSupport {
 					// activate vertical in downward direction
 					for(int i = randRow; i < randRow + 3;i++) {
 						ships[i][randCol].setContainsShip(true);
+						coordsArrCreation(i,randCol);
 					}
 					countShortCompShips++;
 				}
@@ -85,13 +98,15 @@ public class AlexBackEnd implements ErikSupport {
 						// activate horizontal in leftward directions
 						for(int i = randCol; i > randCol - 3;i--) {
 							ships[randRow][i].setContainsShip(true);
+							coordsArrCreation(randRow,i);
 						}
 						countShortCompShips++;
 				}
 				else if(!ships[randRow][randCol+1].containsShip() && !ships[randRow][randCol+2].containsShip()){
 					// activate horizontal in rightward direction
 					for(int i = randCol; i < randCol + 3;i++) {
-						ships[i][randCol].setContainsShip(true);
+						ships[randRow][i].setContainsShip(true);
+						coordsArrCreation(randRow,i);
 					}
 					countShortCompShips++;
 				}
@@ -107,6 +122,7 @@ public class AlexBackEnd implements ErikSupport {
 					// activate vertical in upward directions
 					for(int i = randRow; i > randRow - 4;i--) {
 						ships[i][randCol].setContainsShip(true);
+						coordsArrCreation(i,randCol);
 					}
 					countLongCompShips++;
 				}
@@ -114,6 +130,7 @@ public class AlexBackEnd implements ErikSupport {
 					// activate vertical in downward direction
 					for(int i = randRow; i < randRow + 4;i++) {
 						ships[i][randCol].setContainsShip(true);
+						coordsArrCreation(i,randCol);
 					}
 					countLongCompShips++;
 				}
@@ -121,13 +138,15 @@ public class AlexBackEnd implements ErikSupport {
 						// activate horizontal in leftward directions
 						for(int i = randCol; i > randCol - 4;i--) {
 							ships[randRow][i].setContainsShip(true);
+							coordsArrCreation(randRow,i);
 						}
 						countLongCompShips++;
 				}
 				else if(randCol <= largeShipSize && !ships[randRow][randCol+1].containsShip() && !ships[randRow][randCol+2].containsShip() && !ships[randRow][randCol+3].containsShip()){
 					// activate horizontal in rightward direction
 					for(int i = randCol; i < randCol + 4;i++) {
-						ships[i][randCol].setContainsShip(true);
+						ships[randRow][i].setContainsShip(true);
+						coordsArrCreation(randRow,i);
 					}
 					countLongCompShips++;
 				}
@@ -193,7 +212,7 @@ public class AlexBackEnd implements ErikSupport {
 				else if(!compships[randRow][randCol+1].containsShip() && !compships[randRow][randCol+2].containsShip()){
 					// activate horizontal in rightward direction
 					for(int i = randCol; i < randCol + 3;i++) {
-						compships[i][randCol].setContainsShip(true);
+						compships[randRow][i].setContainsShip(true);
 					}
 					countShortCompShips++;
 				}
@@ -229,7 +248,7 @@ public class AlexBackEnd implements ErikSupport {
 				else if(randCol <= largeShipSize && !compships[randRow][randCol+1].containsShip() && !compships[randRow][randCol+2].containsShip() && !ships[randRow][randCol+3].containsShip()){
 					// activate horizontal in rightward direction
 					for(int i = randCol; i < randCol + 4;i++) {
-						compships[i][randCol].setContainsShip(true);
+						compships[randRow][i].setContainsShip(true);
 					}
 					countLongCompShips++;
 				}
@@ -291,6 +310,9 @@ public class AlexBackEnd implements ErikSupport {
 					isVertical = true;
 				}
 			}
+			else {
+				compLogicNum = 2;
+			}
 		}
 		if(num == 1) {
 			if(potCol1 > 0 && potCol1 < 7) {
@@ -299,6 +321,9 @@ public class AlexBackEnd implements ErikSupport {
 					// launch missiles in vertical positions
 					isVertical = false;
 				}
+			}
+			else {
+				compLogicNum = 3;
 			}
 		}
 		if(num == 2) {
@@ -309,6 +334,9 @@ public class AlexBackEnd implements ErikSupport {
 					isVertical = true;
 				}
 			}
+			else {
+				compLogicNum = 0;
+			}
 		}
 		if(num == 3) {
 			if(potCol2 > 0 && potCol2 < 7) {
@@ -317,6 +345,9 @@ public class AlexBackEnd implements ErikSupport {
 					// launch missiles in vertical positions
 					isVertical = false;
 				}
+			}
+			else {
+				compLogicNum = 1;
 			}
 		}
 	}
