@@ -19,6 +19,12 @@ public class AlexBackEnd implements ErikSupport {
 	private int selRow;
 	private int selCol;
 	
+	private int potRow1;
+	private int potRow2;
+	private int potCol1;
+	private int potCol2;
+	private int[][] shipCoordsArr;
+	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
 		ships = new AlexErikFleet[8][8];
@@ -30,6 +36,7 @@ public class AlexBackEnd implements ErikSupport {
 		shortShipSize = 3;
 		largeShipSize = 4;
 		smartComp = false;
+		shipCoordsArr = new int[4][2];
 		getGrid();
 	}
 
@@ -245,7 +252,6 @@ public class AlexBackEnd implements ErikSupport {
 		if(!smartComp) {
 			int selRow = (int)(Math.random()*ships.length);
 			int selCol = (int)(Math.random()*ships[selRow].length);	
-			
 			printMessageAndReturnComp(selRow,selCol);
 		}
 		else {
@@ -254,24 +260,19 @@ public class AlexBackEnd implements ErikSupport {
 			// be sure to add coordinates, each time a ship is hit.
 			// check to see if the coordinate already exists in the array
 			// if it does, don't add it into the array
-			int potRow1 = selRow - 1;
-			int potRow2 = selRow + 1;
-			int potCol1 = selCol - 1;
-			int potCol2 = selCol + 1;
+			potRow1 = selRow - 1;
+			potRow2 = selRow + 1;
+			potCol1 = selCol - 1;
+			potCol2 = selCol + 1;
 			
-			int[][] potCoords = new int[4][2];
+			// int[][] potCoords = new int[4][2]; -- maybe use a 2D array for potential coordinates
+			//HIT IN FOLLOWING ORDER: N-E-S-W
 			
-			for(int i = 0; i < potCoords.length;i++) {
-				for(int j = 0;j<potCoords[i].length-1;j++) {
-					potCoords[i][j] = nums[markerRow];
-					potCoords[i][j+1] = nums[markerCol];
-					markerRow++;
-					markerCol++;
+			if(potRow1 > 0 && potRow1 < 7) {
+				printMessageAndReturnComp(potRow1,selCol);
+				if(ships[potRow1][selCol].containsShip()) {
+					// launch missiles in vertical positions
 				}
-			}
-			
-			if(potRow1>0 && potRow1<7 && potCol1 > 0 && potCol1 < 7) {
-				printMessageAndReturnComp(potRow1,potCol1);
 			}
 		}
 	}
@@ -280,6 +281,8 @@ public class AlexBackEnd implements ErikSupport {
 		if(ships[row][col].containsShip()) {
 			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+row+","+col+") That's a hit.");
 			smartComp = true;
+			selRow = row;
+			selCol = col;
 		}
 		else {
 			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+row+","+col+") That's a miss.");
