@@ -3,9 +3,49 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
+	private static int money;
+	private static boolean pen;
+	private static boolean paper;
+	private static int hp;
 	
 	public Inventory() {
+		pen = false;
+		paper = false;
+		hp = 100;
 		updateMap();
+		updateMoney(0);
+	}
+	
+	public static int getHp() {
+		return hp;
+	}
+
+	public static void updateHp(int num) {
+		hp += num;
+	}
+	
+	public static boolean isPen() {
+		return pen;
+	}
+
+	public static void setPen(boolean p) {
+		pen = p;
+	}
+
+	public static boolean isPaper() {
+		return paper;
+	}
+
+	public static void setPaper(boolean p) {
+		paper = p;
+	}
+
+	public static int getMoney() {
+		return money;
+	}
+
+	public static void updateMoney(int mula) {
+		money = money + mula;
 	}
 
 	public void updateMap() {
@@ -47,7 +87,7 @@ public class Inventory {
 	}
 
 	public String getDescription() {
-		return map;
+		return map + "\nYou have " + money + " dollars." + "\nYour health: " + hp;
 //		return "You have nothing in your inventory.";
 	}
 

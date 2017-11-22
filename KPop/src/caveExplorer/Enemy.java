@@ -1,5 +1,7 @@
 package caveExplorer;
 
+import samJenny.*;
+
 public class Enemy extends NPC {
 	private int hp;
 	private boolean battling; 
@@ -13,31 +15,38 @@ public class Enemy extends NPC {
 		private boolean active;
 		private String activeDescription;
 		private String inactiveDescription;
+		private JennyFrontEnd p;
 	public Enemy() {
 		hp = 10;
 		battling = false;
 		this.floor = CaveExplorer.caves;
 		this.activeDescription = "There is an enemy waiting to talk to you.";
-		this.inactiveDescription = "The enemy you fought earlier is standing here";
+		this.inactiveDescription = "";
 		//to indicate the NPC doesn't have a position yet, use coordinates -1,-1
 		this.currentCol = -1;
 		this.currentRow = -1;
 		this.currentRoom = null;
 		this.active = true;
+		p = new JennyFrontEnd();
 	}
 	
 	public void battle() {
 		battling = true;
-		CaveExplorer.print("Hi, I'm an Enemy!" + "Try to kill me by pressing b\nHP: " +hp );
+		CaveExplorer.print("Hi, I hate Kpop!" + " Try to beat me by in a matching game, press 'b' to play.\n" 
+				+"If you can't beat me in a matching game, you're no match for your group >:3\n"
+				+ "ENEMY HP: " + hp );
 		String s = CaveExplorer.in.nextLine();
 		while(battling) {
 			if(!s.equalsIgnoreCase("b")) {
-				CaveExplorer.print("Hahaha you suck");
+				Inventory.updateHp(-10);
+				CaveExplorer.print("ENEMY HP: " + hp + "\nYOUR HP: " + Inventory.getHp());
 				s = CaveExplorer.in.nextLine();
 			}
 			else {
-				hp = 0;
-				CaveExplorer.print("HP :"+ hp + "\nAJHGJKSDFHJKLDFHKLAJSDH");
+				p.play();
+				hp = hp - 10;
+				CaveExplorer.print("ENEMY HP: "+ hp + "\nAJHGJKSDFHJKLDFHKLAJSDH\nYou obtained 10 dollars after defeating the enemy!");
+				Inventory.updateMoney(10);
 				battling = false;
 				
 			}

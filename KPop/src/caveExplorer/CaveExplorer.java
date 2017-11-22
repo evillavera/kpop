@@ -2,6 +2,9 @@ package caveExplorer;
 
 import java.util.Scanner;
 
+import samJenny.Idol;
+import samJenny.JennyPerson;
+
 public class CaveExplorer {
 
 	public static CaveRoom[][]caves; //every room in the cave
@@ -10,13 +13,18 @@ public class CaveExplorer {
 	public static Inventory inventory;// where all objects found in cave are kept
 	public static boolean playing = true;
 	public static NPC[] npcs;
+	public static JennyPerson[] jenny;
+	public static Idol[] idol;
 	
 	public static void main(String[] args) {
 		in = new Scanner(System.in);
 		CaveRoom.setUpCaves();
-		
-		inventory = new Inventory();
+		inventory = new Inventory(); 
 		startExploring();
+	}
+
+	public static void setPlaying(boolean playing) {
+		CaveExplorer.playing = playing;
 	}
 
 	private static void startExploring() {
@@ -28,6 +36,7 @@ public class CaveExplorer {
 			String input = in.nextLine();
 			currentRoom.interpretInput(input);
 		}
+		CaveExplorer.print("YOU GOT THE SIGNATURE!!!!!! MUCH WOWs");
 	}
 
 	private static void npcActions() {

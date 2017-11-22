@@ -1,5 +1,13 @@
 package caveExplorer;
 
+import samJenny.Idol;
+import samJenny.IdolRoom;
+import samJenny.JennyPerson;
+import samJenny.JennyRoom;
+import samJenny.SamRoom;
+import alexErikGame.ErikRoom;
+import alexErikGame.AlexRoom;
+
 public class CaveRoom {
 
 	private String description;//tells what the room looks like
@@ -167,27 +175,54 @@ public class CaveRoom {
 	public static void setUpCaves() {
 		//All of this code can be changed
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new NPCRoom[7][7];
+		CaveExplorer.caves = new CaveRoom[7][7];
 		//2.Populate with caves and a default description : hint: when starting, use coordinates (helps debug)
 		for(int row = 0; row < CaveExplorer.caves.length; row++) {
 			for(int col = 0; col < CaveExplorer.caves[0].length; col++) {
 				//create a "default" cave
-				CaveExplorer.caves[row][col] = new NPCRoom("this cave has coordinates ("+row+","+col+")");
+				CaveExplorer.caves[row][col] = new NPCRoom("This cave has coordinates ("+row+","+col+")");
 
 			}
 		}
 		//3. replace default rooms with custom rooms
 		//Will be done later 
-
-		CaveExplorer.npcs = new Enemy[1];
 		
+		SamRoom customRoom = new SamRoom("This is a special room");
+		CaveExplorer.caves[6][5] = customRoom;
+		
+		CaveExplorer.caves[6][1] = new JennyRoom("JENNY ROOM");
+		CaveExplorer.jenny = new JennyPerson[1];
+		CaveExplorer.jenny[0] = new JennyPerson();
+		CaveExplorer.jenny[0].setPosition(6, 1);
+		
+
+		CaveExplorer.caves[0][5] = new IdolRoom("IDOL ROOM");
+		CaveExplorer.idol = new Idol[1];
+		CaveExplorer.idol[0] = new Idol();
+		CaveExplorer.idol[0].setPosition(0, 5);
+
+		CaveRoom customroom1 = new ErikRoom("Text");
+		CaveExplorer.caves[5][3] = customroom1;
+		
+		CaveRoom customroom2 = new AlexRoom("Text");
+		CaveExplorer.caves[3][6] = customroom2;
+		
+		CaveExplorer.npcs = new Enemy[1];
+<<<<<<< HEAD
+		
+=======
+>>>>>>> refs/heads/develop
 		CaveExplorer.npcs[0] = new Enemy();
+<<<<<<< HEAD
 		
 		CaveExplorer.npcs[0].setPosition(0, 4);
 
 		//ADD EACH PERSON'S ROOM LIKE THIS":
 		CaveRoom customRoom = new NPCRoom("Room");
 
+=======
+		CaveExplorer.npcs[0].setPosition(4, 1);
+>>>>>>> refs/heads/develop
 		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[6][3];
@@ -250,7 +285,4 @@ public class CaveRoom {
 			return null;
 		}
 	}
-
-	
-	
 }
