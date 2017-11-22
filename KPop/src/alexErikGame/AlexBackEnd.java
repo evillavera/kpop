@@ -24,6 +24,8 @@ public class AlexBackEnd implements ErikSupport {
 	private int potCol1;
 	private int potCol2;
 	private int[][] shipCoordsArr;
+	private boolean isVertical;
+	private int compLogicNum;
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
@@ -37,6 +39,7 @@ public class AlexBackEnd implements ErikSupport {
 		largeShipSize = 4;
 		smartComp = false;
 		shipCoordsArr = new int[4][2];
+		compLogicNum = 0;
 		getGrid();
 	}
 
@@ -235,10 +238,6 @@ public class AlexBackEnd implements ErikSupport {
 		}
 	}
 	
-	
-	
-	
-	public void computerTurn() {
 		//STEPS TO MAKE INTELLIGENT AI
 		//1. Activate computer's turn
 		//2. Computer decides and launches missile
@@ -249,6 +248,7 @@ public class AlexBackEnd implements ErikSupport {
 		//if it does, then use it
 		// if it doesn't, then use a random
 		//SHIPS ARE ONLY VERTICAL AND HORIZONTAL, THEY DON'T OCCUPY multiple rows AND multiple columns
+	public void computerTurn() {
 		if(!smartComp) {
 			int selRow = (int)(Math.random()*ships.length);
 			int selCol = (int)(Math.random()*ships[selRow].length);	
@@ -268,10 +268,60 @@ public class AlexBackEnd implements ErikSupport {
 			// int[][] potCoords = new int[4][2]; -- maybe use a 2D array for potential coordinates
 			//HIT IN FOLLOWING ORDER: N-E-S-W
 			
+			chooseCompLogic(compLogicNum);
+			if(isVertical) {
+				if(ships[potRow1][selCol].containsShip()) {
+					compLogicNum = 0;
+				}
+				else {
+					compLogicNum = 2;
+				}
+			}
+			else {
+				if(ships[selRow][potCol1].containsShip()) {
+					compLogicNum = 1;
+				}
+				else {
+					compLogicNum = 3;
+				}
+			}
+		}
+	}
+	
+	public void chooseCompLogic(int num) {
+		if(num == 0) {
 			if(potRow1 > 0 && potRow1 < 7) {
 				printMessageAndReturnComp(potRow1,selCol);
 				if(ships[potRow1][selCol].containsShip()) {
 					// launch missiles in vertical positions
+					isVertical = true;
+				}
+			}
+		}
+		if(num == 1) {
+			if(potCol1 > 0 && potCol1 < 7) {
+				printMessageAndReturnComp(selRow,potCol1);
+				if(ships[selRow][potCol1].containsShip()) {
+					// launch missiles in vertical positions
+					isVertical = false;
+				}
+			}
+		}
+		if(num == 2) {
+			if(potRow2 > 0 && potRow2 < 7) {
+				printMessageAndReturnComp(potRow2,selCol);
+				if(ships[potRow2][selCol].containsShip()) {
+					// launch missiles in vertical positions
+					isVertical = true;
+				}
+			}
+		}
+		if(num == 3) {
+			if(potCol2 > 0 && potCol2 < 7) {
+				printMessageAndReturnComp(selRow,potCol2);
+				if(ships[selRow][potCol2].containsShip()) {
+					// launch missiles in vertical positions
+					isVertical = false;
 				}
 			}
 		}
