@@ -300,6 +300,7 @@ public class AlexBackEnd implements ErikSupport {
 	 * STEPS TO TRACK SHIPS(FOR USER AND COMPUTER)
 	 * when placing ships, insert coordinates into a 2d array(first 3 coordinates belong to the 3-ship, next four to the 4-ship, last four to the 4-ship)
 	 * when the user's ship coordinates match those in the array(hence the ship is being hit), keep track of the number of hits
+	 * track the number of hits so Erik can inform the user when the ship has sunk
 	 * */
 	public void chooseCompLogic(int num) {
 		if(num == 0) {
