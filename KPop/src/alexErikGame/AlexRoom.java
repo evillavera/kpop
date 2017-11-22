@@ -7,11 +7,13 @@ import caveExplorer.CaveExplorer;
 public class AlexRoom extends CaveRoom {
 
 	private String[] trollResponse;
+	private boolean active;
 
 	public AlexRoom(String description) {
 		super(description);
 		String[] temp = {"Hoot Hoot, I'm an owl.", "Don't talk to me if you don't have food.", "Talk to me at night.", "Why are you even here????"}; 
 		trollResponse = temp;
+		active = true;
 	}
 
 	public String getContents() {
@@ -29,17 +31,20 @@ public class AlexRoom extends CaveRoom {
 	}
 
 	public void performAction(int direction) {
-		if(direction == 4) {
-			int count = 0;
-			while(count < 5) {
-				troll();
-				count++;
+		if(active) {
+			if(direction == 4) {
+				int count = 0;
+				while(count < 5) {
+					troll();
+					count++;
+				}
+				CaveExplorer.print("Sorry for trolling you. Here is a piece of paper!");
+				Inventory.setPaper(true);
+				active = false;
 			}
-			CaveExplorer.print("Sorry for trolling you. Here is a piece of paper!");
-			Inventory.setPaper(true);
 		}
 		else {
-			super.performAction(direction);
+			System.out.println("I already gave you a piece of paper. Go away!");
 		}
 	}
 
