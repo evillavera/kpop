@@ -27,6 +27,9 @@ public class AlexBackEnd implements ErikSupport {
 	private boolean isVertical;
 	private int compLogicNum;
 	private int trackShipCoordInd;
+	private int track3ShipHits;
+	private int track4ShipHits1;
+	private int track4ShipHits2;
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
@@ -39,9 +42,12 @@ public class AlexBackEnd implements ErikSupport {
 		shortShipSize = 3;
 		largeShipSize = 4;
 		smartComp = false;
-		shipCoordsArr = new int[10][2];
+		shipCoordsArr = new int[11][2];
 		compLogicNum = 0;
 		trackShipCoordInd = 0;
+		track3ShipHits = 0;
+		track4ShipHits1 = 0;
+		track4ShipHits2 = 0;
 		getGrid();
 	}
 	
