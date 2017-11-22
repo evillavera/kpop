@@ -208,21 +208,8 @@ public class CaveRoom {
 		CaveExplorer.caves[3][6] = customroom2;
 		
 		CaveExplorer.npcs = new Enemy[1];
-<<<<<<< HEAD
-		
-=======
->>>>>>> refs/heads/develop
 		CaveExplorer.npcs[0] = new Enemy();
-<<<<<<< HEAD
-		
-		CaveExplorer.npcs[0].setPosition(0, 4);
-
-		//ADD EACH PERSON'S ROOM LIKE THIS":
-		CaveRoom customRoom = new NPCRoom("Room");
-
-=======
 		CaveExplorer.npcs[0].setPosition(4, 1);
->>>>>>> refs/heads/develop
 		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[6][3];
