@@ -26,6 +26,7 @@ public class AlexBackEnd implements ErikSupport {
 	private int[][] shipCoordsArr;
 	private boolean isVertical;
 	private int compLogicNum;
+	private int trackShipCoordInd;
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
@@ -38,8 +39,9 @@ public class AlexBackEnd implements ErikSupport {
 		shortShipSize = 3;
 		largeShipSize = 4;
 		smartComp = false;
-		shipCoordsArr = new int[4][2];
+		shipCoordsArr = new int[10][2];
 		compLogicNum = 0;
+		trackShipCoordInd = 0;
 		getGrid();
 	}
 
@@ -54,7 +56,6 @@ public class AlexBackEnd implements ErikSupport {
 				ships[row][col] = new AlexErikFleet(row, col);
 			}
 		}
-		// include player ships?
 		// determine if ship is completely destroyed and whether or not it's a 3-ship for 4-ship
 		// produce 3 ships, not two
 		int countShortCompShips = 0;
@@ -67,6 +68,9 @@ public class AlexBackEnd implements ErikSupport {
 					// activate vertical in upward directions
 					for(int i = randRow; i > randRow - 3;i--) {
 						ships[i][randCol].setContainsShip(true);
+						shipCoordsArr[trackShipCoordInd][0] = i;
+						shipCoordsArr[trackShipCoordInd][1] = randCol;
+						trackShipCoordInd++;
 					}
 					countShortCompShips++;
 				}
@@ -159,9 +163,6 @@ public class AlexBackEnd implements ErikSupport {
 				compships[row][col] = new AlexErikFleet(row, col);
 			}
 		}
-		// include player ships?
-		// determine if ship is completely destroyed and whether or not it's a 3-ship for 4-ship
-		// produce 3 ships, not two
 		int countShortCompShips = 0;
 		int countLongCompShips = 0;
 		while(countShortCompShips < compShortShips){
@@ -237,17 +238,6 @@ public class AlexBackEnd implements ErikSupport {
 			}
 		}
 	}
-	
-		//STEPS TO MAKE INTELLIGENT AI
-		//1. Activate computer's turn
-		//2. Computer decides and launches missile
-		//3. Message displayed to console -- "The computer has taken its turn. It has launched a missile at the coordinates(,). That's a miss. "
-		//4. Activate player's turn
-		
-		//does the computer have a registered hit it can take
-		//if it does, then use it
-		// if it doesn't, then use a random
-		//SHIPS ARE ONLY VERTICAL AND HORIZONTAL, THEY DON'T OCCUPY multiple rows AND multiple columns
 	public void computerTurn() {
 		if(!smartComp) {
 			int selRow = (int)(Math.random()*ships.length);
@@ -288,6 +278,7 @@ public class AlexBackEnd implements ErikSupport {
 		}
 	}
 	/*
+	 * STEPS TO TRACK SHIPS(FOR USER AND COMPUTER)
 	 * when placing ships, insert coordinates into a 2d array(first 3 coordinates belong to the 3-ship, next four to the 4-ship, last four to the 4-ship)
 	 * when the user's ship coordinates match those in the array(hence the ship is being hit), keep track of the number of hits
 	 * */
