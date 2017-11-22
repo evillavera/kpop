@@ -30,6 +30,9 @@ public class AlexBackEnd implements ErikSupport {
 	private int track3ShipHits;
 	private int track4ShipHits1;
 	private int track4ShipHits2;
+	private boolean threeShipSunk;
+	private boolean first4ShipSunk;
+	private boolean second4ShipSunk;
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
@@ -48,6 +51,9 @@ public class AlexBackEnd implements ErikSupport {
 		track3ShipHits = 0;
 		track4ShipHits1 = 0;
 		track4ShipHits2 = 0;
+		threeShipSunk = false;
+		first4ShipSunk = false;
+		second4ShipSunk = false;
 		getGrid();
 	}
 	
@@ -56,20 +62,32 @@ public class AlexBackEnd implements ErikSupport {
 		shipCoordsArr[trackShipCoordInd][1] = col;
 		trackShipCoordInd++;
 	}
+	// keep track of ships
+	// if the computer hit all the spaces on a user's ship, the user's ship has sunk
+	// if the computer hits a space on the user's ship, the count for the # of times the ship was hit should increase
+	public void trackShipHits(int num) {
+		if(num == 0) {
+			if(track3ShipHits == 3) {
+				threeShipSunk = true;
+			}
+		}
+		if(num == 1) {
+			if(track4ShipHits1 == 3) {
+				first4ShipSunk = true;		
+			}
+		}
+		if(num == 2) {
+			if(track4ShipHits2 == 3) {
+				second4ShipSunk = true;	
+			}
+		}
+	}
 
 	// NOCKLES : "IN ORDER FOR BACKEND TO MEET THE REQUIREMENT FOR A 5, THE AI MUST BE SMART"
 	// IF THE AI HITS A SHIP, IT MUST SELECT TO HIT ANOTHER SPACE NEAR THE SHIP
 	// CHECK THE RUBRIC FOR ADDITIONAL INFORMATION
 
 	//NEW IDEA: HAVE A SHIP THAT MUST BE HIT TWICE IN EACH SPACE TO BE SUNK
-	
-	/*
-	 * public void coordsArrCreation(int row, int col){
-						shipCoordsArr[trackShipCoordInd][0] = row;
-						shipCoordsArr[trackShipCoordInd][1] = col;
-						trackShipCoordInd++;
-	 * }
-	 * */
 	public void getGrid() {
 		for(int row = 0; row < ships.length; row++){
 			for(int col = 0; col < ships[row].length; col++){
@@ -270,11 +288,6 @@ public class AlexBackEnd implements ErikSupport {
 			printMessageAndReturnComp(selRow,selCol);
 		}
 		else {
-			// create a 2D array of potential coordinates to hit
-			// be sure to remove the coordinates from the 2D array once they're used
-			// be sure to add coordinates, each time a ship is hit.
-			// check to see if the coordinate already exists in the array
-			// if it does, don't add it into the array
 			potRow1 = selRow - 1;
 			potRow2 = selRow + 1;
 			potCol1 = selCol - 1;
@@ -365,6 +378,25 @@ public class AlexBackEnd implements ErikSupport {
 			smartComp = true;
 			selRow = row;
 			selCol = col;
+			for(int i = 0; i < shipCoordsArr.length;i++) {
+				if(shipCoordsArr[i][0] == row && shipCoordsArr[i][1] == col) {
+					if(i < 3) {
+						//3ship
+						track3ShipHits++;
+						trackShipHits(0);
+					}
+					if(i > 2 && i < 7) {
+						//1stfourship
+						track4ShipHits1++;
+						trackShipHits(1);
+					}
+					if(i>6&&i<11) {
+						//2ndfourship
+						track4ShipHits2++;
+						trackShipHits(2);
+					}
+				}
+			}
 		}
 		else {
 			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+row+","+col+") That's a miss.");
