@@ -37,7 +37,7 @@ public class ErikRoom extends CaveRoom{
 	public void performAction(int direction) {
 		if(direction == 4) {
 				System.err.println("The note on the floor says that you will go through many challenges today.\n"
-						+ " To help you, remember 9,9 and Nockles always knows the answer.");
+						+ " To help you succeed remember, 9,9 and Nockles always knows the answer.");
 			}else {
 			printAllowedEntry();
 		}
