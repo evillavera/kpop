@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import samJenny.Idol;
 import samJenny.JennyPerson;
+import alexErikGame.SecurityGuard;
 
 public class CaveExplorer {
 
@@ -14,6 +15,7 @@ public class CaveExplorer {
 	public static boolean playing = true;
 	public static NPC[] npcs;
 	public static JennyPerson[] jenny;
+	public static SecurityGuard[] erik;
 	public static Idol[] idol;
 	
 	public static void main(String[] args) {

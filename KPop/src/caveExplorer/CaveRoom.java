@@ -6,6 +6,8 @@ import samJenny.JennyPerson;
 import samJenny.JennyRoom;
 import samJenny.SamRoom;
 import alexErikGame.ErikRoom;
+import alexErikGame.SecurityGuard;
+import alexErikGame.SecurityGuardRoom;
 import alexErikGame.AlexRoom;
 
 public class CaveRoom {
@@ -195,7 +197,13 @@ public class CaveRoom {
 		CaveExplorer.jenny[0] = new JennyPerson();
 		CaveExplorer.jenny[0].setPosition(6, 1);
 		
-
+		CaveExplorer.caves[1][1] = new SecurityGuardRoom("Erik's room");
+		CaveExplorer.erik = new SecurityGuard[1];
+		CaveExplorer.erik[0] = new SecurityGuard();
+		CaveExplorer.erik[0].setPosition(1,1);
+		
+		
+		
 		CaveExplorer.caves[0][5] = new IdolRoom("IDOL ROOM");
 		CaveExplorer.idol = new Idol[1];
 		CaveExplorer.idol[0] = new Idol();
