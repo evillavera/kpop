@@ -3,14 +3,14 @@ package alexErikGame;
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
 import caveExplorer.NPCRoom;
-import samJenny.Idol;
 
-public class SecurityGuardRoom extends NPCRoom {
+public class SecurityGuardRoom extends CaveRoom {
 
 	private SecurityGuard presentNPC;
 	
 	public SecurityGuardRoom(String description) {
 		super(description);
+		presentNPC = null;
 	}
 
 	public boolean containsGuard() {
@@ -40,6 +40,10 @@ public class SecurityGuardRoom extends NPCRoom {
 				CaveExplorer.print("There is nothing to interact with.");
 			}
 		}
+	}
+
+	public void enterPerson(SecurityGuard securityGuard) {
+		presentNPC = securityGuard;
 	}	
 	
 	/*
