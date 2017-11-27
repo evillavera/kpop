@@ -12,4 +12,7 @@ public interface ErikSupport {
 	void computerTurn();
 	void setCompShips(int i);
 	AlexErikFleet[][] getCompFleet();
+	AlexErikFleet[][] getCompBoard();
+	void trackShipsHits(int[] lastCoords, int player);
+	int[] getComputerCoords();
 }

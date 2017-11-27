@@ -6,4 +6,6 @@ public interface AlexSupport {
 	void displayResult();
 	int getCompShips();
 	int getUserShips();
+	AlexErikFleet[][] getCompBoard();
+	void setCompBoard(AlexErikFleet[][] compships);
 }

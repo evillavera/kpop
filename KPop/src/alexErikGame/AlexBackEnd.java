@@ -18,21 +18,30 @@ public class AlexBackEnd implements ErikSupport {
 	
 	private int selRow;
 	private int selCol;
+	private int[] computerCoords;
 	
 	private int potRow1;
 	private int potRow2;
 	private int potCol1;
 	private int potCol2;
 	private int[][] shipCoordsArr;
+	private int[][] shipCoordsArrComp;
 	private boolean isVertical;
 	private int compLogicNum;
 	private int trackShipCoordInd;
+	private int trackShipCoordIndComp;
 	private int track3ShipHits;
 	private int track4ShipHits1;
 	private int track4ShipHits2;
-	private boolean threeShipSunk;
-	private boolean first4ShipSunk;
-	private boolean second4ShipSunk;
+	private boolean threeShipSunk = false;
+	private boolean first4ShipSunk = false;
+	private boolean second4ShipSunk = false;
+	private int track3ShipHitsComp;
+	private int track4ShipHits1Comp;
+	private int track4ShipHits2Comp;
+	private boolean threeShipSunkComp = false;
+	private boolean first4ShipSunkComp = false;
+	private boolean second4ShipSunkComp = false;
 	
 	public AlexBackEnd(AlexSupport frontend) {
 		this.frontend = frontend;
@@ -46,15 +55,20 @@ public class AlexBackEnd implements ErikSupport {
 		largeShipSize = 4;
 		smartComp = false;
 		shipCoordsArr = new int[11][2];
+		shipCoordsArrComp = new int[11][2];
+		computerCoords = new int[2];
 		compLogicNum = 0;
 		trackShipCoordInd = 0;
+		trackShipCoordIndComp = 0;
 		track3ShipHits = 0;
 		track4ShipHits1 = 0;
 		track4ShipHits2 = 0;
+		track3ShipHitsComp = 0;
+		track4ShipHits1Comp = 0;
+		track4ShipHits2Comp = 0;
 		threeShipSunk = false;
 		first4ShipSunk = false;
 		second4ShipSunk = false;
-		getGrid();
 	}
 	
 	public void coordsArrCreation(int row, int col){
@@ -62,26 +76,123 @@ public class AlexBackEnd implements ErikSupport {
 		shipCoordsArr[trackShipCoordInd][1] = col;
 		trackShipCoordInd++;
 	}
+	
+	public void coordsArrCreationComp(int row, int col){
+		shipCoordsArrComp[trackShipCoordIndComp][0] = row;
+		shipCoordsArrComp[trackShipCoordIndComp][1] = col;
+		trackShipCoordIndComp++;
+	}
 	// keep track of ships
 	// if the computer hit all the spaces on a user's ship, the user's ship has sunk
 	// if the computer hits a space on the user's ship, the count for the # of times the ship was hit should increase
-	public void trackShipHits(int num) {
-		if(num == 0) {
-			if(track3ShipHits == 3) {
+	
+	
+	
+	public void trackShipsHits(int[] coords, int player) {
+		if(player == 0) {
+			for(int i = 0; i < shipCoordsArr.length;i++) {
+				if(shipCoordsArr[i][0] ==coords[0]  && shipCoordsArr[i][1] == coords[1]) {
+					if(i < 3) {
+						//3ship
+						this.track3ShipHits++;
+						//trackShipHits(0);
+					}
+					if(i > 2 && i < 7) {
+						//1stfourship
+						this.track4ShipHits1++;
+						//trackShipHits(1);
+					}
+					if(i>6 && i<11) {
+						//2ndfourship
+						this.track4ShipHits2++;
+						//trackShipHits(2);
+					}
+				}
+			}
+			
+			if(this.track3ShipHits >= 3 && !threeShipSunk) {
 				threeShipSunk = true;
+				this.compShips --;
+				System.out.println("You destroyed the 3 long ship!");
 			}
-		}
-		if(num == 1) {
-			if(track4ShipHits1 == 3) {
-				first4ShipSunk = true;		
+			if(this.track4ShipHits1 >= 4 && !first4ShipSunk) {
+				first4ShipSunk = true;	
+				this.compShips --;
+				System.out.println("You destroyed the 4 long ship!");
 			}
-		}
-		if(num == 2) {
-			if(track4ShipHits2 == 3) {
+			if(this.track4ShipHits2 >= 4 && !second4ShipSunk) {
 				second4ShipSunk = true;	
+				this.compShips --;
+				System.out.println("You destroyed the 4 long ship!");
 			}
+			System.out.println("Computer has " + this.compShips + " ships left.");
+		}
+		
+		else
+		{
+			for(int i = 0; i < shipCoordsArrComp.length;i++) {
+				if(shipCoordsArrComp[i][0] ==coords[0]  && shipCoordsArrComp[i][1] == coords[1]) {
+					if(i < 3) {
+						//3ship
+						this.track3ShipHitsComp++;
+						//trackShipHits(0);
+					}
+					if(i > 2 && i < 7) {
+						//1stfourship
+						this.track4ShipHits1Comp++;
+						//trackShipHits(1);
+					}
+					if(i>6 && i<11) {
+						//2ndfourship
+						this.track4ShipHits2Comp++;
+						//trackShipHits(2);
+					}
+				}
+			}
+			
+			/*
+			 * Now it is possible to win, idk about losing UHHHH DONT LOSE
+			 * change cmop test color DONE
+			 * keep doing test
+			 * fix comp turn out of bounds GOOD
+			 * keep playing TEXT OUT OF PLACE ONCE IN AWHILE
+			 * MERGE
+			 */
+			
+			
+			
+			if(this.track3ShipHitsComp >= 3 && !threeShipSunkComp) {
+				threeShipSunkComp = true;
+				this.userShips --;
+				System.err.println("Computer destroyed the 3 long ship!");
+			}
+			if(this.track4ShipHits1Comp >= 4 && !first4ShipSunkComp) {
+				first4ShipSunkComp = true;	
+				this.userShips --;
+				System.err.println("Computer destroyed the 4 long ship!");
+			}
+			if(this.track4ShipHits2Comp >= 4 && !second4ShipSunkComp) {
+				second4ShipSunkComp = true;	
+				this.userShips --;
+				System.err.println("Computer destroyed the 4 long ship!");
+			}
+			System.out.println("You have " + this.userShips + " ships left.\n");
 		}
 	}
+	
+	public void printMessageAndReturnComp(int row, int col) {
+		if(compships[row][col].containsShip()) {
+			System.err.println("The computer has taken its turn. It has launched a missle at the coordinates ("+row+","+col+") That's a hit.");
+			smartComp = true;
+			selRow = row;
+			selCol = col;
+		}
+		else {
+			System.err.println("The computer has taken its turn. It has launched a missle at the coordinates ("+row+","+col+") That's a miss.");
+			smartComp = false;
+		}
+	}
+	
 
 	// NOCKLES : "IN ORDER FOR BACKEND TO MEET THE REQUIREMENT FOR A 5, THE AI MUST BE SMART"
 	// IF THE AI HITS A SHIP, IT MUST SELECT TO HIT ANOTHER SPACE NEAR THE SHIP
@@ -216,6 +327,7 @@ public class AlexBackEnd implements ErikSupport {
 					// activate vertical in upward directions
 					for(int i = randRow; i > randRow - 3;i--) {
 						compships[i][randCol].setContainsShip(true);
+						coordsArrCreationComp(i,randCol);
 					}
 					countShortCompShips++;
 				}
@@ -223,6 +335,7 @@ public class AlexBackEnd implements ErikSupport {
 					// activate vertical in downward direction
 					for(int i = randRow; i < randRow + 3;i++) {
 						compships[i][randCol].setContainsShip(true);
+						coordsArrCreationComp(i,randCol);
 					}
 					countShortCompShips++;
 				}
@@ -230,6 +343,7 @@ public class AlexBackEnd implements ErikSupport {
 						// activate horizontal in leftward directions
 						for(int i = randCol; i > randCol - 3;i--) {
 							compships[randRow][i].setContainsShip(true);
+							coordsArrCreationComp(randRow,i);
 						}
 						countShortCompShips++;
 				}
@@ -237,6 +351,7 @@ public class AlexBackEnd implements ErikSupport {
 					// activate horizontal in rightward direction
 					for(int i = randCol; i < randCol + 3;i++) {
 						compships[randRow][i].setContainsShip(true);
+						coordsArrCreationComp(randRow,i);
 					}
 					countShortCompShips++;
 				}
@@ -252,6 +367,7 @@ public class AlexBackEnd implements ErikSupport {
 					// activate vertical in upward directions
 					for(int i = randRow; i > randRow - 4;i--) {
 						compships[i][randCol].setContainsShip(true);
+						coordsArrCreationComp(i,randCol);
 					}
 					countLongCompShips++;
 				}
@@ -259,6 +375,7 @@ public class AlexBackEnd implements ErikSupport {
 					// activate vertical in downward direction
 					for(int i = randRow; i < randRow + 4;i++) {
 						compships[i][randCol].setContainsShip(true);
+						coordsArrCreationComp(i,randCol);
 					}
 					countLongCompShips++;
 				}
@@ -266,6 +383,7 @@ public class AlexBackEnd implements ErikSupport {
 						// activate horizontal in leftward directions
 						for(int i = randCol; i > randCol - 4;i--) {
 							compships[randRow][i].setContainsShip(true);
+							coordsArrCreationComp(randRow,i);
 						}
 						countLongCompShips++;
 				}
@@ -273,6 +391,7 @@ public class AlexBackEnd implements ErikSupport {
 					// activate horizontal in rightward direction
 					for(int i = randCol; i < randCol + 4;i++) {
 						compships[randRow][i].setContainsShip(true);
+						coordsArrCreationComp(randRow,i);
 					}
 					countLongCompShips++;
 				}
@@ -282,11 +401,26 @@ public class AlexBackEnd implements ErikSupport {
 		}
 	}
 	public void computerTurn() {
+		this.compships = frontend.getCompBoard();
 		if(!smartComp) {
-			int selRow = (int)(Math.random()*ships.length);
-			int selCol = (int)(Math.random()*ships[selRow].length);	
+			//System.out.println("Here");
+			int selRow = (int)(Math.random()*compships.length);
+			int selCol = (int)(Math.random()*compships[selRow].length);	
 			printMessageAndReturnComp(selRow,selCol);
+			this.computerCoords[0] = selRow;
+			this.computerCoords[1] = selCol;
+			
+				if(compships[selRow][selCol].containsShip()) {
+					compships[selRow][selCol].setRevealed(true);
+					compships[selRow][selCol].setContainsShip(false);
+					frontend.setCompBoard(compships);
+				}
+				else {
+					compships[selRow][selCol].setMiss(true);
+					frontend.setCompBoard(compships);
+				}
 		}
+		
 		else {
 			potRow1 = selRow - 1;
 			potRow2 = selRow + 1;
@@ -297,24 +431,52 @@ public class AlexBackEnd implements ErikSupport {
 			//HIT IN FOLLOWING ORDER: N-E-S-W
 			
 			chooseCompLogic(compLogicNum);
+			//copy bottom add to if up top
 			if(isVertical) {
-				if(ships[potRow1][selCol].containsShip()) {
+				if(compships[potRow1][selCol].containsShip() && potRow1 > 0) {
+					compships[potRow1][selCol].setRevealed(true);
+					compships[potRow1][selCol].setContainsShip(false);
+					frontend.setCompBoard(compships);
+					this.computerCoords[0] = potRow1;
+					this.computerCoords[1] = selCol;
 					compLogicNum = 0;
 				}
 				else {
+					compships[potRow1][selCol].setMiss(true);
+					frontend.setCompBoard(compships);
+					this.computerCoords[0] = potRow1;
+					this.computerCoords[1] = selCol;
 					compLogicNum = 2;
 				}
 			}
 			else {
-				if(ships[selRow][potCol1].containsShip()) {
+				if(compships[selRow][potCol1].containsShip() && potCol1 > 0 ) {
+					compships[selRow][potCol1].setRevealed(true);
+					compships[selRow][potCol1].setContainsShip(false);
+					frontend.setCompBoard(compships);
+					this.computerCoords[0] = selRow;
+					this.computerCoords[1] = potCol1;
 					compLogicNum = 1;
 				}
 				else {
+					compships[potRow1][selCol].setMiss(true);
+					frontend.setCompBoard(compships);
+					this.computerCoords[0] = potRow1;
+					this.computerCoords[1] = selCol;
 					compLogicNum = 3;
 				}
 			}
 		}
+		frontend.setCompBoard(compships);
 	}
+	public AlexErikFleet[][] getCompBoard() {
+		return compships;
+	}
+
+	public int[] getComputerCoords() {
+		return computerCoords;
+	}
+
 	/*
 	 * STEPS TO TRACK SHIPS(FOR USER AND COMPUTER)
 	 * when placing ships, insert coordinates into a 2d array(first 3 coordinates belong to the 3-ship, next four to the 4-ship, last four to the 4-ship)
@@ -325,7 +487,7 @@ public class AlexBackEnd implements ErikSupport {
 		if(num == 0) {
 			if(potRow1 > 0 && potRow1 < 7) {
 				printMessageAndReturnComp(potRow1,selCol);
-				if(ships[potRow1][selCol].containsShip()) {
+				if(compships[potRow1][selCol].containsShip()) {
 					// launch missiles in vertical positions
 					isVertical = true;
 				}
@@ -337,7 +499,7 @@ public class AlexBackEnd implements ErikSupport {
 		if(num == 1) {
 			if(potCol1 > 0 && potCol1 < 7) {
 				printMessageAndReturnComp(selRow,potCol1);
-				if(ships[selRow][potCol1].containsShip()) {
+				if(compships[selRow][potCol1].containsShip()) {
 					// launch missiles in vertical positions
 					isVertical = false;
 				}
@@ -349,7 +511,7 @@ public class AlexBackEnd implements ErikSupport {
 		if(num == 2) {
 			if(potRow2 > 0 && potRow2 < 7) {
 				printMessageAndReturnComp(potRow2,selCol);
-				if(ships[potRow2][selCol].containsShip()) {
+				if(compships[potRow2][selCol].containsShip()) {
 					// launch missiles in vertical positions
 					isVertical = true;
 				}
@@ -361,7 +523,7 @@ public class AlexBackEnd implements ErikSupport {
 		if(num == 3) {
 			if(potCol2 > 0 && potCol2 < 7) {
 				printMessageAndReturnComp(selRow,potCol2);
-				if(ships[selRow][potCol2].containsShip()) {
+				if(compships[selRow][potCol2].containsShip()) {
 					// launch missiles in vertical positions
 					isVertical = false;
 				}
@@ -371,39 +533,6 @@ public class AlexBackEnd implements ErikSupport {
 			}
 		}
 	}
-	
-	public void printMessageAndReturnComp(int row, int col) {
-		if(ships[row][col].containsShip()) {
-			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+row+","+col+") That's a hit.");
-			smartComp = true;
-			selRow = row;
-			selCol = col;
-			for(int i = 0; i < shipCoordsArr.length;i++) {
-				if(shipCoordsArr[i][0] == row && shipCoordsArr[i][1] == col) {
-					if(i < 3) {
-						//3ship
-						track3ShipHits++;
-						trackShipHits(0);
-					}
-					if(i > 2 && i < 7) {
-						//1stfourship
-						track4ShipHits1++;
-						trackShipHits(1);
-					}
-					if(i>6&&i<11) {
-						//2ndfourship
-						track4ShipHits2++;
-						trackShipHits(2);
-					}
-				}
-			}
-		}
-		else {
-			System.out.println("The computer has taken its turn. It has launched a missle at the coordinates ("+row+","+col+") That's a miss.");
-			smartComp = false;
-		}
-	}
-	
 	
 	
 	public boolean sunk() {
@@ -420,11 +549,11 @@ public class AlexBackEnd implements ErikSupport {
 	
 	
 	public int getUserShips() {
-		return userShips;
+		return this.userShips;
 	}
 
 	public int getCompShips() {
-		return compShips;
+		return this.compShips;
 	}
 
 	public int[] getCoordInput() {
@@ -474,5 +603,6 @@ public class AlexBackEnd implements ErikSupport {
 	public boolean PlayerWon() {
 		return true;
 	}
+
 	
 }

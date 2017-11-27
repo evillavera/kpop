@@ -57,7 +57,8 @@ public class ErikFrontEnd implements AlexSupport{
 	}
 	
 	private void startGame() {
-		while(userShips > 0 && compShips > 0) {
+		while(backend.getUserShips() > 0 && backend.getCompShips() > 0) {
+			System.out.println("Computer's ships board:\n");
 			displayUserBoard(userBoard);
 			System.out.println("\n\n"+
 			"Your ships board:\n");
@@ -84,9 +85,11 @@ public class ErikFrontEnd implements AlexSupport{
 					lastCoords = coords;
 				}
 			playersTurn(coords);
-			compShips = backend.getCompShips();
-			//backend.computerTurn();
-			userShips = backend.getUserShips();
+			backend.trackShipsHits(lastCoords, 0);
+			System.err.println("\nCOMPUTER'S TURN");
+			backend.computerTurn();
+			backend.trackShipsHits(backend.getComputerCoords(), 1);
+			//compBoard = backend.getCompBoard();
 		}
 		displayResult();
 		System.out.println("GAME OVER\n");
@@ -106,6 +109,14 @@ public class ErikFrontEnd implements AlexSupport{
 	*/	
 	}
 	
+	public void setCompBoard(AlexErikFleet[][] compBoard) {
+		this.compBoard = compBoard;
+	}
+
+	public AlexErikFleet[][] getCompBoard() {
+		return compBoard;
+	}
+
 	private void playersTurn(int [] coords) {
 		int row = coords[0];
 		int col = coords[1];
@@ -115,10 +126,10 @@ public class ErikFrontEnd implements AlexSupport{
 			System.out.println("That's a hit!");
 		}
 		//when ship is destroyed
-	/*	if(compShips == backend.getCompShips()-1)
+		//if(compShips == backend.getCompShips()-1)
 		
 		
-	*/	else {
+		else {
 			userBoard[row][col].setMiss(true);
 			System.out.println("You missed.");
 			displayHints();
@@ -134,11 +145,11 @@ public class ErikFrontEnd implements AlexSupport{
 				if(ships[row][col].isRevealed()){
 					System.out.print("[x]");
 				}
-	/*		
+			/*
 				else if(ships[row][col].containsShip()){
 						System.out.print("[+]");
 				}	
-	*/	
+			*/
 					else if(ships[row][col].isMiss()) {
 						System.out.print("[o]");
 					}else {
