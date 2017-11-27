@@ -3,6 +3,7 @@ package alexErikGame;
 import java.util.Scanner;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.CaveRoom;
 
 public class AlexCaveRoom extends CaveRoom {
 	/*
