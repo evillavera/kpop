@@ -44,28 +44,6 @@ public class SecurityGuard {
 		currentRoom.enterPerson(this);
 	}
 
-	public void actI() {
-		CaveExplorer.print("This is special " + item + ".");
-		CaveExplorer.print("If you want to purchase this item, say 'p'");
-		s = CaveExplorer.in.nextLine();
-		if(s.equalsIgnoreCase("p")) {
-			actP();
-		}
-		else
-			CaveExplorer.print("Hm, seems like you don't want this item. Bye then.");
-
-	}
-
-	public void actP() {
-		if(Inventory.getMoney() < 10) {
-			CaveExplorer.print("You do not have enough money to purchase this item.\nPlease come back when you have at least 10 dollars!");
-		}else {
-			CaveExplorer.print("I took 10 dollars from you. Thank you. Have a nice day!");
-			Inventory.updateMoney(-10); 
-			Inventory.setPen(true);
-			active = false;
-		}
-
-	}
+	
 }
 
