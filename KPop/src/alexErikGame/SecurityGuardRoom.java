@@ -1,22 +1,20 @@
 package alexErikGame;
 
-import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
-import caveExplorer.NPCRoom;
+import caveExplorer.CaveExplorer;
 
 public class SecurityGuardRoom extends CaveRoom {
 
-	private SecurityGuard presentNPC;
+	private SecurityGuard person;
 	
 	public SecurityGuardRoom(String description) {
 		super(description);
-		presentNPC = null;
 	}
 
 	public boolean containsGuard() {
-		return presentNPC == null;
+		return person == null;
 	}
-	
+
 	public String getContents() {
 		return "S";
 	}
@@ -34,8 +32,8 @@ public class SecurityGuardRoom extends CaveRoom {
 	
 	public void performAction(int direction) {
 		if(direction == 4) {
-			if(presentNPC.isActive()) {
-				presentNPC.interact();
+			if(person.isActive()) {
+				person.interact();
 			}else {
 				CaveExplorer.print("There is nothing to interact with.");
 			}
@@ -43,48 +41,53 @@ public class SecurityGuardRoom extends CaveRoom {
 	}
 
 	public void enterPerson(SecurityGuard securityGuard) {
-		presentNPC = securityGuard;
+		person = securityGuard;
 	}	
 	
 	/*
-	 * public class IdolRoom extends CaveRoom {
+	 *package samJenny;
 
-	private Idol idol;
+import caveExplorer.CaveRoom;
+import caveExplorer.CaveExplorer;
 
-	public IdolRoom(String description) {
+public class JennyRoom extends CaveRoom {
+	
+	private JennyPerson person;
+
+	public JennyRoom(String description) {
 		super(description);
-		idol = null;
 	}
-	
+
 	public String getContents() {
-		return "I";
+		return "J";
 	}
-	
+
 	public String validKeys() {
 		return "wdsae";
 	}
 	
 	public void printAllowedEntry() {
-		CaveExplorer.print("You can only input 'W', 'A', 'S', 'D' to move or 'E' to interact.");
+		CaveExplorer.print("You can only input W A S D to move or E to interact.");
 	}
 	
 	public void performAction(int direction) {
 		if(direction == 4) {
-			idol.interact();
+			person.interact();
 		}
 		else {
-			super.performAction(direction);
+			CaveExplorer.print("That key does nothing.");
 		}
 	}
 	
 	public String getDescription() {
-		return super.getDescription() + "\n"+ idol.returnDescription();
+		return super.getDescription() + "\n"+ person.returnDescription();
 	}
 
-	public void enterPerson(Idol i) {
-		idol = i;
-	}
+	public void enterPerson(JennyPerson p) {
+		person = p;
+	} 
 }
+
 	 */
 	
 	

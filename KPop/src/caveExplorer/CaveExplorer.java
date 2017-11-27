@@ -1,6 +1,8 @@
 package caveExplorer;
 
 import java.util.Scanner;
+
+import alexErikGame.SecurityGuard;
 import samJenny.JennyPerson;
 import samJenny.JennyRoom;
 import samJenny.SamRoom;
@@ -14,6 +16,7 @@ public class CaveExplorer {
 	public static boolean playing = true;
 	public static NPC[] npcs;
 	public static JennyPerson[] jenny;
+	public static SecurityGuard[] erik;
 	
 	public static void main(String[] args) {
 		in = new Scanner(System.in);

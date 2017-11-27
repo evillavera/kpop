@@ -205,9 +205,9 @@ public class CaveRoom {
 		CaveRoom customRoom3 = new SecurityGuardRoom("Text");
 		CaveExplorer.caves[1][1] = customRoom3;
 		
-		CaveExplorer.npcs = new SecurityGuard[1];
-		CaveExplorer.npcs[0] = new SecurityGuard();
-		CaveExplorer.npcs[0].setPosition(1, 1);
+		CaveExplorer.erik = new SecurityGuard[1];
+		CaveExplorer.erik[0] = new SecurityGuard();
+		CaveExplorer.erik[0].setPosition(1, 1);
 	/*
 		CaveExplorer.npcs = new Enemy[1];
 		
