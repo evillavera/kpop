@@ -204,7 +204,7 @@ public class ErikFrontEnd implements AlexSupport{
 	}
 
 	public void displayHints() {
-		System.out.println("Need a a hint?");
+		System.out.println("Need a hint?");
 		String input = CaveExplorer.in.nextLine();
 		if(input.equals("yes")) {
 			System.out.println("Here is your hint.");
