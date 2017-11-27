@@ -23,7 +23,7 @@ public class ErikRoom extends CaveRoom{
 	}
 	
 	public String getContents() {
-		return "I";
+		return "N";
 	}
 	
 	public String validKeys() {
