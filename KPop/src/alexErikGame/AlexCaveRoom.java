@@ -19,7 +19,7 @@ public class AlexCaveRoom extends CaveRoom {
 	
 	public AlexCaveRoom(String description) {
 		super(description);
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stu
 	}
 
 	public String getContents() {
