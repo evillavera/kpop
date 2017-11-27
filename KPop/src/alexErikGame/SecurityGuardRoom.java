@@ -9,7 +9,6 @@ public class SecurityGuardRoom extends NPCRoom {
 	
 	public SecurityGuardRoom(String description) {
 		super(description);
-		presentNPC = null;
 	}
 
 	public boolean containsGuard() {
@@ -18,6 +17,10 @@ public class SecurityGuardRoom extends NPCRoom {
 	
 	public String getContents() {
 		return "S";
+	}
+	
+	public String validKeys() {
+		return "wdsae";
 	}
 	
 	public String getDescription() {
@@ -29,7 +32,7 @@ public class SecurityGuardRoom extends NPCRoom {
 	
 	public void performAction(int direction) {
 		if(direction == 4) {
-			if(containsGuard() && presentNPC.isActive()) {
+			if(presentNPC.isActive()) {
 				presentNPC.interact();
 			}else {
 				CaveExplorer.print("There is nothing to interact with.");

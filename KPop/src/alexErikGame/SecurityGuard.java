@@ -10,6 +10,7 @@ public class SecurityGuard extends NPC{
 	private String inactiveDescription;
 	
 	public SecurityGuard() {
+		this.active = true;
 		this.activeDescription = "Stop right there!";
 		this.inactiveDescription = "Hmmphh.";
 	}
@@ -24,5 +25,9 @@ public class SecurityGuard extends NPC{
 
 	public String getActiveDescription() {
 		return activeDescription;
+	}
+	
+	public void interact() {
+		System.out.println(activeDescription);
 	}
 }
