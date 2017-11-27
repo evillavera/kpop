@@ -1,5 +1,7 @@
 package alexErikGame;
 
+import java.util.Scanner;
+
 import caveExplorer.CaveExplorer;
 
 public class ErikFrontEnd implements AlexSupport{
@@ -11,7 +13,16 @@ public class ErikFrontEnd implements AlexSupport{
 	private AlexErikFleet[][] userBoard;
 	private AlexErikFleet[][] compBoard;
 	private int[] lastCoords;
+	private boolean win = false;
 	
+	public boolean isWin() {
+		return win;
+	}
+
+	public void setWin(boolean win) {
+		this.win = win;
+	}
+
 	public static void main(String[] args) {
 		ErikFrontEnd game = new ErikFrontEnd();
 		game.directions();
@@ -28,7 +39,7 @@ public class ErikFrontEnd implements AlexSupport{
 	 */
 	
 	
-	private void directions() {
+	public void directions() {
 		//String input = CaveExplorer.in.nextLine();
 		System.out.println("Welcome to BattleShip! Your ships are auto-generated for you.\n"
 				+ "Your goal is to find and destroy all your enemies ships!\n"
@@ -47,7 +58,7 @@ public class ErikFrontEnd implements AlexSupport{
 
 	public ErikFrontEnd() {
 			backend = new AlexBackEnd(this);
-			CaveExplorer.initScanner();
+			CaveExplorer.in = new Scanner(System.in);
 			userShips = backend.getUserShips();
 			compShips = backend.getCompShips();
 			message = null;
@@ -245,6 +256,7 @@ public class ErikFrontEnd implements AlexSupport{
 	public void displayResult() {
 		if(backend.getCompShips() == 0) {
 			System.out.println("You did it!!");
+			this.win = true;
 		}else {
 			System.out.println("Maybe if you attack outside the box (9,9) you can win. shhhhhhh");
 		}

@@ -197,7 +197,7 @@ public class CaveRoom {
 		CaveExplorer.jenny[0] = new JennyPerson();
 		CaveExplorer.jenny[0].setPosition(6, 1);
 		
-		CaveExplorer.caves[1][1] = new SecurityGuardRoom("Erik's room");
+		CaveExplorer.caves[1][1] = new SecurityGuardRoom("");
 		CaveExplorer.erik = new SecurityGuard[1];
 		CaveExplorer.erik[0] = new SecurityGuard();
 		CaveExplorer.erik[0].setPosition(1,1);
@@ -224,7 +224,7 @@ public class CaveRoom {
 		CaveExplorer.currentRoom.enter();
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
-		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		//c[0][1].setConnection(SOUTH, c[1][1], new Door());
 		c[0][1].setConnection(EAST, c[0][2], new Door());
 		c[0][2].setConnection(EAST, c[0][3], new Door());
 		c[0][3].setConnection(EAST, c[0][4], new Door());
@@ -279,5 +279,10 @@ public class CaveRoom {
 		}else {
 			return null;
 		}
+	}
+	
+	public static void openPassage() {
+		CaveRoom[][] c = CaveExplorer.caves;
+		c[0][1].setConnection(SOUTH, c[1][1], new Door());
 	}
 }

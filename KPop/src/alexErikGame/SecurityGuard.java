@@ -1,6 +1,7 @@
 package alexErikGame;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.CaveRoom;
 import caveExplorer.Inventory;
 
 public class SecurityGuard {
@@ -15,6 +16,7 @@ public class SecurityGuard {
 		active = true;
 		description = "\nThere is a big security guard in your way. Press 'e' to talk to him.";
 		this.currentRoom = null;
+		game = new ErikFrontEnd();
 	}
 
 	public String returnDescription() {
@@ -26,17 +28,21 @@ public class SecurityGuard {
 	}
 
 	public void interact() {
-		if(active) {
+		while(active && !(game.isWin())) {
 			CaveExplorer.print("No one is allowed through, but if you beat me in battleship I will grant you access. Press 'q' if you want to fight.");
 			s = CaveExplorer.in.nextLine();
 			while(!(s.equals("q"))) {
 				CaveExplorer.print("I'm sorry, but your only option is to fight me. Press 'q' to fight.");
 				s = CaveExplorer.in.nextLine();
 			}
-			//playGame
 			CaveExplorer.print("Let's fight!");
-		}else
-			CaveExplorer.print("You beat me!");
+			game.directions();
+			if(game.isWin()) {
+				CaveRoom.openPassage();
+			}
+		}
+			CaveExplorer.print("You beat me!\n"
+					+ "I open the door North. Go on kiddo.");
 	}
 
 	public void setPosition(int row, int col) {
